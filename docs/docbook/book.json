@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "-sharing",
+    "hide-published-with",
+    "numbered-headings-for-web-and-books",
+    "mermaid-gb3"
+  ]
+}

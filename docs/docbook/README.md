@@ -155,6 +155,8 @@ SSG(Static Site Generation)
 
 ### gitbookについて
 
+[参考URL:個人のリファレンスかな？](https://akirat1993.github.io/MathPC/md/gitbook.html)
+
 GitBook は、Markdown形式で作成した文章を HTML形式、PDF形式、ePub形式などの電子ブックを簡単に作ることができる。
 GitBook は、クラウドサービスですが、
 gitbook-cli を利用して、スタンドアロンで生成する環境を構築できます。
@@ -172,11 +174,29 @@ GitBook version: 3.2.3
 
 インストール後gitinit
 $gitbook init
-README.md と SUMMARY.mdが作成される
+README.md(本文) と SUMMARY.md(目次)が作成される
 
 $gitbook build
 
 ```
+- gitbook 各種プラグイン
+
+同階層にbook.jsonを作成し、使用するプラグインを記述する。
+
+```json
+{
+  "plugins": [
+    "-sharing", // SNSメニューの非表示
+    "hide-published-with", // Published with Gitbookの非表示
+    "numbered-headings-for-web-and-books", //自動ヘッダー番号付け
+    "mermaid-gb3" // mermaid.js(フローチャートやシーケンス図)
+  ]
+}
+```
+
+book.json記述後、以下コマンドを実行しプラグインをインストールする。
+
+```$ gitbook install```
 
 ## firebase project
 
@@ -340,20 +360,6 @@ $mkdir @types
   `tsconfig.json`の`types: []`に`"vuetify"`を追加すれば解決できた。
 4. エディタのエラーを解消する。
 
-## nuxt userAgent導入
-
-UA(User Agent: UA)とは
-ネット利用者が使用しているOS・ブラウザのことを指す
-一般的なインターネットブラウザを使い、HTTPに基づきサイトなどにアクセスした際にはユーザエージェントに関する各種情報が相手側に通知される仕組みとなっている。
-サイト側はユーザーエージェントを見ることでアクセスしてきたユーザがどういったOSやブラウザを使っているかを把握できる。
-そのためアクセス解析に利用されることが多い。
-```$ yarn add nuxt-user-agent```
-
-## nuxtでsassを使う準備
-会社でもインストールしていた。
-
-```$ yarn add --dev node-sass sass-loader @nuxtjs/style-resources```
-
 ## nuxt composition API
 
 [参考URL](https://task-kawahara.hatenablog.com/entry/2020/12/28/124445)
@@ -381,12 +387,11 @@ useFetch - Nuxt Composition API
 useMeta - Nuxt Composition API
 
 
+## nuxt typescript project 強化
 
+branch: feature/nuxt_typescript_setup
 
-
-ここまでで最低限の準備が完了
-
-## nuxt typescript-runtime setup RUNTIME
+- typescript-runtime setup RUNTIME
 
 RUNTIME中でもTSを実行させる。
 
@@ -413,8 +418,61 @@ NuxtのTS周りのNPMがいくつかに分解された。
 +    "generate": "nuxt-ts generate",
 ```
 
-## nuxt/typescript-buildnuxt buildでTSを扱うためのものが@nuxt/typescript-buildです。
+- nuxt/typescript-buildnuxt buildでTSを扱うためのものが@nuxt/typescript-buildです。
 @nuxt/typescriptは@nuxt/typescript-buildに含まれるようになったので直接の依存は不要になります。
 @nuxt/typescriptがRuntimeとに分離されて使いやすくなった感じですね
 
 ```yarn add -D @nuxt/typescript-build```
+
+
+- nuxt userAgent導入
+
+UA(User Agent: UA)とは
+ネット利用者が使用しているOS・ブラウザのことを指す
+一般的なインターネットブラウザを使い、HTTPに基づきサイトなどにアクセスした際にはユーザエージェントに関する各種情報が相手側に通知される仕組みとなっている。
+サイト側はユーザーエージェントを見ることでアクセスしてきたユーザがどういったOSやブラウザを使っているかを把握できる。
+そのためアクセス解析に利用されることが多い。
+```$ yarn add nuxt-user-agent```
+
+- nuxtでsassを使う準備
+会社でもインストールしていた。
+
+```$ yarn add --dev node-sass sass-loader @nuxtjs/style-resources```
+
+```ts
+modules: ['@nuxtjs/style-resources'],
+```
+
+
+- nuxtjs axios setup
+
+```$ yarn add @nuxtjs/axios```
+
+```ts
+modules: ['@nuxtjs/style-resources', '@nuxtjs/axios'],
+```
+
+- nuxtjs dayjs setup
+
+
+
+- バンドルファイルの分析
+
+Webpack Bundle Analyzerを利用すると、バンドルサイズを可視化できます。可視化することで「容量の大きいモジュールの把握」「複数ページで共通モジュールを保持してないかの確認」といった分析がしやすくなります。
+
+package.jsonのscriptに以下を追加
+```json
+"analyze": "nuxt-ts build --analyze",
+```
+
+使用例
+1.Webpack Bundle Analyzerを使って、現状のファイルサイズを把握。
+2.その中でどのファイルがネックになっているか調査する。
+3.リファクタリングする。 ※今回は一部のみ
+
+
+
+あとやっていないこと
+lintの設定
+huskyの設定
+storeなど？
