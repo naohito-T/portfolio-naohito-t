@@ -1,0 +1,6 @@
+# node
+node_modules
+
+# gitbook
+#_bookディレクトリにはビルド結果が格納されている。gitにコミットするときはこのビルド結果をgitignoreに含めると良い。
+docbook/_book/
