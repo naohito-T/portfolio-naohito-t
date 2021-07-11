@@ -332,10 +332,9 @@ $mkdir @types
 すでにtypesで指定されていますが、新しいパッケージの型を入れたらその都度typesに追加する必要があるため、削除します。
 変わりにtypeRootsを使用します。
 
-
-
-
 3. src配下に全て配置する。[参考URL](https://leotakeishi.com/blog/create-nuxt-typescript-environment/)
+
+
 4. vuetify error
   nuxt.config.tsにするとvuetifyがerrorになっていた。そのためtsconfig.jsonのtypesに追加をすると解消した。
   `tsconfig.json`の`types: []`に`"vuetify"`を追加すれば解決できた。
@@ -360,18 +359,15 @@ UA(User Agent: UA)とは
 [参考URL](https://task-kawahara.hatenablog.com/entry/2020/12/28/124445)
 
 以下コマンドでcompositionAPIを導入する。
-```$ yarn add @nuxt/composition-api```
+```$ yarn add @nuxtjs/composition-api```
 
 導入後、nuxt.config.tsに以下を追記
+
 ```ts
 buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
-    // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
-    '@nuxtjs/composition-api',
+    '@nuxtjs/composition-api/module'
   ],
 ```
 
