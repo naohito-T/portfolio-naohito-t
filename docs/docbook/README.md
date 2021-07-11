@@ -315,9 +315,28 @@ plugin/firebase.jsの中に作成した。
 
 ## nuxt typescript化
 
+branch: feature/nuxt_composition_api_setup
+
 1. まずはnuxt.config.jsをts化にする。ここでVuetyfiがerrorを吐いていた。npm i --save-dev @types/vuetify
-2. src配下に全て配置する。[参考URL](https://leotakeishi.com/blog/create-nuxt-typescript-environment/)
-3. vuetify error
+
+2. TypeScriptで.vueファイルを読み込めるように設定
+(参考URL)[https://ikkyu.hateblo.jp/entry/2019/08/14/233538]
+
+```bash
+
+$mkdir @types
+
+```
+
+次にtypesディレクトリの型ファイルを読み込めるようにするため、tsconfig.jsonを変更します。
+すでにtypesで指定されていますが、新しいパッケージの型を入れたらその都度typesに追加する必要があるため、削除します。
+変わりにtypeRootsを使用します。
+
+
+
+
+3. src配下に全て配置する。[参考URL](https://leotakeishi.com/blog/create-nuxt-typescript-environment/)
+4. vuetify error
   nuxt.config.tsにするとvuetifyがerrorになっていた。そのためtsconfig.jsonのtypesに追加をすると解消した。
   `tsconfig.json`の`types: []`に`"vuetify"`を追加すれば解決できた。
 4. エディタのエラーを解消する。
