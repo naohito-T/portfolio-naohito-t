@@ -61,30 +61,39 @@ S3必要かな？firebaseに画像登録できるのであれば、そのまま
 
 ```bash
 $node -v
+v12.21.0
 
 $npm install -g firebase-tools
 
 $yarn create nuxt-app portfolio-web-site
 
 以下プロジェクト作成時の選択
-success Installed "create-nuxt-app@3.7.1" with binaries:
-      - create-nuxt-app
-
 create-nuxt-app v3.7.1
 ✨  Generating Nuxt.js project in portfolio-web-site
 ? Project name: portfolio-web-site
 ? Programming language: TypeScript
 ? Package manager: Yarn
-? UI framework: Vuetify.js
-? Nuxt.js modules: Axios - Promise based HTTP client
-? Linting tools: ESLint, Prettier, Lint staged files, StyleLint, Commitlint
+? UI framework: None
+? Nuxt.js modules: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+? Linting tools: ESLint, Prettier
 ? Testing framework: Jest
 ? Rendering mode: Universal (SSR / SSG)
 ? Deployment target: Server (Node.js hosting)
-? Development tools: jsconfig.json (Recommended for VS Code if you\'re not using typescript)
+? Development tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
 ? Continuous integration: GitHub Actions (GitHub only)
 ? What is your GitHub username? naohito-t
 ? Version control system: Git
+
+動確
+$ yarn test
+$ yarn dev
+$ yarn generate
+
+$ rm -rf .git
+nuxt createでのデフォルトリポジトリは削除する
+
+全てok
+
 ```
 
 ## memo (SPA・SSR・SSG)
@@ -171,6 +180,8 @@ $gitbook build
 
 ## firebase project
 
+**branch:feature/firebase_init_setup**
+
 1. firebaseでプロジェクトを作成
 2. ウェブアプリにFirebaseを追加しkeyを取得
 3. firestoreを作成
@@ -186,6 +197,11 @@ Firebase SDKはpassでOK
 ここでターミナルに戻り以下コマンドを実行する。
 
 ```bash
+$cd portfolio-web-site
+
+$node -v
+v12.21.0
+
 $exec $SHELL -1
 
 $firebase login
@@ -200,9 +216,21 @@ $firebase init
      ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
      ##       #### ##     ## ######## ########  ##     ##  ######  ########
 
-  /Users/tanakanaohitoshi/work/product/portfolio-web-site/portfolio-web-site
+? Which Firebase features do you want to set up for this directory? Press Space to select features, then Enter to co
+nfirm your choices.
+nce
+ ◯ Firestore: Configure security rules and indexes files for Firestore
+ ◯ Functions: Configure a Cloud Functions directory and its files
+❯◉ Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys
+ ◯ Hosting: Set up GitHub Action deploys
+ ◯ Storage: Configure a security rules file for Cloud Storage
+ ◯ Emulators: Set up local emulators for Firebase products
 
 === Project Setup
+
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add,
+but for now we'll just set up a default project.
 
 ? Please select an option: Use an existing project
 ? Select a default Firebase project for this directory: naohito-t-portfolio (naohito-t-portfolio)
