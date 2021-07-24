@@ -28,3 +28,15 @@ login昨日から作るか
 ### 自身を紹介する page
 
 ### コードがどれくらいやっているのかを表す円グラフページ
+
+## 作成手順
+
+nuxt create
+
+firebase
+
+nuxt composition api
+
+document
+
+env

@@ -1,6 +1,8 @@
 # 4. nuxt
 
-## 作成手順
+起動は全てyarnでしかしない。
+
+## create nuxt-app 作成手順
 
 ```bash
 
@@ -160,13 +162,14 @@ modules: ['@nuxtjs/style-resources', '@nuxtjs/axios'],
 
 - nuxtjs dayjs setup
 
-
+まだやらない
 
 - バンドルファイルの分析
 
 Webpack Bundle Analyzerを利用すると、バンドルサイズを可視化できます。可視化することで「容量の大きいモジュールの把握」「複数ページで共通モジュールを保持してないかの確認」といった分析がしやすくなります。
 
 package.jsonのscriptに以下を追加
+
 ```json
 "analyze": "nuxt-ts build --analyze",
 ```
@@ -176,9 +179,10 @@ package.jsonのscriptに以下を追加
 2.その中でどのファイルがネックになっているか調査する。
 3.リファクタリングする。 ※今回は一部のみ
 
-
-
 あとやっていないこと
 lintの設定
 huskyの設定
 storeなど？
+
+ここからenvの設定
+[参考URL](https://zenn.dev/captain_blue/articles/nuxt-switch-env)
