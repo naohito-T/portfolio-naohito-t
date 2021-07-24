@@ -94,3 +94,6 @@ firebase.js
 
 # firebase cache
 .firebase
+
+# env
+env

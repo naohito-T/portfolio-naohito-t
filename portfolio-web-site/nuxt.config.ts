@@ -1,12 +1,21 @@
 import { NuxtConfig } from '@nuxt/types'
 
+const environment = process.env.NODE_ENV
+const envSettings = require(`./env/decrypt/env.${environment}.js`)
+
 const nuxtConfig: NuxtConfig = {
   // move directory to src
   srcDir: 'src/',
   globalName: 'naohito-t-portfolio',
+  // env 設定をしないとNuxtでprocess.env.NODE_ENVを取得したときにデフォルトの値になってしまう(develop)
+  // env: envSet,
+  env: envSettings,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'portfolio-web-site',
+    title:
+      process.env.NODE_ENV === 'pro'
+        ? 'portfolio-web-site'
+        : '【開発】portfolio-web-site',
     htmlAttrs: {
       lang: 'en',
     },
@@ -36,7 +45,7 @@ const nuxtConfig: NuxtConfig = {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios', '@nuxtjs/dotenv'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

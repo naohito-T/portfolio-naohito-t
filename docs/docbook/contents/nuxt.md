@@ -184,5 +184,3 @@ lintの設定
 huskyの設定
 storeなど？
 
-ここからenvの設定
-[参考URL](https://zenn.dev/captain_blue/articles/nuxt-switch-env)
