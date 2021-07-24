@@ -145,12 +145,7 @@ UA(User Agent: UA)とは
 - nuxtでsassを使う準備
 会社でもインストールしていた。
 
-```$ yarn add --dev node-sass sass-loader @nuxtjs/style-resources```
-
-```ts
-modules: ['@nuxtjs/style-resources'],
-```
-
+[作成手順](./sass.md)
 
 - nuxtjs axios setup
 

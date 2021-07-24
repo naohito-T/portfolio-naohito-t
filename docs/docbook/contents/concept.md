@@ -19,7 +19,7 @@ https://ics.media/entry/210120/
 
 ### login機能
 
-login昨日から作るか
+firebase login作成して終了
 
 ### home page
 
