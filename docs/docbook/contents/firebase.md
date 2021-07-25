@@ -147,10 +147,14 @@ plugin/firebase.jsの中に作成した。
 
 [参考手順](https://qiita.com/Yuta_Fujiwara/items/3c57c99399891ae3ff38)
 
+[一番参考にした](https://qiita.com/Takabun/items/e0b0c139ccf53c7bb561)
+
 @nuxt/firebaseモジュールで簡単に連携できるとのことだが大げさな気もする。
 そのため普通に実装する形で対応するようにする
 
 Firebaseでは認証状態をどの程度維持するかを指定することができる。
 
 認証したのをどれで管理するかがとても重要
+
+今回nuxtの構成はcompositionAPIで状態とロジックを切り離しているためそれで実装する。
 

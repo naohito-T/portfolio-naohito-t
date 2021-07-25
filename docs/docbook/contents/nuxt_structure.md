@@ -1,5 +1,18 @@
 # 5. nuxt structure
 
+## nuxt ディレクトリ構成
+
+[リファレンス](https://ja.nuxtjs.org/docs/2.x/get-started/directory-structure)
+
+- pagesディレクトリ
+pagesディレクトリにはアプリケーションのビューとルートが含まれている
+Nuxt.jsはこのディレクトリ内の.vueファイルを全て読み込み、アプリケーションのルーターを作成する。
+
+- componentsディレクトリ
+componentsディレクトリにはページにインポートする全てのVue.jsのコンポーネントファイルを入れる
+Nuxt.jsを使用すると作成したコンポーネントを.vueファイルに自動でインポートすることができる。
+nuxt.config.js内のcomponentsをtrueに設定するとNuxt.jsがスキャンして自動でインポートしてくれる。
+
 ## SPA・SSR・SSG とは
 
 [URL](https://qiita.com/nishinoshake/items/f42e2f03663b00b5886d)

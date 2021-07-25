@@ -1,7 +1,8 @@
 # 4. nuxt
 
 起動は全てyarnでしかしない。
-
+stateの内容はpageをreloadすると消えてしまう。
+layout/defaultなどで認証などを定義すれば常に参照ができる。
 ## create nuxt-app 作成手順
 
 ```bash
