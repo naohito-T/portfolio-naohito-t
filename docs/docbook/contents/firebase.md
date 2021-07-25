@@ -141,3 +141,16 @@ asia-northeast1 (東京)
 firebaseConfigの部分だけコピーする。
 
 plugin/firebase.jsの中に作成した。
+
+
+## firebase Authtication
+
+[参考手順](https://qiita.com/Yuta_Fujiwara/items/3c57c99399891ae3ff38)
+
+@nuxt/firebaseモジュールで簡単に連携できるとのことだが大げさな気もする。
+そのため普通に実装する形で対応するようにする
+
+Firebaseでは認証状態をどの程度維持するかを指定することができる。
+
+認証したのをどれで管理するかがとても重要
+
