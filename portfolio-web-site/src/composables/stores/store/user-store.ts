@@ -1,5 +1,5 @@
-import { reactive, ref } from '@nuxtjs/composition-api'
-import { auth, db } from '@/plugins/firebase'
+import { reactive } from '@nuxtjs/composition-api'
+import { db } from '@/plugins/firebase'
 import firebase from 'firebase'
 
 interface User {
@@ -36,7 +36,7 @@ export const UserStore = () => {
           name: doc.data()!.name, // 危険
         }
 
-        state = parsedUserInfo
+        // state = parsedUserInfo
         console.log('complete on state', GetUserStore())
       } else {
         console.log('No User Data')

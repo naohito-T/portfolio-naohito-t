@@ -5,16 +5,19 @@
 </template>
 
 <script lang="ts">
-import defineComponent from '@nuxtjs/composition-api'
+import { defineComponent,reactive } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  props {
-
+  props: {
   },
-  setup(
+  components: {
+  },
+  setup(props) {
+    const userDate = reactive<{userDate: string}>({ userDate: ''})
     return {
+      userDate,
     }
-  )
+  }
 })
 
 </script>

@@ -1,9 +1,13 @@
 <template>
-  <Tutorial />
+  <div>
+    <nuxt-link to="/login"/>
+    <Tutorial />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+// ここはenvの確認用
 
 export default defineComponent({
   setup() {

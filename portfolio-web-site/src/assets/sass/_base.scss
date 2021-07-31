@@ -1,0 +1,18 @@
+/**
+* base
+*/
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: $fontFa;
+  font-size: $fontSizeBase;
+  word-spacing: 1px;
+}
+
+/* margin を下で距離を取っていきたい */

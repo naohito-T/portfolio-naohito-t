@@ -86,7 +86,21 @@ buildModules: [
   ],
 ```
 
+- nuxt composition APIとは
+@vue/composition-apiと比べてNuxt特有の機能(UseAsync)などをサポートしているのが特徴。
+@vue/composition-apiをラップしているためcomposition-apiの機能はもちろんNuxt特有の機能が揃っている。
+
+router, app, store に簡単にアクセスできるのがよい(useContextを使用して)
+
+@vue/composition-api では呼び出し時にcontextを引数として渡す
+@nuxtjs/composition-api では呼び出された場所のcontextをuseContextで取得できる
+
+contextをリレーする必要がなくなります｡
+
+[参考URL](https://zenn.dev/hogeihogemi/articles/94c0254372defd)
+
 ### nuxtでのcomposition API 鉄則ルール
+
 @nuxtjs/composition-api では、従来の asyncData, fetch() そして head()に変わる API が用意されています
 
 useAsync - Nuxt Composition API
@@ -179,4 +193,5 @@ package.jsonのscriptに以下を追加
 lintの設定
 huskyの設定
 storeなど？
+
 

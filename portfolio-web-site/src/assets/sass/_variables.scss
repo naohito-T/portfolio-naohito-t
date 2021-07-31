@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+
+/*
+* variables
+*/
+
+/* font-familiy */
+$fontFa: 'Noto Sans JP', sans-serif;
+$fontFaJa: 'Noto sans JP', sans-serif;
+$fontFaEn: 'Montserrat', sans-serif;
+$fontFaNo: 'Roboto', sans-serif;
+
+/* font-size */
+$fontSizeBase: 62.5%; // base 10px
+$fontSize200: 200rem; // 200px
+$fontSize150: 150rem; // 150px
+$fontSize100: 100rem; // 100px
+$fontSize50: 50rem; // 50px
+
+/* width */
+$maxWidth: 1200px;
+$maxWidthWithMargin: 1248px; // marginを24pxに設定しているためあわせて48px
+
+/* margin */
+$maxMargin: 24px;
+
+/* padding */
+$maxPadding: 24px;

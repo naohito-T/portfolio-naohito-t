@@ -1,0 +1,38 @@
+/*
+* mixin
+*/
+
+/* display */
+@mixin displayFlex(
+  $align-items: center,
+  $flex-direction: row,
+  $justify-content: center
+) {
+  align-items: $align-items;
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+}
+
+/* font */
+
+/* 継承 */
+@mixin fontInherit() {
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+@mixin inner() {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: $maxWidthWithMargin;
+  width: 100%;
+}
+
+/* margin 調整  */
+@mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  margin: $top, $right, $bottom, $left;
+}

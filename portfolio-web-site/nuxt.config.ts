@@ -47,6 +47,10 @@ const nuxtConfig: NuxtConfig = {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/style-resources', '@nuxtjs/axios', '@nuxtjs/dotenv'],
 
+  styleResources: {
+    scss: ['@/assets/sass/_variables.scss', '@/assets/sass/_mixin.scss'],
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
