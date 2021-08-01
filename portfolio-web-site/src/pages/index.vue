@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <nuxt-link to="/login"/>
-    <Tutorial />
-  </div>
+
 </template>
 
 <script lang="ts">

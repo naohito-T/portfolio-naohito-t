@@ -2,7 +2,7 @@
 * mixin
 */
 
-/* display */
+/* display block element */
 @mixin displayFlex(
   $align-items: center,
   $flex-direction: row,
@@ -10,6 +10,17 @@
 ) {
   align-items: $align-items;
   display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+}
+/* display inline-block element */
+@mixin displayInlineFlex(
+  $align-items: center,
+  $flex-direction: row,
+  $justify-content: center
+) {
+  align-items: $align-items;
+  display: inline-flex;
   flex-direction: $flex-direction;
   justify-content: $justify-content;
 }
@@ -35,4 +46,19 @@
 /* margin 調整  */
 @mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
   margin: $top, $right, $bottom, $left;
+}
+
+/* fixed */
+@mixin fixedBase($top: 0, $right: 0, $bottom: 0, $left: 0, $margin: auto) {
+  position: fixed;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  margin: $margin;
+}
+/* fixed */
+/* fixed  top, right, bottom, left, margin*/
+@mixin fixedTopLeft($margin: 0) {
+  @include fixedBase(0, auto, auto, 0, $margin);
 }

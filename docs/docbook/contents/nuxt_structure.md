@@ -13,6 +13,12 @@ componentsディレクトリにはページにインポートする全てのVue.
 Nuxt.jsを使用すると作成したコンポーネントを.vueファイルに自動でインポートすることができる。
 nuxt.config.js内のcomponentsをtrueに設定するとNuxt.jsがスキャンして自動でインポートしてくれる。
 
+- layoutディレクトリ
+layoutディレクトリのdefaultファイルを追加することでデフォルトレイアウトを定義できる。
+これは特定のレイアウトを持たない全てのページで使用される。
+レイアウトに含める必要があるのは、ページコンポーネントをレンダリングする```<Nuxt />```だけ
+
+
 ## SPA・SSR・SSG とは
 
 [URL](https://qiita.com/nishinoshake/items/f42e2f03663b00b5886d)
