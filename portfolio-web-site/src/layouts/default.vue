@@ -1,5 +1,5 @@
 <template>
-  <div id="root">
+  <div id="root" :class="isTop ? 'top' : ''">
   <!-- top pageだったら何かをしよう -->
     <Header />
     <nuxt />
@@ -18,7 +18,6 @@ export default defineComponent({
     Footer
   },
   setup() {
-    // topを判断
     const { route } = useContext();
     const isTop = computed(() => route.value.path === '/');
     return {
@@ -33,6 +32,25 @@ export default defineComponent({
 #root {
   height: auto;
   overflow: hidden;
+  width: 100%;
+
+  /** pageごとに適用 */
+  /** topが付与されているpage */
+  .contents {
+    @include innerFull();
+  }
+  /** topが付与されていないpage */
+  &:not(.top) .contents {
+    margin-top: 190px;
+  }
+}
+
+@media screen and (max-width: $mediaScreenContentsLimit) {
+  #root {
+    &:not(.top) .contents {
+      margin-top: 120px;
+    }
+  }
 }
 
 </style>
