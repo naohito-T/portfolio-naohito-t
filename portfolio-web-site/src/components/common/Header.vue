@@ -28,22 +28,27 @@
   @include fixedTopLeft(0);
   @include margin(0, 0, 0, 0);
 
-  height: 120px;
-  padding: 120px;
-  text-align: center;
-  width: 100%;
-  z-index: 6;
   border: 1px solid;
+  height: 90px;
+  padding: 90px;
+  text-align: center;
+  z-index: 6;
+  width: 100%;
 
   &-inner {
-    @include displayFlex(center, space-between);
+    @include displayFlex(center, row, space-between);
   }
 
   .navigation {
-    @include displayFlex(center, space-between);
+    @include displayFlex(center, row, space-between);
 
     .menu-list {
-      @include displayFlex(center, space-between);
+      @include displayFlex(center, row, space-between);
+
+      &-item {
+        @include displayFlex(center, row, space-between);
+      }
+
     }
   }
 }

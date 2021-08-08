@@ -2,18 +2,20 @@
   <div id="root">
   <!-- top pageだったら何かをしよう -->
     <Header />
-
     <nuxt />
+    <Footer />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
 import Header from '@/components/common/Header.vue';
+import Footer from '@/components/common/Footer.vue';
 
 export default defineComponent({
   components: {
-    Header
+    Header,
+    Footer
   },
   setup() {
     // topを判断

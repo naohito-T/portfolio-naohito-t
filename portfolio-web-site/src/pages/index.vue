@@ -1,3 +1,4 @@
+<!-- 横スクロール場面 -->
 <template>
 
 </template>
@@ -21,4 +22,6 @@ export default defineComponent({
 })
 </script>
 
-<style lang=""></style>
+<style lang="scss" scoped>
+
+</style>

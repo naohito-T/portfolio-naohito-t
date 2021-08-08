@@ -11,18 +11,102 @@ $fontFaEn: 'Montserrat', sans-serif;
 $fontFaNo: 'Roboto', sans-serif;
 
 /* font-size */
-$fontSizeBase: 62.5%; // base 10px
-$fontSize200: 200rem; // 200px
-$fontSize150: 150rem; // 150px
-$fontSize100: 100rem; // 100px
-$fontSize50: 50rem; // 50px
+$fontSizeBase: 60px;
+$fontSize200: 3.333333rem; //200px
+$fontSize160: 2.666666rem; //160px
+$fontSize140: 2.333333rem; //140px
+$fontSize120: 2rem; //120px
+$fontSize100: 1.666666rem; //100px
+$fontSize80: 1.333333rem; //80px
+$fontSize75: 1.25rem; //75px
+$fontSize70: 1.166666rem; //70px
+$fontSize64: 1.066666rem; //64px
+$fontSize50: 0.833333rem; //50px
+$fontSize48: 0.8rem; //48px
+$fontSize44: 0.733333rem; //44px
+$fontSize40: 0.666666rem; //40px
+$fontSize36: 0.6rem; //36px
+$fontSize32: 0.533333rem; //32px
+$fontSize30: 0.5rem; //30px
+$fontSize28: 0.466666rem; //28px
+$fontSize24: 0.4rem; //24px
+$fontSize21: 0.35rem; //21px
+$fontSize20: 0.333333rem; //20px
+$fontSize18: 0.3rem; //18px
+$fontSize16: 0.266666rem; //16px
+$fontSize15: 0.25rem; //15px
+$fontSize14: 0.233333rem; //14px
+$fontSize12: 0.2rem; //12px
+$fontSize10: 0.166666rem; //10px
 
-/* width */
+/* pc width base */
 $maxWidth: 1200px;
 $maxWidthWithMargin: 1248px; // marginを24pxに設定しているためあわせて48px
+$maxNavigationWidth: 1920px;
+$maxNavigationWidthWithMargin: 1968px;
+/* sp & tablet width base */
+$mobileWidth: 767px;
+$mobileMargin: 24px;
+$mobileWidthWithMargin: 807px;
+/* media width */
+$mediaScreenContentsLimit: $mobileWidth;
+$mediaScreenNavigationLimit: $mobileWidth;
 
 /* margin */
 $maxMargin: 24px;
 
 /* padding */
 $maxPadding: 24px;
+
+/* color */
+
+$gradStart: #3bc4f1;
+$gradEnd: #ca4f92;
+$gradient: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
+  -webkit-linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%);
+$gradientText: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
+  -webkit-linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%);
+$gradientInstead: #3bc4f1;
+$colorWhiteMain: #fff;
+$colorBlackMain: #000;
+$colorGrayMain: #eee;
+$colorGrayLighter: #f8f8f8;
+$colorGrayLighter2: #fafafa;
+$colorGrayLight: #f0f0f0;
+$colorGrayDarker: #d2d2d2;
+$colorGrayDarker2: #bebebe;
+$colorGrayDarker3: #acacac;
+$colorGrayDark: #787878;
+$colorRedMain: #eb3c3c;
+$colorRedDark: #b3001e;
+$colorOraMain: #e67017;
+$colorOraDark: #b35712;
+$colorYelMain: #fabb00;
+$colorYelDark: #c79500;
+$colorGreMain: #11a668;
+$colorGreDark: #0c7348;
+$colorLiGreMain: #00ccb1;
+$colorLiGreDark: #009985;
+$colorLiBluMain: #3bc4f1;
+$colorLiBluDark: #007ccc;
+$colorBluMain: #004bc0;
+$colorBluLink: #0050cc;
+$colorBluDark: #00378c;
+$colorBluDarker: #0029bf;
+$colorPurMain: #8c26bf;
+$colorPurDark: #671c8c;
+$colorPinMain: #d90b83;
+$colorPinDark: #a60864;
+
+$colorGra1: #00102b;
+$colorGra2: #263238;
+$colorGra3: #607d8b;
+$colorGra4: #90a4ae;
+$colorGra5: #b0bec5;
+$colorGra6: #d7dee0;
+$colorGra7: #eceff1;
+$colorGra8: #f6f6f6;
+
+$colorGraBH: #c2d1d9;
+
+$fontColorBase: $colorBlackMain;

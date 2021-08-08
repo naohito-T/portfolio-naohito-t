@@ -1,4 +1,4 @@
-<!-- header いれるかも -->
+<!-- header いれるかも 管理画面へのloginにする。 -->
 <template>
   <main class="contents">
     <section class="section1">

@@ -45,10 +45,21 @@ const nuxtConfig: NuxtConfig = {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios', '@nuxtjs/dotenv'],
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit',
+  ],
 
   styleResources: {
     scss: ['@/assets/sass/_variables.scss', '@/assets/sass/_mixin.scss'],
+  },
+
+  markdownit: {
+    injected: true,
+    breaks: true,
+    html: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
