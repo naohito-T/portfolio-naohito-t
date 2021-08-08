@@ -22,5 +22,5 @@ $firebase --version
 
 ```bash
 develop
-$cd portfolio-web-site dev
+$cd portfolio-web-site && yarn dev
 ```
