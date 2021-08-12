@@ -171,14 +171,6 @@ UA(User Agent: UA)とは
 
 [作成手順](./sass.md)
 
-- nuxtjs axios setup
-
-```$ yarn add @nuxtjs/axios```
-
-```ts
-modules: ['@nuxtjs/style-resources', '@nuxtjs/axios'],
-```
-
 - nuxtjs dayjs setup
 
 まだやらない
@@ -276,6 +268,73 @@ declare module '@nuxt/types' {
 
 [LoadingのGIF画像](https://icons8.com/preloaders/)
 
+
+## nuxtjs axios setup
+
+[参考URL](https://qiita.com/shiro_kzy/items/cb64e4ad8f4de0ba97a0)
+
+Nuxt.jsでaxiosを使う際に用途によって使い方が異なる。
+
+- vueファイルで使う
+- typescriptで使う
+- asyncDataで使う
+
+1. nuxt axios 導入
+```$ yarn add @nuxtjs/axios```
+
+2. nuxt.config.tsに以下を記載する。
+
+```ts
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit',
+  ],
+```
+
+3. TSを使用している場合はtsconfig.jsonにも以下を記載
+
+```json
+"types": [
+      "@nuxt/types",
+      "@types/node",
+      "@nuxtjs/axios",
+    ]
+```
+
+ここからtsファイルで使用するためにaxiosの設定ファイルを作成しPluginで読み込んで汎用に使えるようにする。
+そしてここからはユメグラをみていく
+
+4. libフォルダ作成
+lib/api/request/api.tsまで作成する
+
+5. pluginとして全てのvueファイルで使えるようにする。
+
+pluginsディレクトリで作成する。api.tsを作成しinjectをする
+
+6. nuxt.config.tsでpluginの内容を明記する
+
+```ts
+plugins: [{ src: '@/plugins/stores' }, { src: '@/plugins/api' }],
+
+```
+
+7. ts コンパイラに型定義を伝える。
+@nuxt/typesのもともとのコンテキストのオプションを上書きしているイメージ
+
+```ts
+import '@nuxt/types';
+import { API } from '@/lib/api';
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $api: API;
+  }
+}
+```
+
+以上
 
 
 あとやっていないこと

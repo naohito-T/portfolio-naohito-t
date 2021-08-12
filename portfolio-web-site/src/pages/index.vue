@@ -22,8 +22,9 @@ export default defineComponent({
   setup() {
     const { app } = useContext();
     console.log(app.$stores.loading);
+    console.log(JSON.stringify(app.$api.home.getPhoto()));
     onMounted(() => {
-      console.log(process.env.devApiURL);
+      console.log(process.env.apiBaseURL);
     })
   },
 
