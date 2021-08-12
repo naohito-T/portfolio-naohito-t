@@ -106,6 +106,9 @@ Vuexはこれまでprops, emitを利用した親子間のコンポーネント�
 
 今までのVue2時にはVuex。しかしVue3ではprovide/injectを使ったステート管理が推進されている
 
+Nuxtで使うのであればTSと相性がよいとされているvuex-module-decoratorsがデファクトスタンダード
+[リファレンス](https://github.com/championswimmer/vuex-module-decorators#accessing-modules-with-nuxtjs)
+
 ## composition APIとは
 
 [参考URL](https://qiita.com/karamage/items/7721c8cac149d60d4c4a)
@@ -173,3 +176,18 @@ Composition APIを使って梱包した荷物を運ぶのがProviderの役目
 Providerで、親コンポーネントから子コンポーネントに共通の状態を簡単に受け渡すことができる。
 Prop渡しと違ってバケツリレーをする必要がない。
 今後、Vue3ではProviderの改善が進むと予想
+
+## VuexとProviderの使い分け
+
+>もちろんVuexの使用が適切なパターンもありますが、以下の場合においてはProvide/Injectのようなパターンで検討することも一つの手だと思います。
+>コンポーネントのネストが深いが、props/emitのバケツリレーを避けたい
+>Provideした値のスコープがある程度限定的
+
+## Nuxt 処理の共通化
+
+Vue.jsでの処理の共通化といったらMixinが有名
+しかし、asyncData関数の中では参照することができなかったり、TSでデコレータを使用している場合はVueインスタンスでMixinsクラスを継承する必要があったりと少し不便。
+
+Nuxtのpluginを実装することでDIっぽいことをしてどこでも関数が使えることがわかった。
+
+[処理の共通化参照](https://qiita.com/misaosyushi/items/3690a63eb35cb5c14c50)

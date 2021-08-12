@@ -1,3 +1,5 @@
+@charset 'UTF-8';
+
 /*
 * mixin
 */
@@ -56,6 +58,10 @@
   margin: $top, $right, $bottom, $left;
 }
 
+/**
+* fixed 画面の全面に固定する
+*/
+
 /* fixed */
 @mixin fixedBase($top: 0, $right: 0, $bottom: 0, $left: 0, $margin: auto) {
   position: fixed;
@@ -65,7 +71,11 @@
   left: $left;
   margin: $margin;
 }
-/* fixed */
+/* fixed  top, right, bottom, left, margin*/
+@mixin fixedCenter($margin: 0) {
+  @include fixedBase(0, 0, 0, 0, $margin);
+}
+
 /* fixed  top, right, bottom, left, margin*/
 @mixin fixedTopLeft($margin: 0) {
   @include fixedBase(0, auto, auto, 0, $margin);

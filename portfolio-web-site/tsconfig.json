@@ -23,6 +23,10 @@
         "./*"
       ]
     },
+    // /src/@typesを読みに行く
+    "typeRoots": [
+      "./src/@types"
+    ],
     "types": [
       "@nuxt/types",
       "@types/node",

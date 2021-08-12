@@ -4,24 +4,40 @@
       <nav class="navigation">
         <ul class="menu-list">
           <li class="menu-list-item">
-            <nuxt-link to="/">TOP</nuxt-link>
+            <nuxt-link to="/" class="menu-list-item__link" :class="page === '/' ? 'current' : ''">TOP</nuxt-link>
           </li>
           <li class="menu-list-item">
-            <nuxt-link to="/home">HOME</nuxt-link>
+            <nuxt-link to="/home" class="menu-list-item__link" :class="page === '/' ? 'current' : ''">HOME</nuxt-link>
           </li>
           <li class="menu-list-item">
-            <nuxt-link to="/">RELEASE</nuxt-link>
+            <nuxt-link to="/" class="menu-list-item__link" :class="page === '/about' ? 'current' : ''">ABOUT</nuxt-link>
           </li>
-          <li class="menu-list-item">
-            <nuxt-link to="/login">LOGIN</nuxt-link>
-          </li>
+          <i class="menu-list-item">
+            <nuxt-link to="/login" class="menu-list-item__link" :class="page === '/login' ? 'current' : ''">LOGIN</nuxt-link>
+          </i>
         </ul>
       </nav>
     </div>
   </header>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+import {defineComponent, ref, useContext } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+
+  setup() {
+    const { route } = useContext();
+    const page = ref<string>(route.value.path);
+
+
+    return {
+      page,
+    }
+  },
+});
+
+</script>
 
 <style lang="scss" scoped>
 .header {

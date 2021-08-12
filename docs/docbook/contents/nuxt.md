@@ -3,6 +3,11 @@
 起動は全てyarnでしかしない。
 stateの内容はpageをreloadすると消えてしまう。
 layout/defaultなどで認証などを定義すれば常に参照ができる。
+
+[設計参考](https://logmi.jp/tech/articles/322003)
+[設計参考2compositionapi](https://zenn.dev/koudaiishigame/articles/810ce2d0ee8ade)
+
+
 ## create nuxt-app 作成手順
 
 ```bash
@@ -68,6 +73,10 @@ $mkdir @types
   nuxt.config.tsにするとvuetifyがerrorになっていた。そのためtsconfig.jsonのtypesに追加をすると解消した。
   `tsconfig.json`の`types: []`に`"vuetify"`を追加すれば解決できた。
 4. エディタのエラーを解消する。
+
+## nuxt スマホとPCの区切り運用
+window幅を取得し、デバイス判断をしていくのがいい
+userAgentだとかなりの数となる。
 
 ## nuxt composition API
 
@@ -189,9 +198,87 @@ package.jsonのscriptに以下を追加
 2.その中でどのファイルがネックになっているか調査する。
 3.リファクタリングする。 ※今回は一部のみ
 
+- nuxtjs markdown 対応
+
+[参考URL](https://dev.classmethod.jp/articles/nuxtjs-markdown-it/)
+
+## nuxt storeについて
+
+>Nuxt.jsでVuexを通常利用する場合には、storeディレクトリにモジュールと対応するファイルを設置します。例えば、myModule.jsというファイルをstoreディレクトリに設置すれば、myModuleといモジュールで自動的に作成され、コンポーネントからアクセスすることができます。
+>今回はその中でも、Nuxt.js公式で推奨されているvuex-module-decoratorsを使用します。
+
+- nuxtでのグローバル管理について考える
+色々考えたが、provideとinjectで管理をするのは特定のロジックなどがよいと思う。
+loading画面や、ログイン管理などは必然的に全てで管理をするため、storeがよいと思う。
+
+- store導入
+[参考URL](https://qiita.com/azukiazusa/items/a50b1ffe05d9937a4db0)
+`yarn add -D vuex-module-decorators`
+
+
+## NuxtでDIっぽいことをする
+
+`js app.$store.~~~`
+みたいにコンテキストに自作関数を入れることができる。
+
+- グローバルに関数を使う理由
+
+>Vue.jsでの処理の共通化といったら、Mixinが有名です。しかし、asyncData関数の中では参照することができなっかたり、TSでデコレーターを使用している場合はVueインスタンスでMixinsクラスを継承する必要があったりと、少し不便なところもあります。Nuxtのpluginを実装することで、DIっぽいことをしてどこでも関数が使えることが分かったので、その方法を紹介していきます。（Nuxtで明示的にDIの機構が用意されているわけではないのでDIっぽいこと、としています。）
+
+この手順によりプラグインの作成手順もかねてくる。
+
+1. tsconfig編集
+
+以下の部分を追記しないとsrc/@typesを読み込みにいかなかった。
+Nuxtはデフォルトで@typesを見に行くようだが、src配下に全てのディレクトリを移動しているためもしかしたら見に行かないのかも
+
+```json
+    // /src/@typesを読みに行く
+    "typeRoots": [
+      "./src/@types"
+    ],
+```
+
+2. storeディレクトリ編集
+
+以下のディレクトリ構成にする。
+
+store -- module
+      |
+      -- type
+
+3. @typesにstore.d.tsを作成
+
+[型定義作成についての参考](https://medium.com/@ryutamaki/npm-module-%E3%81%AB-typescript-%E3%81%AE%E5%9E%8B%E5%AE%9A%E7%BE%A9%E3%81%8C%E3%81%AA%E3%81%84%E6%99%82%E3%81%AB-%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%80%9A%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B-fcc090804b21)
+
+`tsNuxtAppOptions`にすることで、useContext()のappの後に続くところで自作モジュールを作成できる。
+
+```ts
+/**
+ * @desc プラグインで使用するための型拡張
+ * プラグインは Vue のグローバル/インスタンスプロパティやコンポーネントオプションを追加することがあります。
+ * このような場合、TypeScript でそのプラグインを使用したコードをコンパイルするためには型定義が必要になります。
+ * 幸い、TypeScript にはモジュール拡張 (Module Augmentation) と呼ばれる、すでに存在する型を拡張する機能があります。
+ * Vueリファレンス, スケールアップ参照
+ */
+import '@nuxt/types';
+import { Stores } from '@/store/module';
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $stores: Stores;
+  }
+}
+```
+
+> tsconfig には typeRoots というプロパティがあり、これは型定義を探し始める root のディレクトリを決めるオプションです。デフォルトが @types になっているので、 自分の typescriptプロジェクト内に @types を追加することで自動的に .d.ts を探しにいってくれます
+## nuxt loading画面
+
+[LoadingのGIF画像](https://icons8.com/preloaders/)
+
+
+
 あとやっていないこと
 lintの設定
 huskyの設定
-storeなど？
-
 
