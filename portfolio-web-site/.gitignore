@@ -95,5 +95,10 @@ firebase.js
 # firebase cache
 .firebase
 
-# env
-env
+# env decrypt
+env.dev.js
+env.pro.js
+
+# env encrypt
+env.dev
+env.pro

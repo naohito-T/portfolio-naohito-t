@@ -1,7 +1,7 @@
-import { NuxtConfig } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types';
 
-const environment = process.env.NODE_ENV
-const envSettings = require(`./env/decrypt/env.${environment}.js`)
+const environment = process.env.NODE_ENV;
+const envSettings = require(`./env/decrypt/env.${environment}.js`);
 
 const nuxtConfig: NuxtConfig = {
   // move directory to src
@@ -32,7 +32,7 @@ const nuxtConfig: NuxtConfig = {
   css: ['@/assets/sass/style.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '@/plugins/stores' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -55,7 +55,7 @@ const nuxtConfig: NuxtConfig = {
   styleResources: {
     scss: ['@/assets/sass/_variables.scss', '@/assets/sass/_mixin.scss'],
   },
-
+  // markdown 用 settings
   markdownit: {
     injected: true,
     breaks: true,
@@ -64,6 +64,6 @@ const nuxtConfig: NuxtConfig = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-}
+};
 
-export default nuxtConfig
+export default nuxtConfig;

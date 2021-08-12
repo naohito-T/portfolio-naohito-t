@@ -16,7 +16,7 @@ interface User {
  */
 
 export const UserStore = () => {
-  let state = reactive<User>({
+  const state = reactive<User>({
     id: '',
     email: '',
     name: '',

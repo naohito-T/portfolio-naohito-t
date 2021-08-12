@@ -21,7 +21,7 @@ export default defineComponent({
     const { route } = useContext();
     const isTop = computed(() => route.value.path === '/');
     return {
-      isTop
+      isTop,
     }
   },
 })
