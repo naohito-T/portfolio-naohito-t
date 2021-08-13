@@ -352,6 +352,6 @@ error.vueを総入れ替えすると移動した。
 
 
 あとやっていないこと
-lintの設定
-huskyの設定
-
+lintの設定(npm runでlintをかける)
+huskyの設定(勝手にかける設定)
+jestのtestを理解する
