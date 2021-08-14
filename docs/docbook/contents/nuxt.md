@@ -350,6 +350,23 @@ nuxtではlayouts/error.vueを作成するとエラーが発生したときに�
 2. 遷移動作確認
 error.vueを総入れ替えすると移動した。
 
+## ダークモード対応
+
+[参考URL](https://higemura.com/blog/programming/dark-mode-css-variables-01)
+
+- 要件
+
+1. クライアントのモードによって値を取得しないといけない。
+`jswindow.matchMedia('(prefers-color-scheme: dark)').matches`
+
+2. トグルボタンを設置しないといけない。
+`html<button @onclick>`で対応。buttonの状態はクライアントのモード状態で変わっていなければいけない。
+
+3. buttonを押下したら切り替えができる。
+## animation 導入
+
+animation 導入にはgsapが海外では一番作成されているとのこと。
+
 
 あとやっていないこと
 lintの設定(npm runでlintをかける)

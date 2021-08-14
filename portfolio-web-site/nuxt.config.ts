@@ -53,7 +53,7 @@ const nuxtConfig: NuxtConfig = {
   ],
 
   styleResources: {
-    scss: ['@/assets/sass/_variables.scss', '@/assets/sass/_mixin.scss'],
+    scss: ['@/assets/sass/_variables.scss', '@/assets/sass/_mixin.scss', '@/assets/sass/_function.scss'],
   },
   // markdown 用 settings
   markdownit: {

@@ -60,7 +60,31 @@ $maxPadding: 24px;
 
 /* color */
 
-$mainBlackColor: #0d1117; // background
+$mainBlackColor: #1E1E1E; // dark mode
+
+// Light Theme Colors
+$theme-colors: (
+  primary: #333333,
+  secondary: #cccccc,
+  success: #16b43b,
+  warning: #f8c11a,
+  danger: #f13245,
+  background: #e9e9e9,
+  base: #f7f7f7,
+);
+
+// Dark Theme Colors
+$dark-theme-colors: (
+  primary: #f7f7f7,
+  secondary: #cccccc,
+  success: #33e65d,
+  warning: #f1c339,
+  danger: #f74254,
+  background: #1e1e1e,
+  base: #333,
+);
+
+
 
 $gradStart: #3bc4f1;
 $gradEnd: #ca4f92;

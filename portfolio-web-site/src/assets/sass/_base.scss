@@ -2,6 +2,19 @@
 * base
 */
 
+/* CSS Variables */
+:root {
+  @each $key, $color in $theme-colors {
+    --color-#{$key}: #{hexToRGB($color)};
+  }
+
+  &[data-theme='dark'] {
+    @each $key, $color in $dark-theme-colors {
+      --color-#{$key}: #{hexToRGB($color)};
+    }
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -13,6 +26,22 @@ html {
   font-family: $fontFa;
   font-size: $fontSizeBase;
   word-spacing: 1px;
+  background-color: getColor(--color-background, 1);
 }
 
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p {
+//   color: #E0E0E0;
+// }
+
 /* margin を下で距離を取っていきたい */
+
+
+
+
+
