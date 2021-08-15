@@ -6,12 +6,14 @@ module.exports = {
     // Google や Airbnb のスタイルガイドなどが含まれた一般的なスタイル規則
     'stylelint-config-standard',
     // SCSS 用ルールセット
-    'stylelint-config-recommended-scss',
+    // 'stylelint-config-recommended-scss',
     // stylelint-config-で適応したルールとprettierが競合するルールを後ろからオフにする
     // そのためstylelint-prettier/recommendedは必ず最後に記述する
-    'stylelint-config-prettier',
-    'stylelint-config-recess-order',
-    'stylelint-prettier/recommended'
+    // 'stylelint-config-prettier',
+    // 'stylelint-config-recess-order',
+    // 以下をextendsに書くと、以下の推奨の設定が適応される
+    // 'stylelint-prettier/recommended',
+    // "stylelint-config-prettier"
   ],
   // add your custom config here
   // https://stylelint.io/user-guide/configuration
@@ -21,5 +23,7 @@ module.exports = {
     'value-list-comma-newline-after': null,
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
+    "order/properties-alphabetical-order": true,
+    'color-hex-length': 'long'
   },
 }

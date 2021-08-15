@@ -21,8 +21,7 @@ export default defineComponent({
 .contents {
   .section1 {
     @include inner();
-
-  };
+  }
 }
 
 </style>

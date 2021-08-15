@@ -30,9 +30,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 
 #root {
-  width: 100%;
   height: auto;
   overflow: hidden;
+  width: 100%;
 
   /** pageごとに適用 */
 

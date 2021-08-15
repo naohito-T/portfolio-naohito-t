@@ -30,7 +30,6 @@ export default defineComponent({
   &-inner {
     @include displayFlex();
   }
-
 }
 
 </style>

@@ -80,25 +80,25 @@ time,
 mark,
 audio,
 video {
-  position: relative;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-size: inherit;
-  line-height: 0;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  vertical-align: middle;
-  background: transparent;
-  border: 0;
-  outline: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  font-size: inherit;
   -webkit-font-smoothing: antialiased;
+  line-height: 0;
+  margin: 0;
   margin-block-end: 0;
   margin-block-start: 0;
   margin-inline-end: 0;
   margin-inline-start: 0;
+  outline: 0;
+  overflow-wrap: break-word;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  word-wrap: break-word;
 }
 
 body {
@@ -133,28 +133,28 @@ q::after {
 }
 
 a {
-  padding: 0;
-  margin: 0;
+  background: transparent;
+  cursor: pointer;
   font-size: 100%;
+  margin: 0;
+  padding: 0;
   text-decoration: none;
   vertical-align: baseline;
-  cursor: pointer;
-  background: transparent;
 }
 
 /* change colours to suit your needs */
 ins {
-  color: #000;
+  background-color: #ffff99;
+  color: #000000;
   text-decoration: none;
-  background-color: #ff9;
 }
 
 /* change colours to suit your needs */
 mark {
+  background-color: #ffff99;
+  color: #000000;
   font-style: italic;
   font-weight: bold;
-  color: #000;
-  background-color: #ff9;
 }
 
 del {
@@ -163,27 +163,27 @@ del {
 
 abbr[title],
 dfn[title] {
-  cursor: help;
   border-bottom: 1px dotted;
+  cursor: help;
 }
 
 table {
-  border-spacing: 0;
   border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /* change border colour to suit your needs */
 hr {
+  border: 0;
+  border-top: 1px solid #cccccc;
   display: block;
   height: 1px;
-  padding: 0;
   margin: 0;
-  border: 0;
-  border-top: 1px solid #ccc;
   margin-block-end: 0;
   margin-block-start: 0;
   margin-inline-end: 0;
   margin-inline-start: 0;
+  padding: 0;
 }
 
 input,
@@ -196,17 +196,17 @@ textarea {
 }
 
 select {
-  position: relative;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-size: inherit;
-  color: inherit;
-  vertical-align: middle;
-  cursor: pointer;
   background: none transparent;
   border: 0;
   border-radius: 0;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
 }
 
 select:focus,

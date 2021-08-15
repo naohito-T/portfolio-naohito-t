@@ -44,7 +44,6 @@ export default defineComponent({
     // &__button {
 
     // }
-
   }
 }
 </style>

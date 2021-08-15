@@ -28,6 +28,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .loader {
   @include fixedCenter(0);
-
 }
 </style>

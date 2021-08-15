@@ -62,7 +62,7 @@ $maxPadding: 24px;
 
 /* color */
 
-$mainBlackColor: #1E1E1E; // dark mode
+$mainBlackColor: #1e1e1e; // dark mode
 
 // Light Theme Colors
 $theme-colors: (
@@ -83,10 +83,8 @@ $dark-theme-colors: (
   warning: #f1c339,
   danger: #f74254,
   background: #1e1e1e,
-  base: #333,
+  base: #333333,
 );
-
-
 
 $gradStart: #3bc4f1;
 $gradEnd: #ca4f92;
@@ -95,9 +93,9 @@ $gradient: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
 $gradientText: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
   -webkit-linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%);
 $gradientInstead: #3bc4f1;
-$colorWhiteMain: #fff;
-$colorBlackMain: #000;
-$colorGrayMain: #eee;
+$colorWhiteMain: #ffffff;
+$colorBlackMain: #000000;
+$colorGrayMain: #eeeeee;
 $colorGrayLighter: #f8f8f8;
 $colorGrayLighter2: #fafafa;
 $colorGrayLight: #f0f0f0;

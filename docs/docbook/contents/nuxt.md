@@ -362,6 +362,9 @@ error.vueを総入れ替えすると移動した。
 
 2. stylelint 設定
 
+※注意
+かなりめんどくさい。今の設定を見れば自ずとわかってくる。
+
 ```sh
 $ yarn add -D node-sass sass-loader stylelint @nuxtjs/stylelint-module stylelint-config-standard stylelint-config-recess-order stylelint-scss stylelint-config-recommended-scss stylelint-prettier stylelint-config-prettier
 ```
@@ -384,6 +387,27 @@ cssプロパティの並び順はstylelint-config-recess-orderに準拠する。
 会社と参考記事を参考
 
 `touch stylelint.config.js`
+
+- stylelint vscode 連携
+
+[参考URL](https://qiita.com/y-w/items/bd7f11013fe34b69f0df#7-%E8%A3%9C%E8%B6%B3-vs-code%E3%81%AE%E3%81%AE%E8%A8%AD%E5%AE%9A---stylelint%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD)
+
+1. stylelint 拡張機能をinstall(vscode)
+
+2. vscode用のproject settingをする
+
+```json
+{
+  "[scss]": {
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true // stylelintの拡張機能を使うと、ファイルを保存する際に自動でstylelint --fixを実行できます。以下のようにsettings.jsonに書きます。
+  },
+  "css.validate": false, // vscode上のCSSのデフォルトのLintをオフにする。stylelintと重複して実行されないようにする
+  "scss.validate": false
+}
+```
 
 ```js
 // https://toragramming.com/programming/nuxt-js/nuxt-stylelint-prettier-vscode-format-scss-on-save/
@@ -414,7 +438,7 @@ module.exports = {
 }
 ```
 
-3. eslint設定
+1. eslint設定
 
 `$ yarn add -D eslint-config-airbnb-base babel-plugin-module-resolver babel-eslint eslint-config-prettier eslint-import-resolver-alias eslint-plugin-import eslint-import-resolver-babel-module eslint-plugin-nuxt eslint-plugin-prettier`
 
