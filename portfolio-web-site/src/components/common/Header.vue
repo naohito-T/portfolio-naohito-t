@@ -44,12 +44,12 @@ export default defineComponent({
   @include fixedTopLeft(0);
   @include margin(0, 0, 0, 0);
 
-  border: 1px solid;
+  z-index: 6;
+  width: 100%;
   height: 90px;
   padding: 90px;
   text-align: center;
-  z-index: 6;
-  width: 100%;
+  border: 1px solid;
 
   &-inner {
     @include displayFlex(center, row, space-between);

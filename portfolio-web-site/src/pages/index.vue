@@ -1,5 +1,6 @@
 <!-- 横スクロール場面 -->
 <template>
+  <div></div>
 </template>
 
 <script lang="ts">
@@ -32,6 +33,6 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+// <style lang="scss" scoped>
 
-</style>
+// </style>

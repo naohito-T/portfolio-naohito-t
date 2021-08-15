@@ -10,20 +10,21 @@
   $flex-direction: row,
   $justify-content: center
 ) {
-  align-items: $align-items;
   display: flex;
   flex-direction: $flex-direction;
+  align-items: $align-items;
   justify-content: $justify-content;
 }
+
 /* display inline-block element */
 @mixin displayInlineFlex(
   $align-items: center,
   $flex-direction: row,
   $justify-content: center
 ) {
-  align-items: $align-items;
   display: inline-flex;
   flex-direction: $flex-direction;
+  align-items: $align-items;
   justify-content: $justify-content;
 }
 
@@ -39,18 +40,18 @@
 
 @mixin inner() {
   display: block;
+  width: 100%;
+  max-width: $maxWidthWithMargin;
   height: auto;
   margin: 0 auto;
-  max-width: $maxWidthWithMargin;
-  width: 100%;
 }
 
 @mixin innerFull() {
   display: block;
+  width: 100%;
   height: auto;
   margin: 0;
   text-align: center;
-  width: 100%;
 }
 
 /* margin 調整  */
@@ -71,12 +72,13 @@
   left: $left;
   margin: $margin;
 }
-/* fixed  top, right, bottom, left, margin*/
+
+/* fixed  top, right, bottom, left, margin */
 @mixin fixedCenter($margin: 0) {
   @include fixedBase(0, 0, 0, 0, $margin);
 }
 
-/* fixed  top, right, bottom, left, margin*/
+/* fixed  top, right, bottom, left, margin */
 @mixin fixedTopLeft($margin: 0) {
   @include fixedBase(0, auto, auto, 0, $margin);
 }

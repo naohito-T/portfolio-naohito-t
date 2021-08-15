@@ -30,15 +30,17 @@ export default defineComponent({
 <style lang="scss" scoped>
 
 #root {
+  width: 100%;
   height: auto;
   overflow: hidden;
-  width: 100%;
 
   /** pageごとに適用 */
+
   /** topが付与されているpage */
   .contents {
     @include innerFull();
   }
+
   /** topが付与されていないpage */
   &:not(.top) .contents {
     margin-top: 190px;

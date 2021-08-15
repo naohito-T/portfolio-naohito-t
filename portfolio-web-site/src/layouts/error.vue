@@ -41,9 +41,9 @@ export default defineComponent({
       margin-bottom: 24px;
     }
 
-    &__button {
+    // &__button {
 
-    }
+    // }
 
   }
 }
