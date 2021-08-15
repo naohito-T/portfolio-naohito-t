@@ -42,6 +42,8 @@ const nuxtConfig: NuxtConfig = {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxtjs/composition-api/module',
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

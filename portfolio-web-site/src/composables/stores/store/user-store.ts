@@ -1,6 +1,6 @@
 import { reactive } from '@nuxtjs/composition-api'
-import { db } from '@/plugins/firebase'
 import firebase from 'firebase'
+import { db } from '@/plugins/firebase'
 
 interface User {
   id: string

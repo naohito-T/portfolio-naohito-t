@@ -37,17 +37,19 @@ $fontSize16: 0.266666rem; //16px
 $fontSize15: 0.25rem; //15px
 $fontSize14: 0.233333rem; //14px
 $fontSize12: 0.2rem; //12px
-$fontSize10: 0.16666¡6rem; //10px
+$fontSize10: 0.166666rem; //10px
 
 /* pc width base */
 $maxWidth: 1200px;
 $maxWidthWithMargin: 1248px; // marginを24pxに設定しているためあわせて48px
 $maxNavigationWidth: 1920px;
 $maxNavigationWidthWithMargin: 1968px;
+
 /* sp & tablet width base */
 $mobileWidth: 767px;
 $mobileMargin: 24px;
 $mobileWidthWithMargin: 807px;
+
 /* media width */
 $mediaScreenContentsLimit: $mobileWidth;
 $mediaScreenNavigationLimit: $mobileWidth;

@@ -20,9 +20,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .contents {
   .section1 {
-    @include inner()
+    @include inner();
 
-  }
+  };
 }
 
 </style>

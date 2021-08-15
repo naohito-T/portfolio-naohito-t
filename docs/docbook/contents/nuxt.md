@@ -350,8 +350,139 @@ nuxtではlayouts/error.vueを作成するとエラーが発生したときに�
 2. 遷移動作確認
 error.vueを総入れ替えすると移動した。
 
+## eslint prettier stylelint 設定
+
+[nuxt typescript eslint prettier](https://inokawablog.org/vue-js/nuxt-typescript-stylelint-eslint-prettier/)
+[stylelint設定](https://qiita.com/y-w/items/bd7f11013fe34b69f0df)
+[こちらのstylelint設定がよい](https://toragramming.com/web/nuxtjs/nuxt-stylelint-prettier-vscode-format-scss-on-save/)
+
+1. npm scriptが動くか確認(nuxt-createで作成されたデフォルトの状態のやつ)
+`$ yarn lint:js`
+動いた。errorを検知してくれる状態。vscodeはerrorを検知してくれていない状態だった。
+
+2. stylelint 設定
+
+```sh
+$ yarn add -D node-sass sass-loader stylelint @nuxtjs/stylelint-module stylelint-config-standard stylelint-config-recess-order stylelint-scss stylelint-config-recommended-scss stylelint-prettier stylelint-config-prettier
+```
+
+cssプロパティの並び順はstylelint-config-recess-orderに準拠する。
+
+- nuxt.config.tsのbuildModulesに書き込む
+
+```ts
+  buildModules: [
+    // https://go.nuxtjs.dev/typescript
+    '@nuxt/typescript-build',
+    '@nuxtjs/composition-api/module',
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module'
+  ],
+```
+
+- stylelint.config.jsを作成
+会社と参考記事を参考
+
+`touch stylelint.config.js`
+
+```js
+// https://toragramming.com/programming/nuxt-js/nuxt-stylelint-prettier-vscode-format-scss-on-save/
+module.exports = {
+  plugins: ['stylelint-order', 'stylelint-scss'],
+  ignoreFiles: ['**/node_modules/**'],
+  extends: [
+    // Google や Airbnb のスタイルガイドなどが含まれた一般的なスタイル規則
+    'stylelint-config-standard',
+    // SCSS 用ルールセット
+    'stylelint-config-recommended-scss',
+    // stylelint-config-で適応したルールとprettierが競合するルールを後ろからオフにする
+    // そのためstylelint-prettier/recommendedは必ず最後に記述する
+    'stylelint-config-prettier',
+    'stylelint-config-recess-order',
+    'stylelint-prettier/recommended'
+  ],
+  // add your custom config here
+  // https://stylelint.io/user-guide/configuration
+  rules: {
+    'declaration-colon-newline-after': null,
+    'declaration-block-trailing-semicolon': null,
+    'value-list-comma-newline-after': null,
+    'at-rule-no-unknown': null,
+    'scss/at-rule-no-unknown': true,
+    'order/properties-alphabetical-order': true,
+  },
+}
+```
+
+3. eslint設定
+
+`$ yarn add -D eslint-config-airbnb-base babel-plugin-module-resolver babel-eslint eslint-config-prettier eslint-import-resolver-alias eslint-plugin-import eslint-import-resolver-babel-module eslint-plugin-nuxt eslint-plugin-prettier`
+
+install moduleの説明
+
+- eslint-config-airbnb-base
+Airbnbのベースの.eslintrcを提供しています。
+
+- babel-plugin-module-resolver
+プロジェクトのrequire / importパスを簡略化できます
+
+- babel-eslint
+Babelのコードをlintします
+
+- eslint-config-prettier
+不要またはPrettierと競合する可能性のあるすべてのルールをオフにします。
+
+- eslint-import-resolver-alias
+Node.jsモジュール解決、モジュールエイリアス/マッピング、カスタムファイル拡張子をサポートしています
+
+- eslint-plugin-import
+インポート/エクスポート構文のリンティングをサポートしています
+
+- eslint-import-resolver-babel-module
+eslint-plugin-importのためのリゾルバ
+
+- eslint-plugin-nuxt
+Nuxt.js用のESLintプラグイン
+
+- eslint-plugin-prettier
+PrettierをESLintルールとして実行し、差異を個々のESLint問題として吐き出す。
+
+4. package.json npm run script編集
+
+```json
+"lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+↓
+"lint:js": "eslint --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
+
+// 完成形
+"lint:js": "eslint --ext \".ts,.js,.vue\" --ignore-path .gitignore .",
+"lint:style": "stylelint **/*.{vue,css} --fix --ignore-path .gitignore",
+"lint": "npm run lint:js && npm run lint:style",
+```
+
+- 動作確認
+
+`$ yarn lint:js`
+tsに変更後も動いた。errowだけを吐き出してくれている状態
+`$ yarn lint:style`
+これがstylelintがないと言われerrorとなる。globalにインストールしないといけない。node_module内にあるstylelintは使えないのか？
+→npm runはローカルプロジェクトのnode_moduleを実行する。
+`$ yarn add -D stylelint`
+上記をインストール後、実行できるようになった。
+
+```sh
+$ node -v
+v12.21.0
+# これでも動かない
+$ npm install -g stylelint
+# 以下をインストールして動いた
+$ yarn add -D stylelint
+$ yarn lint:style
+# errorを吐き出してくれた!
+```
+
+
 
 あとやっていないこと
-lintの設定(npm runでlintをかける)
 huskyの設定(勝手にかける設定)
 jestのtestを理解する
