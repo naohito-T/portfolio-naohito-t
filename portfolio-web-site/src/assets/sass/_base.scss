@@ -5,12 +5,12 @@
 /* CSS Variables */
 :root {
   @each $key, $color in $theme-colors {
-    --color-#{$key}: #{hexToRGB($color)};
+    --color-#{$key}: #{hextorgb($color)};
   }
 
   &[data-theme='dark'] {
     @each $key, $color in $dark-theme-colors {
-      --color-#{$key}: #{hexToRGB($color)};
+      --color-#{$key}: #{hextorgb($color)};
     }
   }
 }
@@ -25,8 +25,8 @@ html {
   box-sizing: border-box;
   font-family: $fontFa;
   font-size: $fontSizeBase;
+  background-color: getcolor(--color-background, 1);
   word-spacing: 1px;
-  background-color: getColor(--color-background, 1);
 }
 
 // h1,
@@ -40,8 +40,3 @@ html {
 // }
 
 /* margin を下で距離を取っていきたい */
-
-
-
-
-

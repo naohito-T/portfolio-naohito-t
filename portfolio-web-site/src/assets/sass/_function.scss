@@ -6,11 +6,11 @@
 
 /* Functions */
 // HEX形式のカラーコードをRGBに変換する
-@function hexToRGB($hex) {
+@function hextorgb($hex) {
   @return red($hex), green($hex), blue($hex);
 }
 
 // CSS変数をRGBA関数で使えるようにする。使用したい箇所でgetColorを呼び出す。
-@function getColor($color_name, $alpha: 1) {
+@function getcolor($color_name, $alpha: 1) {
   @return rgba(var(#{$color_name}), $alpha);
 }
