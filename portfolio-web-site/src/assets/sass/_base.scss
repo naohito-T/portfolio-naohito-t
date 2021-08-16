@@ -1,19 +1,4 @@
-/**
-* base
-*/
-
-/* CSS Variables */
-:root {
-  @each $key, $color in $theme-colors {
-    --color-#{$key}: #{hextorgb($color)};
-  }
-
-  &[data-theme='dark'] {
-    @each $key, $color in $dark-theme-colors {
-      --color-#{$key}: #{hextorgb($color)};
-    }
-  }
-}
+@charset 'UTF-8';
 
 html,
 body {
@@ -27,6 +12,34 @@ html {
   font-family: $fontFa;
   font-size: $fontSizeBase;
   word-spacing: 1px;
+}
+
+/* ユーザからのダークモード設定 */
+:root {
+  @each $key, $color in $theme-colors {
+    --color-#{$key}: #{hextorgb($color)};
+  }
+
+  &[data-theme='dark'] {
+    @each $key, $color in $dark-theme-colors {
+      --color-#{$key}: #{hextorgb($color)};
+    }
+  }
+}
+
+/* OSからのdark mode設定 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    @each $key, $color in $dark-theme-colors {
+      --color-#{$key}: #{hextorgb($color)};
+    }
+
+    &[data-theme='light'] {
+      @each $key, $color in $theme-colors {
+        --color-#{$key}: #{hextorgb($color)};
+      }
+    }
+  }
 }
 
 // h1,
