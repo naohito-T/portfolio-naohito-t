@@ -1,8 +1,20 @@
-/**
-* base
-*/
+@charset 'UTF-8';
 
-/* CSS Variables */
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  background-color: getcolor(--color-background, 1);
+  box-sizing: border-box;
+  font-family: $fontFa;
+  font-size: $fontSizeBase;
+  word-spacing: 1px;
+}
+
+/* ユーザからのダークモード設定 */
 :root {
   @each $key, $color in $theme-colors {
     --color-#{$key}: #{hextorgb($color)};
@@ -15,18 +27,19 @@
   }
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+/* OSからのdark mode設定 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    @each $key, $color in $dark-theme-colors {
+      --color-#{$key}: #{hextorgb($color)};
+    }
 
-html {
-  box-sizing: border-box;
-  font-family: $fontFa;
-  font-size: $fontSizeBase;
-  background-color: getcolor(--color-background, 1);
-  word-spacing: 1px;
+    &[data-theme='light'] {
+      @each $key, $color in $theme-colors {
+        --color-#{$key}: #{hextorgb($color)};
+      }
+    }
+  }
 }
 
 // h1,
