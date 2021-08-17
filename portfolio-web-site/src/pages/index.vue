@@ -7,7 +7,7 @@
 import { defineComponent, useContext, onMounted } from '@nuxtjs/composition-api'
 
 
-
+// ここは横スクロールにする。
 // ここはenvの確認用
 
 export default defineComponent({
@@ -32,3 +32,4 @@ export default defineComponent({
 
 })
 </script>
+

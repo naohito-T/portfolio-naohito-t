@@ -24,6 +24,6 @@ module.exports = {
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
     "order/properties-alphabetical-order": true,
-    'color-hex-length': 'long'
+    // 'color-hex-length': 'long'
   },
 }

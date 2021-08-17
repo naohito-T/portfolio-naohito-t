@@ -38,6 +38,24 @@
   line-height: inherit;
 }
 
+@mixin fontVerticalRl() {
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+
+/* font stroke */
+@mixin textStroke(
+  $strokeSize: 1px,
+  $strokeColor: #fff,
+  $textColor: $colorNone
+) {
+  color: $textColor;
+  -webkit-text-stroke: $strokeSize $strokeColor;
+}
+
+/* font end */
+
+/* main content inner */
 @mixin inner() {
   display: block;
   height: auto;
@@ -46,6 +64,7 @@
   width: 100%;
 }
 
+/* default vueで使用 */
 @mixin innerFull() {
   display: block;
   height: auto;
@@ -81,4 +100,55 @@
 /* fixed  top, right, bottom, left, margin */
 @mixin fixedTopLeft($margin: 0) {
   @include fixedBase(0, auto, auto, 0, $margin);
+}
+
+/* hover action */
+
+@mixin hoverColorBase($backColor: #fff, $beforeBackColor: #fff, $height: 0) {
+  background: $backColor;
+  border: 1px solid #222;
+  display: block;
+  font-size: $fontSize80;
+  height: $height;
+  letter-spacing: 0.1em;
+  line-height: $height;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+
+  &::before {
+    background: $beforeBackColor;
+    bottom: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    transition: 0.2s;
+    width: 0;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+
+  &__title {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    font-weight: 800;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+    z-index: 10;
+  }
+
+  &:hover &__title {
+    @include textStroke(2px);
+  }
+}
+
+@mixin hoverBlackToLeft() {
+  @include hoverColorBase(#222, #000, 100%);
 }

@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
 import Header from '@/components/common/Header.vue';
-import Footer from '@/components/common/Footer.vue';
+import Footer from '@/components/common/Footer.vue'
 
 export default defineComponent({
   components: {
@@ -27,10 +27,11 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+/** すべてのpageに適用するためscopedは付与しない。 */
 #root {
   height: auto;
+  margin-top: 120px;
   overflow: hidden;
   width: 100%;
 
@@ -38,12 +39,12 @@ export default defineComponent({
 
   /** topが付与されているpage */
   .contents {
-    @include innerFull();
+    @include innerFull(); /* header も透過させる */
   }
 
   /** topが付与されていないpage */
   &:not(.top) .contents {
-    margin-top: 190px;
+    padding-top: 190px;
   }
 }
 

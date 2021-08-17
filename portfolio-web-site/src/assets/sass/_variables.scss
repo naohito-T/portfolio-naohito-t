@@ -66,8 +66,8 @@ $mainBlackColor: #1e1e1e; // dark mode
 
 // Light Theme Colors
 $theme-colors: (
-  primary: #333333,
-  secondary: #cccccc,
+  primary: #333,
+  secondary: #ccc,
   success: #16b43b,
   warning: #f8c11a,
   danger: #f13245,
@@ -78,14 +78,15 @@ $theme-colors: (
 // Dark Theme Colors
 $dark-theme-colors: (
   primary: #f7f7f7,
-  secondary: #cccccc,
+  secondary: #ccc,
   success: #33e65d,
   warning: #f1c339,
   danger: #f74254,
   background: #1e1e1e,
-  base: #333333,
+  base: #333,
 );
 
+$colorNone: transparent;
 $gradStart: #3bc4f1;
 $gradEnd: #ca4f92;
 $gradient: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
@@ -93,9 +94,9 @@ $gradient: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
 $gradientText: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),
   -webkit-linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%);
 $gradientInstead: #3bc4f1;
-$colorWhiteMain: #ffffff;
-$colorBlackMain: #000000;
-$colorGrayMain: #eeeeee;
+$colorWhiteMain: #fff;
+$colorBlackMain: #000;
+$colorGrayMain: #eee;
 $colorGrayLighter: #f8f8f8;
 $colorGrayLighter2: #fafafa;
 $colorGrayLight: #f0f0f0;
