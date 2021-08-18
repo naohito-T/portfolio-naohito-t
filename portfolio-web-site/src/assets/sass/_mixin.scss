@@ -149,6 +149,20 @@
   }
 }
 
+/* 左から右にbackground */
 @mixin hoverBlackToLeft() {
   @include hoverColorBase(#222, #000, 100%);
+}
+
+/* position: sticky */
+
+/* 「position: sticky」と位置（top, right, bottom, left）を指定して、固定したい要素が指定した位置にくると
+「fixed」のように振る舞い、それ以外だと「relative」になる。 */
+
+@mixin positionStickyBase($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  bottom: $bottom;
+  left: $left;
+  position: sticky;
+  right: $right;
+  top: $top;
 }

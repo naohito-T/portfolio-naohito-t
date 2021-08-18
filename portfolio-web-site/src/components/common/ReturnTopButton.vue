@@ -47,13 +47,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .return {
-  left: 40px;
   position: absolute;
-  top: 0;
 
   &__text {
+    left: 40px;
+    top: 0;
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
+    z-index: 10;
   }
 }
 </style>

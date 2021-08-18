@@ -541,6 +541,15 @@ $ yarn lint:style
 →汎用性を高める
 5. buttonではなく文字で出現させる。
 
+## nuxt SVG導入
+
+1. nuxt-svg-loader を インストール
+`$ yarn add -D nuxt-svg-loader`
+
+2. nuxt.config.tsにmoduleを追記
+
+3. assets/内にSVGを設置し読み込むだけ
+
 ## animation 導入
 
 animation 導入にはgsapが海外では一番作成されているとのこと。
