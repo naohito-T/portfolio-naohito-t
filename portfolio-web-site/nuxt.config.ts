@@ -52,6 +52,7 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     '@nuxtjs/markdownit',
+    'nuxt-svg-loader',
   ],
 
   styleResources: {

@@ -1,18 +1,22 @@
 <template>
   <footer class="footer">
-    <h2 class="footer-title">ALL LIST</h2>
     <div class="footer-inner">
-      <div></div>
-      <div></div>
-      <div></div>
+      <a href="" class="footer-inner-button">
+        <span class="footer-inner-button__title">Please Message</span>
+      </a>
     </div>
+    <CopyLight/>
   </footer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
+import CopyLight from '@/components/atoms/CopyLight.vue';
 
 export default defineComponent({
+  components: {
+    CopyLight,
+  },
   setup() {}
 })
 
@@ -23,12 +27,14 @@ export default defineComponent({
 .footer {
   border: 2px solid;
 
-  &-title {
-    font-size: 20px;
-  }
-
   &-inner {
-    @include displayFlex();
+    // @include displayFlex();
+    height: 300px;
+    text-align: center;
+
+    &-button {
+      @include hoverBlackToLeft();
+    }
   }
 }
 

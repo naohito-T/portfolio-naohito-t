@@ -508,6 +508,7 @@ $ yarn lint:style
 ## ダークモード対応
 
 [参考URL](https://higemura.com/blog/programming/dark-mode-css-variables-01)
+[コーディング参考](https://qiita.com/kodama321/items/f6e894915146d0cc69c5)
 
 - 要件
 
@@ -518,6 +519,37 @@ $ yarn lint:style
 `html<button @onclick>`で対応。buttonの状態はクライアントのモード状態で変わっていなければいけない。
 
 3. buttonを押下したら切り替えができる。
+
+## footerのplease message
+
+アニメーションが必要になる
+[参考URL](https://yuyauver98.me/coding-btn-simple02/)
+
+## top scroll button
+
+[参考URL](https://qiita.com/TK-C/items/42b25ff4ec56528ad870)
+
+- 要件
+
+1. 最初は表示しない
+→scroll値で出すか
+2. アニメーションで表示される
+→transitionでやる
+3. アニメーションで戻る
+→nuxt scrollのプロパティ値でいけるか？
+4. 全てのテンプレートで使用ができる
+→汎用性を高める
+5. buttonではなく文字で出現させる。
+
+## nuxt SVG導入
+
+1. nuxt-svg-loader を インストール
+`$ yarn add -D nuxt-svg-loader`
+
+2. nuxt.config.tsにmoduleを追記
+
+3. assets/内にSVGを設置し読み込むだけ
+
 ## animation 導入
 
 animation 導入にはgsapが海外では一番作成されているとのこと。

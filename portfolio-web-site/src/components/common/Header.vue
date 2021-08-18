@@ -7,15 +7,14 @@
             <nuxt-link to="/" class="menu-list-item__link" :class="page === '/' ? 'current' : ''">TOP</nuxt-link>
           </li>
           <li class="menu-list-item">
-            <nuxt-link to="/home" class="menu-list-item__link" :class="page === '/' ? 'current' : ''">HOME</nuxt-link>
+            <nuxt-link to="/work" class="menu-list-item__link" :class="page === '/' ? 'current' : ''">WORK</nuxt-link>
           </li>
           <li class="menu-list-item">
-            <nuxt-link to="/" class="menu-list-item__link" :class="page === '/about' ? 'current' : ''">ABOUT</nuxt-link>
+            <nuxt-link to="/about" class="menu-list-item__link" :class="page === '/about' ? 'current' : ''">ABOUT</nuxt-link>
           </li>
           <li class="menu-list-item">
             <nuxt-link to="/login" class="menu-list-item__link" :class="page === '/login' ? 'current' : ''">LOGIN</nuxt-link>
           </li>
-
         </ul>
       </nav>
       <li>
