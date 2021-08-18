@@ -2,6 +2,7 @@
   <div id="root" :class="isTop ? 'top' : ''">
   <!-- top pageだったら何かをしよう -->
     <Header />
+    <ReturnTopButton />
     <nuxt />
     <Footer />
   </div>
@@ -10,11 +11,13 @@
 <script lang="ts">
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
 import Header from '@/components/common/Header.vue';
-import Footer from '@/components/common/Footer.vue'
+import Footer from '@/components/common/Footer.vue';
+import ReturnTopButton from '@/components/common/ReturnTopButton.vue';
 
 export default defineComponent({
   components: {
     Header,
+    ReturnTopButton,
     Footer
   },
   setup() {

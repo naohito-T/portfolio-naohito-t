@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div class="return">
     <template v-if="isScroll">
       <transition>
-        <button @click="returnTop">TOP</button>
+        <p class="return__text" @click="returnTop">TOP</p>
       </transition>
     </template>
     <template v-else>
-      <p>SCROLL</p>
+      <transition>
+        <p class="return__text">SCROLL</p>
+      </transition>
     </template>
   </div>
 </template>
@@ -21,9 +23,11 @@ export default defineComponent({
 
     const isWindowScroll = () => {
       scrollY = window.scrollY;
+      console.log(`scrollY: ${scrollY}`);
       isScroll.value = scrollY >= isScrollIgnition;
     }
     const returnTop = () => {
+      console.log('return');
       scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -41,3 +45,15 @@ export default defineComponent({
 })
 </script>
 
+<style lang="scss" scoped>
+.return {
+  left: 40px;
+  position: absolute;
+  top: 0;
+
+  &__text {
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+  }
+}
+</style>
