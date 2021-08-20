@@ -53,6 +53,7 @@ export default defineComponent({
 
   /** topが付与されていないpage */
   &:not(.top) .contents {
+    background-color: transparent;
     padding-top: 190px;
   }
 }

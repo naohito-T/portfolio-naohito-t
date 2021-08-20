@@ -581,6 +581,10 @@ $fontFa: 'Objective-bold', sans-serif;
 
 [参考URL](https://qiita.com/mczkzk/items/a2fd40b5a54d81766ab2)
 
+## 文字のスクロール
+
+[参考URL](https://webparts.cman.jp/string/scroll/)
+
 ## 横幅のブレイクポイントを決めておく
 
 BootStrapを参考にしている
