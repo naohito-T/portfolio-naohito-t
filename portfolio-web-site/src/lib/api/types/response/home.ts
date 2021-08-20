@@ -5,3 +5,7 @@ export interface IPhoto {
   url: string;
   thumbnailUrl: string;
 }
+
+export interface ImageURL {
+  imageUrl: string;
+}

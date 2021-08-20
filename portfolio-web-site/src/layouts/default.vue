@@ -47,6 +47,8 @@ export default defineComponent({
   /** topが付与されているpage */
   .contents {
     @include innerFull(); /* header も透過させる */
+
+    background-color: #000;
   }
 
   /** topが付与されていないpage */

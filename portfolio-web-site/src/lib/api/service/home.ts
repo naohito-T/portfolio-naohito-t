@@ -1,6 +1,8 @@
-import { IPhoto } from '../types/response/home';
+import { IPhoto, ImageURL } from '../types/response/home';
 
 export interface IRequestHomeAPI {
   /** JSON PlaceHolder */
   getPhoto(): Promise<IPhoto[]>;
+  /** Unsplash Source */
+  getImageURL(): Promise<ImageURL>;
 }
