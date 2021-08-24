@@ -71,8 +71,8 @@ export default defineComponent({
   @include margin(0, 0, 0, 0);
 
   border: 1px solid;
-  height: 90px;
-  padding: 90px;
+  height: 120px;
+  // padding: 90px;
   text-align: center;
   width: 100%;
   z-index: 6;

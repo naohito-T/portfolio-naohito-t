@@ -2,6 +2,7 @@
 <template>
   <main class="contents">
     <section class="section1">
+      <MainTitle :title="'Coding In Design'" />
     </section>
     <section class="section2">
       <HorizontalList :anker-link="'/work'" :imgURL="'https://source.unsplash.com/user/erondu/400x400'" :title="'HELLO'" :sub-title="'subTitle'"/>
@@ -14,6 +15,7 @@
 import { defineComponent, useContext, onMounted, provide } from '@nuxtjs/composition-api';
 import { useImage } from '@/composables/repositories/use-image';
 import ImageKey from '@/composables/repositories/use-image-key';
+import MainTitle from '@/components/atoms/MainTitle.vue';
 import HorizontalList from '@/components/molecules/HorizontalList.vue';
 import RightArrowButton from '@/components/atoms/RightArrowButton.vue';
 
@@ -22,6 +24,7 @@ import RightArrowButton from '@/components/atoms/RightArrowButton.vue';
 
 export default defineComponent({
   components: {
+    MainTitle,
     HorizontalList,
     RightArrowButton,
   },
@@ -52,10 +55,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.contents {
-  .section1 {
-    @include inner();
-  }
-}
+// .contents {
+// .section1 {
+//   @include inner();
+// }
+// }
 </style>
 
