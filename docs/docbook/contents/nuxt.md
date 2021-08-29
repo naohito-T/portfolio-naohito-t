@@ -590,6 +590,16 @@ $fontFa: 'Objective-bold', sans-serif;
 BootStrapを参考にしている
 > Bootstrap(Ver.3)では、768px未満をスマートフォン、992px未満をタブレット、1,200px未満を中型デスクトップ、1,200px以上を大型デスクトップに分類してブレイクポイントが設けられています。
 
+## 横スクロール実装
+
+JSでの実装が必要。完成した。
+
+## about page作成
+
+markdownで挿入できる形にはしたためそれを変更する
+コピーしたときの色を変更
+
+
 ## animation 導入
 
 animation 導入にはgsapが海外では一番作成されているとのこと。

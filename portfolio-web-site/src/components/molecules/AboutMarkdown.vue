@@ -49,7 +49,6 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .markdown {
-  // visibility: visible;
   width: 100%;
 
   &-wrap {
