@@ -40,7 +40,7 @@ export default defineComponent({
   @include displayRoot();
 
   background-color: #000;
-  height: 100vh;
+  // height: 100vh;
   // margin-top: 120px;
   overflow: hidden;
   width: 100vw;
@@ -72,6 +72,7 @@ export default defineComponent({
     @include displayFlex(center, column, start);
 
     background-color: $mainBlackColor;
+    height: auto;
     // height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
     padding-top: 150px; // headerから下にする。headerは浮いているためmarginがきかない。
   }
