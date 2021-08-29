@@ -2,7 +2,7 @@
 <template>
   <main class="contents">
     <section class="section1">
-      <p>hello</p>
+      <Title :en-title="'Login'" :ja-title="'管理者のみ'"/>
     </section>
     <section class="section2">
 
@@ -11,9 +11,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-export default defineComponent({
+import { defineComponent } from '@nuxtjs/composition-api';
+import Title from '@/components/common/Title.vue';
 
+export default defineComponent({
+  components: {
+    Title
+  }
 })
 </script>
 
