@@ -27,6 +27,9 @@ export default defineComponent({
 
 <style lang="scss">
 .title {
-  @include displayFlex(center, flex-start);
+  @include displayFlex(center, column, center);
+
+  flex: 1;
+  width: 100%;
 }
 </style>

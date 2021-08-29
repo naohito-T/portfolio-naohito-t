@@ -61,9 +61,11 @@ export default defineComponent({
 
   /** topが付与されていないpage */
   &:not(.top) .contents {
+    @include displayFlex(center, column, start);
+
     background-color: $mainBlackColor;
     height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
-    // padding-top: 190px;
+    padding-top: 150px; // headerから下にする。headerは浮いているためmarginがきかない。
   }
 }
 
