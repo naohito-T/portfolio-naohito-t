@@ -26,10 +26,11 @@ export default defineComponent({
 
 .footer {
   border: 2px solid;
+  height: 300px;
 
   &-inner {
     // @include displayFlex();
-    height: 300px;
+    height: 200px;
     text-align: center;
 
     &-button {

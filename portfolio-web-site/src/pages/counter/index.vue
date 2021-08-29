@@ -25,7 +25,7 @@ export default defineComponent({
     CounterDecrementButton,
   },
   setup() {
-    provide(CounterKey, useCounter())
+    provide(CounterKey, useCounter()) // keyを付与してuseCounter()グループを運ぶ
     return {
     }
   },

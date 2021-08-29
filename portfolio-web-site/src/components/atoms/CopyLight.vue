@@ -17,6 +17,7 @@ export default defineComponent({
 .copy-light {
   background: #000;
   color: #555;
+  height: 100px;
   line-height: 1;
   padding: 2vw;
   text-align: center;

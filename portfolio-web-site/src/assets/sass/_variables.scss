@@ -4,8 +4,15 @@
 * variables
 */
 
+@font-face {
+  font-family: 'Objective-bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('~assets/fonts/Objective_Woff2/Objective-Bold.woff2') format('woff2');
+}
+
 /* font-familiy */
-$fontFa: 'Noto Sans JP', sans-serif;
+$fontFa: 'Objective-bold', sans-serif;
 $fontFaJa: 'Noto sans JP', sans-serif;
 $fontFaEn: 'Montserrat', sans-serif;
 $fontFaNo: 'Roboto', sans-serif;
@@ -82,11 +89,13 @@ $dark-theme-colors: (
   success: #33e65d,
   warning: #f1c339,
   danger: #f74254,
-  background: #1e1e1e,
+  background: #1f1b1b,
   base: #333,
 );
 
 $colorNone: transparent;
+$topColor: #111;
+
 $gradStart: #3bc4f1;
 $gradEnd: #ca4f92;
 $gradient: linear-gradient(45deg, #3bc4f1 0%, #9a83f2 64%, #ca4f92 100%),

@@ -1,5 +1,5 @@
 import { IRequestHomeAPI } from '../service';
-import { IPhoto } from '../types/response/home';
+import { ImageURL, IPhoto } from '../types/response/home';
 import { RequestAPI } from './api';
 
 /**
@@ -7,8 +7,19 @@ import { RequestAPI } from './api';
  * @desc IRequestHomeAPI = methodsを定義したもの。
  */
 export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
+  /** photo */
   public getPhoto = async (): Promise<IPhoto[]> => {
     console.log(this.axios.getUri);
-    return await this.axios.get<IPhoto[]>(`/photos`).then((r) => r.data);
+    return await this.axios
+      .get<IPhoto[]>(`jsonplaceholder.typicode.com/photos`)
+      .then((r) => r.data);
+  };
+
+  /** imageURL */
+  public getImageURL = async (): Promise<ImageURL> => {
+    console.log(this.axios.getUri);
+    return await this.axios
+      .get<ImageURL>(`source.unsplash.com/user/erondu/400x400`)
+      .then((r) => r.data);
   };
 }

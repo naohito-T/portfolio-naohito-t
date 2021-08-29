@@ -37,21 +37,33 @@ export default defineComponent({
 <style lang="scss">
 /** すべてのpageに適用するためscopedは付与しない。 */
 #root {
-  height: auto;
-  margin-top: 120px;
+  // height: auto;
+  background-color: #000;
+  height: 100vh;
+  // margin-top: 120px;
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
+  // width: 100%;
+  will-change: transform;
 
   /** pageごとに適用 */
 
   /** topが付与されているpage */
+
   .contents {
-    @include innerFull(); /* header も透過させる */
+    @include displayFlex(center, row, start);
+
+    // background-color: #000;
+    height: 100vh; // 親要素に影響されずに、画面幅いっぱいに合わせる方法
+    width: 100vw;
+    will-change: transform;
   }
 
   /** topが付与されていないpage */
   &:not(.top) .contents {
-    padding-top: 190px;
+    background-color: transparent;
+    height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
+    // padding-top: 190px;
   }
 }
 

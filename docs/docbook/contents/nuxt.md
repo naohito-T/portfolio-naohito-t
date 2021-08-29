@@ -550,6 +550,46 @@ $ yarn lint:style
 
 3. assets/内にSVGを設置し読み込むだけ
 
+## nuxt font導入
+
+Objective Font Family にすることにした。
+[Objective Font Family URL](https://www.dafontfree.io/objective-font-family/)
+
+1. fontをきめてローカルにインストールする
+2. プロジェクトフォルダに配置
+3. nuxtの読み込み方法
+[リファレンスURL](https://ja.nuxtjs.org/docs/2.x/directory-structure/assets)
+4. @font-faceで読み込み _variables.scssで読み込み
+
+- @font-faceとは
+> CSSの @font-face @-規則は、テキストを表示するための独自フォントを指定します。フォントはリモートサーバーまたはユーザー自身のコンピューターにローカルにインストールされたフォントのどちらかから読み込むことができます。 local() 関数が与えられると、ユーザーのコンピューターで探すフォント名を指定し、ユーザーエージェントがそれを見つけることができれば、そのローカルフォントを使用します。そうでなければ、 url() 関数を使用して指定されたフォントリソースをダウンロードして使用します。
+
+これでいけた。
+```scss
+@font-face {
+  font-family: 'Objective-bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('~assets/fonts/Objective_Woff2/Objective-Bold.woff2') format('woff2');
+}
+
+/* font-familiy */
+$fontFa: 'Objective-bold', sans-serif;
+```
+
+## propsをbackground-imageにわたす
+
+[参考URL](https://qiita.com/mczkzk/items/a2fd40b5a54d81766ab2)
+
+## 文字のスクロール
+
+[参考URL](https://webparts.cman.jp/string/scroll/)
+
+## 横幅のブレイクポイントを決めておく
+
+BootStrapを参考にしている
+> Bootstrap(Ver.3)では、768px未満をスマートフォン、992px未満をタブレット、1,200px未満を中型デスクトップ、1,200px以上を大型デスクトップに分類してブレイクポイントが設けられています。
+
 ## animation 導入
 
 animation 導入にはgsapが海外では一番作成されているとのこと。
