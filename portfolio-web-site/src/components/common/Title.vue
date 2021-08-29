@@ -25,8 +25,20 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .title {
-  @include displayFlex(center, flex-start);
+  @include displayFlex(center, column, center);
+
+  background-color: #222;
+  color: $fontColor;
+  flex: 1;
+  font-size: $fontSize70;
+  height: 30vh;
+  margin-bottom: 20px;
+  width: 100%;
+
+  &__ja {
+    font-size: $fontSize10;
+  }
 }
 </style>
