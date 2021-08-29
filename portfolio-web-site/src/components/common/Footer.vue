@@ -25,8 +25,8 @@ export default defineComponent({
 <style lang="scss">
 
 .footer {
-  border: 2px solid;
   height: 300px;
+  width: 100%;
 
   &-inner {
     // @include displayFlex();

@@ -37,7 +37,8 @@ export default defineComponent({
 <style lang="scss">
 /** すべてのpageに適用するためscopedは付与しない。 */
 #root {
-  // height: auto;
+  @include displayRoot();
+
   background-color: #000;
   height: 100vh;
   // margin-top: 120px;
@@ -46,16 +47,23 @@ export default defineComponent({
   // width: 100%;
   will-change: transform;
 
-  /** pageごとに適用 */
+  /** top以外のコンテンツをスクロール下にいける。 */
+  &:not(.top) {
+    overflow: auto;
+    width: 100%; // width: 100vw;だとスクロールバーを含まないため無理。
+  }
 
-  /** topが付与されているpage */
+  .main {
+    flex-grow: 1;
+  }
 
+  /** top pageのみ */
   .contents {
     @include displayFlex(center, row, start);
 
     // background-color: #000;
     height: 100vh; // 親要素に影響されずに、画面幅いっぱいに合わせる方法
-    width: 100vw;
+    width: 100%;
     will-change: transform;
   }
 
@@ -64,7 +72,7 @@ export default defineComponent({
     @include displayFlex(center, column, start);
 
     background-color: $mainBlackColor;
-    height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
+    // height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
     padding-top: 150px; // headerから下にする。headerは浮いているためmarginがきかない。
   }
 }

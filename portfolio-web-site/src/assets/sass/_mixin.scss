@@ -28,6 +28,12 @@
   justify-content: $justify-content;
 }
 
+@mixin displayRoot() {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* font */
 
 /* 継承 */
@@ -213,7 +219,8 @@
 
 @mixin hoverColorBase($backColor: #fff, $beforeBackColor: #fff, $height: 0) {
   background: $backColor;
-  border: 1px solid #222;
+  border-bottom: 1px solid #222;
+  border-top: 1px solid #222;
   display: block;
   font-size: $fontSize80;
   height: $height;

@@ -2,7 +2,7 @@
 <template>
   <main class="contents">
     <section class="section1">
-      <Title :en-title="'Login'" :ja-title="'管理者のみ'"/>
+      <TitleOnImage :en-title="'Login'" :ja-title="'管理者のみ'" :img="'https://source.unsplash.com/user/erondu/600x400'"/>
     </section>
     <section class="section2">
 
@@ -12,11 +12,12 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import Title from '@/components/common/Title.vue';
+// import Title from '@/components/common/Title.vue';
+import TitleOnImage from '@/components/molecules/TitleOnImage.vue';
 
 export default defineComponent({
   components: {
-    Title
+    TitleOnImage
   }
 })
 </script>

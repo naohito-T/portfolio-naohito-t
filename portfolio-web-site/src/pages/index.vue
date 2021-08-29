@@ -61,9 +61,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-// .contents {
-// .section1 {
-//   @include inner();
-// }
-// }
+.contents {
+  .section1 {
+    background-color: #000;
+  }
+}
 </style>

@@ -4,16 +4,7 @@
       <Title :en-title="'About'" :ja-title="'naohito-Tについて'"/>
     </section>
     <section class="section2">
-      <article class="markdown">
-        <div>
-          <div>
-            <h2>Skill</h2>
-          </div>
-          <div>
-            <p>hello</p>
-          </div>
-        </div>
-      </article>
+      <AboutMarkdown />
     </section>
   </main>
 </template>
@@ -21,16 +12,16 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import Title from '@/components/common/Title.vue';
-import about from '@/assets/markdown/about.md';
+import AboutMarkdown from '@/components/molecules/AboutMarkdown.vue';
+
 
 export default defineComponent({
   components: {
     Title,
+    AboutMarkdown,
   },
   setup() {
-    return {
-      about,
-    };
+    return {}
   },
 });
 </script>
@@ -42,9 +33,7 @@ export default defineComponent({
   }
 
   .section2 {
-    .markdown {
-      visibility: visible;
-    }
+    width: 100%;
   }
 }
 </style>
