@@ -61,7 +61,7 @@ export default defineComponent({
 
   /** topが付与されていないpage */
   &:not(.top) .contents {
-    background-color: transparent;
+    background-color: $mainBlackColor;
     height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
     // padding-top: 190px;
   }
