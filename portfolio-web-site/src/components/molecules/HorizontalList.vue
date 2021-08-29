@@ -1,24 +1,7 @@
-<!-- <template>
-  <div class="horizontal">
-    <ul class="horizontal-list">
-      <nuxt-link :to="ankerLink">
-        <li class="horizontal-list__item">
-          <img :src="imgURL" />
-          <p>{{ title }}</p>
-          <p>{{ subTitle }}</p>
-        </li>
-      </nuxt-link>
-    </ul>
-  </div>
-</template> -->
-
 <template>
   <div class="horizontal">
-    <article class="horizontal-top">
-      <h1 class="horizontal-top__title">mainTitle</h1>
-    </article>
     <article v-for="(n, key) in 10" :key="key" class="horizontal-list">
-      <h2 class="horizontal-list__main">{{ title }}</h2>
+      <h2 class="horizontal-list__title">{{ title }}</h2>
       <!-- <div :style="{ backgroundImage: 'url(' + image_src.url + ')' }"></div> -->
       <nuxt-link :to="ankerLink" class="horizontal-list__img" :style="{ backgroundImage: `url(${imgURL})` }"></nuxt-link><!-- ここにbackground-image -->
       <p class="horizontal-list__sub">{{ subTitle }}</p>
@@ -65,28 +48,55 @@ export default defineComponent({
   display: flex;
   // overflow-x: scroll;
   -webkit-overflow-scrolling: touch;  /* スクロールを滑らかにする */
-  // overflow-scrolling: touch;  /* スクロールを滑らかにする */
+  -ms-overflow-style: none; /** スクロールバーを消す IE, Edge 対応 */
   overflow-x: auto;  /* 横スクロールの指定 */
+  scrollbar-width: none; /* Firefox 対応 */
   white-space: nowrap;  /* 横スクロールの指定 */
   width: 90%; // width 90%に指定してコンテンツが見切れて見えるように
 
-  %-top {
-    &__title {
-      font-size: 80px;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
 
   &-list {
-    background-color: antiquewhite;
+    @include displayFlex();
+
+    height: 70vh; // 画面に7割
+    margin: 0 20px;
+    position: relative;
     width: 100%;
 
-    &__item {
-      // background-color: antiquewhite;
-      // display: inline-block;
-      // height: 400px;
-      margin: 16px;
-      // width: 60%;
+    &__title {
+      @include positionBase(150px, 0, 0, -40px);
+
+      color: #fff;
+      z-index: 1;
     }
+
+    &__img {
+      background-size: contain;
+      height: 400px;
+      width: 600px;
+    }
+
+    &__sub {
+      @include positionRightLower(0, 90px);
+
+      color: #fff;
+      z-index: 1;
+    }
+
+    /** 偶数 */
+    &:nth-child(2n) {
+      align-items: flex-end;
+    }
+
+    /** 奇数 */
+    &:nth-child(2n-1) {
+      align-items: flex-start;
+    }
+
+    /** hover */
   }
 }
 </style>

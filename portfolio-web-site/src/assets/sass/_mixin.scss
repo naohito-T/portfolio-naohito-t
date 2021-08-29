@@ -189,6 +189,26 @@
   @include fixedBase(0, auto, auto, 0, $margin);
 }
 
+/**
+ * position absolute
+ *
+*/
+
+@mixin positionBase($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+  right: $right;
+  top: $top;
+}
+
+/** 右下start position */
+@mixin positionRightLower($right: 0, $bottom: 0) {
+  bottom: $bottom;
+  position: absolute;
+  right: $right;
+}
+
 /* hover action */
 
 @mixin hoverColorBase($backColor: #fff, $beforeBackColor: #fff, $height: 0) {

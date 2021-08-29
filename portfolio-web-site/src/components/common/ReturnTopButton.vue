@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, onUnmounted, ref } from '@nuxtjs/composition-api';
 export default defineComponent({
   setup() {
     const isScroll = ref<Boolean>(false);
@@ -34,7 +34,17 @@ export default defineComponent({
       })
     }
     onMounted(() => {
-      addEventListener('scroll', isWindowScroll)
+      addEventListener('scroll', isWindowScroll);
+    });
+
+    onUnmounted(() => {
+      /**
+       * 削除するには制限がある
+       *   イベントとメソッドが一致する必要がある
+       *   オプション「capture」を指定しているときは値が一致する必要がある
+       *   無名関数で登録すると解除できない
+       */
+      removeEventListener('scroll', isWindowScroll);
     });
 
     return {

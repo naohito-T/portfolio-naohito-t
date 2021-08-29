@@ -25,11 +25,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .title {
-  // height: 100vh;
-  // width: 100vw;
+  width: 90vw;
 
   &__text {
     color: #fff;
+    font-size: 18vw;
   }
 }
 </style>

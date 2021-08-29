@@ -1,11 +1,11 @@
 <!-- 横スクロール場面 -->
 <template>
-  <main class="contents">
-    <section class="section1">
+  <main class="contents"> <!-- 全体を横にして  -->
+    <section class="section1"> <!-- 縦中央真ん中にする  -->
       <MainTitle :title="'Coding In Design'" />
     </section>
-    <section class="section2">
-      <HorizontalList :anker-link="'/work'" :imgURL="'https://source.unsplash.com/user/erondu/400x400'" :title="'HELLO'" :sub-title="'subTitle'"/>
+    <section class="section2"> <!-- 縦いっぱいに配置して横にならべる。  -->
+      <HorizontalList :anker-link="'/work'" :imgURL="'https://source.unsplash.com/user/erondu/600x400'" :title="'HELLO'" :sub-title="'subTitle'"/>
       <RightArrowButton />
     </section>
   </main>
@@ -46,6 +46,31 @@ export default defineComponent({
       console.log(process.env.appId)
       console.log(process.env.measurementId)
       console.log(process.env.apiBaseURL);
+
+      window.onmousewheel = (e: any) => {
+      e.preventDefault();
+      const x = document.getElementById('root');
+      if (e.wheelDelta > 0 && x !== null) {
+        x.scrollLeft += -e.wheelDelta;
+
+      } else if (e.wheelDelta < 0 && x !== null ) {
+        console.log(`マイナスをプラスに変更:${-e.wheelDelta}`);
+        x.scrollLeft += -e.wheelDelta;
+      }
+      window.ontouchmove = (e: any) => {
+        e.preventDefault();
+        const x = document.getElementById('root');
+        if (e.wheelDelta > 0 && x !== null) {
+          x.scrollLeft += -e.wheelDelta;
+
+        } else if (e.wheelDelta < 0 && x !== null ) {
+          console.log(`マイナスをプラスに変更:${-e.wheelDelta}`);
+          x.scrollLeft += -e.wheelDelta;
+        }
+      }
+
+    };
+
     })
 
     return {
