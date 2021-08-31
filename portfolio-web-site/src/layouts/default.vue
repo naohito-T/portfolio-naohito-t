@@ -40,16 +40,15 @@ export default defineComponent({
   @include displayRoot();
 
   background-color: #000;
-  // height: 100vh;
-  // margin-top: 120px;
   overflow: hidden;
   width: 100vw;
-  // width: 100%;
-  will-change: transform;
+  will-change: transform; // レンダリング速度をあげる。
 
   /** top以外のコンテンツをスクロール下にいける。 */
   &:not(.top) {
     overflow: auto;
+    scrollbar-color: transparent transparent; /* thumb and track color */
+    scrollbar-width: 0;
     width: 100%; // width: 100vw;だとスクロールバーを含まないため無理。
   }
 

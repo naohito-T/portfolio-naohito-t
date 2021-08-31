@@ -93,6 +93,7 @@ $dark-theme-colors: (
   base: #333,
 );
 
+/* colors */
 $colorNone: transparent;
 $topColor: #111;
 $fontColor: #eee;
@@ -147,3 +148,30 @@ $colorGra8: #f6f6f6;
 $colorGraBH: #c2d1d9;
 
 $fontColorBase: $colorBlackMain;
+
+/* animation % */
+$anime75: 75%;
+$anime95: 95%;
+$anime96: 96%;
+$anime97: 97%;
+$anime98: 98%;
+$anime99: 99%;
+$anime100: 100%;
+
+@keyframes tonext {
+  75% {
+    left: 0;
+  }
+
+  95% {
+    left: 100%;
+  }
+
+  98% {
+    left: 100%;
+  }
+
+  99% {
+    left: 0;
+  }
+}

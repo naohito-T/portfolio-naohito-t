@@ -5,6 +5,7 @@
     </section>
     <section class="section2">
       <Scroll :message="'Code In Design'"/>
+      <CarouselImageTemplate />
     </section>
   </main>
 </template>
@@ -13,11 +14,13 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import Title from '@/components/common/Title.vue';
 import Scroll from '@/components/atoms/Scroll.vue';
+import CarouselImageTemplate from '@/components/organisms/CarouselImageTemplate.vue'
 
 export default defineComponent({
   components: {
     Title,
-    Scroll
+    Scroll,
+    CarouselImageTemplate
   },
   props: {
     enTitle: {

@@ -280,3 +280,239 @@
   right: $right;
   top: $top;
 }
+
+/* Caroucel Slider */
+
+@mixin caroucelSlider() {
+  @keyframes tonext {
+    75% {
+      left: 0;
+    }
+
+    95% {
+      left: 100%;
+    }
+
+    98% {
+      left: 100%;
+    }
+
+    99% {
+      left: 0;
+    }
+  }
+
+  @keyframes tostart {
+    75% {
+      left: 0;
+    }
+
+    95% {
+      left: -300%;
+    }
+
+    98% {
+      left: -300%;
+    }
+
+    99% {
+      left: 0;
+    }
+  }
+
+  @keyframes snap {
+    96% {
+      scroll-snap-align: center;
+    }
+
+    97% {
+      scroll-snap-align: none;
+    }
+
+    99% {
+      scroll-snap-align: none;
+    }
+
+    100% {
+      scroll-snap-align: center;
+    }
+  }
+
+  // * {
+  //   box-sizing: border-box;
+  //   scrollbar-color: transparent transparent; /* thumb and track color */
+  //   scrollbar-width: 0;
+  // }
+
+  *::-webkit-scrollbar {
+    width: 0;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: none;
+  }
+
+  // * {
+  //   -ms-overflow-style: none;
+  // }
+
+  ol,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .carousel {
+    filter: drop-shadow(0 0 10px #0003);
+    padding-top: 75%;
+    perspective: 100px;
+    position: relative;
+  }
+
+  .carousel__viewport {
+    bottom: 0;
+    counter-reset: item;
+    display: flex;
+    left: 0;
+    overflow-x: scroll;
+    position: absolute;
+    right: 0;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    top: 0;
+  }
+
+  .carousel__slide {
+    background-color: #f99;
+    counter-increment: item;
+    flex: 0 0 100%;
+    position: relative;
+    width: 100%;
+  }
+
+  .carousel__slide:nth-child(even) {
+    background-color: #99f;
+  }
+
+  .carousel__slide::before {
+    color: #fff;
+    content: counter(item);
+    font-size: 2em;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -40%, 70px);
+  }
+
+  .carousel__snapper {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    scroll-snap-align: center;
+    top: 0;
+    width: 100%;
+  }
+
+  @media (hover: hover) {
+    .carousel__snapper {
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-name: tonext, snap;
+      animation-timing-function: ease;
+    }
+
+    .carousel__slide:last-child .carousel__snapper {
+      animation-name: tostart, snap;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__snapper {
+      animation-name: none;
+    }
+  }
+
+  .carousel:hover .carousel__snapper,
+  .carousel:focus-within .carousel__snapper {
+    animation-name: none;
+  }
+
+  .carousel__navigation {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+  }
+
+  .carousel__navigation-list,
+  .carousel__navigation-item {
+    display: inline-block;
+  }
+
+  .carousel__navigation-button {
+    background-clip: content-box;
+    background-color: #333;
+    border: 0.25rem solid transparent;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 0;
+    height: 1.5rem;
+    transition: transform 0.1s;
+    width: 1.5rem;
+  }
+
+  .carousel::before,
+  .carousel::after,
+  .carousel__prev,
+  .carousel__next {
+    border-radius: 50%;
+    font-size: 0;
+    height: 4rem;
+    margin-top: 37.5%;
+    outline: 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    width: 4rem;
+  }
+
+  .carousel::before,
+  .carousel__prev {
+    left: -1rem;
+  }
+
+  .carousel::after,
+  .carousel__next {
+    right: -1rem;
+  }
+
+  .carousel::before,
+  .carousel::after {
+    background-color: #333;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 1.5rem 1.5rem;
+    color: #fff;
+    content: '';
+    font-size: 2.5rem;
+    line-height: 4rem;
+    pointer-events: none;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .carousel::before {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+  }
+
+  .carousel::after {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+  }
+}
