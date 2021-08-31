@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import about from '@/assets/markdown/about.md';
 import skill from '@/assets/markdown/skill.md';
 import promise from '@/assets/markdown/promise.md';
 import policy from '@/assets/markdown/policy.md';
@@ -38,7 +37,6 @@ import iam from '@/assets/markdown/iam.md';
 export default defineComponent({
   setup() {
     return {
-      about,
       skill,
       promise,
       policy,
@@ -65,6 +63,10 @@ export default defineComponent({
     &__right {
       font-size: $fontSize18;
       width: 50vw;
+
+      p:nth-child(1) {
+        margin-bottom: 30px;
+      }
     }
   }
 }
