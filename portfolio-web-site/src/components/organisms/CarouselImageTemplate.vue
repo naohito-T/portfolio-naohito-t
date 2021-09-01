@@ -1,5 +1,14 @@
 <template>
-  <CarouselImage />
+  <div class="image">
+    <div class="image-container1">
+      <CarouselImage :size="'70%'" />
+      <CarouselImage :size="'30%'" />
+    </div>
+    <div class="image-container2">
+      <CarouselImage />
+      <CarouselImage />
+    </div>
+  </div>
 </template>
 <script>
 /**
@@ -25,3 +34,18 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss">
+.image {
+  margin: 0 auto;
+  width: 95vw;
+
+  &-container1 {
+    @include displayFlex(center, row, center);
+  }
+
+  &-container2 {
+    @include displayFlex(center, row, center);
+  }
+}
+</style>
