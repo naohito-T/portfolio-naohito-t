@@ -372,7 +372,8 @@
       top: 0;
 
       &__slide {
-        background-color: #f99;
+        background-color: transparent;
+        background-size: cover;
         counter-increment: item;
         flex: 0 0 100%;
         position: relative;

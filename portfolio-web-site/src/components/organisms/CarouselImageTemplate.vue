@@ -1,12 +1,12 @@
 <template>
   <div class="image">
     <div class="image-container1">
-      <CarouselImage :size="'70%'" />
-      <CarouselImage :size="'30%'" />
+      <CarouselImage :ref="images" :size="'70%'" :images="images"  />
+      <CarouselImage :size="'30%'" :images="images" />
     </div>
     <div class="image-container2">
-      <CarouselImage />
-      <CarouselImage />
+      <CarouselImage :ref="images" :size="'50%'" :images="images"  />
+      <CarouselImage :ref="images" :size="'50%'" :images="images"  />
     </div>
   </div>
 </template>
@@ -22,15 +22,19 @@
  * 最初は数枚を表示してどんどん取ってくる
  *
  */
-import { defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, ref } from '@nuxtjs/composition-api';
 import CarouselImage from '@/components/atoms/CarouselImage.vue';
+import { arrayFactorys } from '@/composables/utils/factorys/';
 
 export default defineComponent({
   components: {
     CarouselImage,
   },
   setup() {
-
+    const images = ref(arrayFactorys('https://source.unsplash.com/user/erondu/600x400', 4));
+    return {
+      images,
+    }
   },
 })
 </script>
