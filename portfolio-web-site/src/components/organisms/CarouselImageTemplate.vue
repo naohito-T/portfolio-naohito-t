@@ -1,12 +1,12 @@
 <template>
   <div class="image">
     <div class="image-container1">
-      <CarouselImage :ref="images" :size="'70%'" :images="images"  />
+      <CarouselImage :size="'70%'" :images="images" />
       <CarouselImage :size="'30%'" :images="images" />
     </div>
     <div class="image-container2">
-      <CarouselImage :ref="images" :size="'50%'" :images="images"  />
-      <CarouselImage :ref="images" :size="'50%'" :images="images"  />
+      <CarouselImage :ref="images" :size="'50%'" :images="images" />
+      <CarouselImage :ref="images" :size="'50%'" :images="images" />
     </div>
   </div>
 </template>

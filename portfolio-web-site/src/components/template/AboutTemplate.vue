@@ -4,6 +4,7 @@
       <Title :en-title="enTitle" :ja-title="jaTitle" />
     </section>
     <section class="section2">
+      <MyAbout />
       <AboutMarkdown />
     </section>
   </main>
@@ -12,11 +13,13 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import Title from '@/components/common/Title.vue';
+import MyAbout from '@/components/molecules/MyAbout.vue';
 import AboutMarkdown from '@/components/molecules/AboutMarkdown.vue';
 
 export default defineComponent({
   components: {
     Title,
+    MyAbout,
     AboutMarkdown,
   },
   props: {

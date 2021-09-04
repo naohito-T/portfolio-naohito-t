@@ -4,7 +4,7 @@ export const arrayFactorys = <T extends Object>(
   count: number
 ): Array<T> => {
   const entitys = [];
-  for (let i = 0; i <= count; i++) {
+  for (let i = 0; i < count; i++) {
     entitys.push(entity);
   }
   return entitys;
