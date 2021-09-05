@@ -350,9 +350,6 @@
     border: none;
   }
 
-  // * {
-  //   -ms-overflow-style: none;
-  // }
   .carousel {
     filter: drop-shadow(0 0 10px #0003);
     padding-top: 75%;
@@ -403,6 +400,22 @@
         }
       }
     }
+
+    &-hover {
+      background-color: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      height: 100%;
+      left: 0;
+
+      /* 透明にして表示させない */
+      opacity: 0;
+      position: absolute;
+      top: 0;
+
+      /* ホバーの動き方 */
+      transition: 0.3s ease-in-out;
+      width: 100%;
+    }
   }
 
   @media (hover: hover) {
@@ -416,6 +429,15 @@
     .carousel-viewport__slide:last-child .carousel__snapper {
       animation-name: tostart, snap;
     }
+
+    // /* text */
+    // .carousel-hover {
+    //   /* 不透明にして表示 */
+    //   opacity: 1;
+
+    //   /* padding-topで上からスライド */
+    //   padding-top: 10px;
+    // }
   }
 
   @media (prefers-reduced-motion: reduce) {

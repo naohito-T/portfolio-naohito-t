@@ -11,6 +11,10 @@
           class="carousel-viewport__slide"
         >
           <div class="carousel__snapper"></div>
+          <div class="carousel-hover">
+            <p class="carousel-hover__text1">coffee</p>
+            <p class="carousel-hover__text2">Is delicious; let's take a break in having served coffee</p>
+          </div>
         </li>
       </ol>
     </section>
@@ -43,5 +47,13 @@ export default defineComponent({
   @include caroucelSlider();
 
   width: 50%;
+
+  &:hover .carousel-hover {
+    /* 不透明にして表示 */
+    opacity: 1;
+
+    /* padding-topで上からスライド */
+    padding-top: 10px;
+  }
 }
 </style>
