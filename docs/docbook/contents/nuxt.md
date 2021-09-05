@@ -598,6 +598,46 @@ JSでの実装が必要。完成した。
 
 markdownで挿入できる形にはしたためそれを変更する
 コピーしたときの色を変更
+## work page作成
+
+カルーセルスライダーでpageを敷き詰めたい
+hoverすると画像が暗くなり、文字が浮き上がるようにする
+リンク先はその仕事先
+Twitter、Instagramなど配置してもいいかも
+
+## ここでテスト実行環境作成
+
+[Nuxt.jsでjestとcypressでテストをする](https://blog.rhyztech.net/nuxtjs_typescript_jest_cypress/)
+
+jestのtestを理解する
+
+jestとCypress(サイプレス)を導入
+
+- Cypress(サイプレス)とは
+>長い間、Web UI の自動テストツールといえば Selenium だったのですが、最近は Selenium 以外にも優れたツールが増えてきています。大部分が有料ツールなので、なかなか紹介しづらいのですが、「Cypress(サイプレス)」はオープンソースで無料で使えるだけではなく、かなり使い勝手のよく仕上がっている
+
+cypressをインストール
+`$ yarn add --dev cypress @types/cypress eslint-plugin-cypress`
+
+cypress初期設定 ※アプリが立ち上げある
+`npx cypress open`
+
+cypress.jsonを編集しアクセスするURLを明示する
+
+```json
+{
+  "baseUrl": "http://localhost:3000"
+}
+```
+
+jestとcypressの型情報がほしいためtsconfig.jsonのincludeに型情報を追加する。
+
+サーバを立ち上げる
+`$ yarn dev`
+
+cypressを走らせる
+` $ npx cypress run`
+
 
 
 ## animation 導入
@@ -607,4 +647,13 @@ animation 導入にはgsapが海外では一番作成されているとのこと
 
 あとやっていないこと
 huskyの設定(勝手にかける設定)
-jestのtestを理解する
+
+コピペの色を変える。
+動画ものっける。
+work pageにのっけるもの
+Gyfu.について
+Gyfu.リリースpageつくるか謎
+美容師の作品撮りを乗っけていくか
+自身でつくったアプリ
+リリースページを作ってもいいかも
+pdfにはgitbookで作った経歴書

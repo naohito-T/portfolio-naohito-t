@@ -31,6 +31,8 @@
       "@nuxt/types",
       "@types/node",
       "@nuxtjs/axios",
+      "jest",
+      "cypress"
     ]
   },
   "include": ["./**/*.ts"],

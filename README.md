@@ -1,6 +1,6 @@
 # Portfolio-web-site
 
-## enviromant
+## enviroment
 
 ```bash
 $node -v
@@ -16,6 +16,15 @@ v3.7.1
 
 $firebase --version
 9.14.0
+```
+
+## enviroment test
+
+```bash
+jest
+"jest": "^27.0.5",
+cypress
+"cypress": "^8.3.1",
 ```
 
 ## project start
