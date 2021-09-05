@@ -280,3 +280,174 @@
   right: $right;
   top: $top;
 }
+
+/* Caroucel Slider */
+@mixin caroucelSlider() {
+  @keyframes tonext {
+    75% {
+      left: 0;
+    }
+
+    95% {
+      left: 100%;
+    }
+
+    98% {
+      left: 100%;
+    }
+
+    99% {
+      left: 0;
+    }
+  }
+
+  @keyframes tostart {
+    75% {
+      left: 0;
+    }
+
+    95% {
+      left: -300%;
+    }
+
+    98% {
+      left: -300%;
+    }
+
+    99% {
+      left: 0;
+    }
+  }
+
+  @keyframes snap {
+    96% {
+      scroll-snap-align: center;
+    }
+
+    97% {
+      scroll-snap-align: none;
+    }
+
+    99% {
+      scroll-snap-align: none;
+    }
+
+    100% {
+      scroll-snap-align: center;
+    }
+  }
+
+  *::-webkit-scrollbar {
+    width: 0;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: none;
+  }
+
+  .carousel {
+    filter: drop-shadow(0 0 10px #0003);
+    padding-top: 75%;
+    perspective: 100px;
+    position: relative;
+
+    &-viewport {
+      bottom: 0;
+      counter-reset: item;
+      display: flex;
+      left: 0;
+      overflow-x: scroll;
+      position: absolute;
+      right: 0;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      top: 0;
+
+      &__slide {
+        background-color: transparent;
+        background-size: cover;
+        counter-increment: item;
+        flex: 0 0 100%;
+        position: relative;
+        width: 100%;
+
+        &:nth-child(even) {
+          background-color: #99f;
+        }
+
+        &::before {
+          color: #fff;
+          content: counter(item);
+          font-size: 2em;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate3d(-50%, -40%, 70px);
+        }
+
+        &--item {
+          height: 100%;
+          left: 0;
+          position: absolute;
+          scroll-snap-align: center;
+          top: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    &-hover {
+      background-color: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      height: 100%;
+      left: 0;
+
+      /* 透明にして表示させない */
+      opacity: 0;
+      position: absolute;
+      top: 0;
+
+      /* ホバーの動き方 */
+      transition: 0.3s ease-in-out;
+      width: 100%;
+    }
+  }
+
+  @media (hover: hover) {
+    .carousel__snapper {
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-name: tonext, snap;
+      animation-timing-function: ease;
+    }
+
+    .carousel-viewport__slide:last-child .carousel__snapper {
+      animation-name: tostart, snap;
+    }
+
+    // /* text */
+    // .carousel-hover {
+    //   /* 不透明にして表示 */
+    //   opacity: 1;
+
+    //   /* padding-topで上からスライド */
+    //   padding-top: 10px;
+    // }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__snapper {
+      animation-name: none;
+    }
+  }
+
+  .carousel:hover .carousel__snapper,
+  .carousel:focus-within .carousel__snapper {
+    animation-name: none;
+  }
+}

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import ArrowRight from '@/assets/images/arrow-right.svg';
+import ArrowRight from '@/assets/images/svg/arrow-right.svg';
 export default defineComponent({
   components: {
     ArrowRight
