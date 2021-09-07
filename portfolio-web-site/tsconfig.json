@@ -32,6 +32,7 @@
       "@types/node",
       "@nuxtjs/axios",
       "jest",
+      "expect-playwright",
       "cypress"
     ]
   },
