@@ -1,23 +1,23 @@
 <template>
   <form class="form">
     <slot></slot> <!-- React props.children みたいなもの -->
-    <button @click="method"></button>
+    <div class="form-button">
+      <button @click="onClick" class="form-button__item"></button>
+    </div>
   </form>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, inject } from '@nuxtjs/composition-api';
+import { onClickFormType } from '@/composables/repositories/form'
+import { onClickFormKey } from '@/composables/repositories/key'
 
 export default defineComponent({
-  props: {
-    method: {
-      type: Function,
-      required: true,
-    }
-  },
   setup() {
+    /** inject(key) as type */
+    const { onClick } = inject(onClickFormKey) as onClickFormType;
     return {
-
+      onClick,
     };
   },
 });
@@ -26,5 +26,9 @@ export default defineComponent({
 <style lang="scss">
 .form {
   margin: 0 auto;
+
+  &-button {
+    margin: 0 auto;
+  }
 }
 </style>
