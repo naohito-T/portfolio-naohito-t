@@ -1,12 +1,10 @@
 <template>
   <div id="root" :class="isTop ? 'top' : ''">
   <!-- top pageだったら何かをしよう -->
-    <template v-if="!isTop">
-      <Header />
-      <ReturnTopButton />
-    </template>
     <nuxt />
     <template v-if="!isTop">
+      <ReturnTopButton />
+      <Header />
       <Footer />
     </template>
   </div>
@@ -46,7 +44,7 @@ export default defineComponent({
 
   /** top以外のコンテンツをスクロール下にいける。 */
   &:not(.top) {
-    overflow: auto;
+    overflow: visible; // overflow初期値。これを指定しないとposition: styikyがきかない。
     scrollbar-color: transparent transparent; /* thumb and track color */
     scrollbar-width: 0;
     width: 100%; // width: 100vw;だとスクロールバーを含まないため無理。
@@ -73,7 +71,6 @@ export default defineComponent({
     background-color: $mainBlackColor;
     height: auto;
     // height: calc(100vh - 300px); // heightの高さはheaderの高さとfooterの高さを引けばいいのだがheaderが浮いているためfooterのみ
-    padding-top: 150px; // headerから下にする。headerは浮いているためmarginがきかない。
   }
 }
 

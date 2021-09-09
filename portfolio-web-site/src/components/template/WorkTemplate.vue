@@ -43,7 +43,11 @@ export default defineComponent({
 
 .contents {
   .section1 {
-    @include inner();
+    @include displayFlex();
+
+    height: 100vh;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .section2 {

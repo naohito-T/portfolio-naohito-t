@@ -67,12 +67,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .header {
-  @include fixedTopLeft(0);
-  @include margin(0, 0, 0, 0);
+  // @include fixedTopLeft(0);
+  // @include margin(0, 0, 0, 0);
 
-  height: 120px;
-  text-align: center;
-  width: 100%;
+  // height: 120px;
+  // text-align: center;
+  // width: 100%;
+  @include fixedTopRight();
+
   z-index: 6;
 
   &-inner {
@@ -83,11 +85,11 @@ export default defineComponent({
     @include displayFlex(center, row, space-between);
 
     .menu-list {
-      @include displayFlex(center, row, space-between);
+      @include displayFlex(center, column, space-between);
 
-      &-item {
-        @include displayFlex(center, row, space-between);
-      }
+      // &-item {
+      //   @include displayFlex(center, row, space-between);
+      // }
     }
   }
 }

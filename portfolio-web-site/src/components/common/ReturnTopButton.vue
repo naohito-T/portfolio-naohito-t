@@ -57,6 +57,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .return {
+  color: #fff;
   position: absolute;
 
   &__text {
