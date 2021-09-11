@@ -1,8 +1,10 @@
 <template>
   <form class="form">
-    <slot></slot> <!-- React props.children みたいなもの -->
+    <div class="form-part">
+      <slot></slot> <!-- React props.children みたいなもの -->
+    </div>
     <div class="form-button">
-      <button @click="onClick" class="form-button__item"></button>
+      <button @click="onClick" class="form-button__item">LOGIN</button>
     </div>
   </form>
 </template>
@@ -26,6 +28,10 @@ export default defineComponent({
 <style lang="scss">
 .form {
   margin: 0 auto;
+
+  &-part {
+    // @include displayFlex(center, column, center);
+  }
 
   &-button {
     margin: 0 auto;
