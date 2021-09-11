@@ -1,17 +1,28 @@
 <template>
   <main class="contents">
-    <section class="error">
-      <h2 class="error__title">{{ error.statusCode }}</h2>
-      <h2 class="error__title">{{ error.message }}</h2>
-      <nuxt-link class="error__button" to="/">HOME</nuxt-link>
+    <section class="section1">
+      <Title :en-title="'Error'" :ja-title="'エラーページ'" />
+    </section>
+    <section class="section2">
+      <div class="error">
+        <div class="error-title">
+          <h2 class="error-title__mainTitle">{{ error.statusCode }}</h2>
+          <p class="error-title__subTitle">{{ error.message }}</p>
+        </div>
+        <nuxt-link class="error__button" to="/">HOME</nuxt-link>
+      </div>
     </section>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent, useContext, useMeta } from '@nuxtjs/composition-api';
+import Title from '@/components/common/Title.vue';
 
 export default defineComponent({
+  components: {
+    Title
+  },
   setup() {
     const { app } = useContext();
     // ヘルパーを使用して、メソッド内（およびメソッド内）のヘッドプロパティを直接操作できます
@@ -34,16 +45,37 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .contents {
-  .error {
+  .section1 {
     @include inner();
+  }
 
-    &__title {
-      margin-bottom: 24px;
+  .section2 {
+    width: 100%;
+  }
+
+  .error {
+    @include displayFlex(center, column, center);
+
+    color: #fff;
+
+    &-title {
+      @include displayFlex(center, row, center);
+
+      margin-bottom: 20px;
+
+      &__mainTitle {
+        font-size: $fontSize40;
+        padding: 0 20px;
+      }
+
+      &__subTitle {
+        font-size: $fontSize20;
+      }
     }
 
-    // &__button {
-
-    // }
+    &__button {
+      margin-bottom: 20px;
+    }
   }
 }
 </style>

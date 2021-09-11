@@ -195,6 +195,10 @@
   @include fixedBase(0, auto, auto, 0, $margin);
 }
 
+@mixin fixedTopRight($margin: 0) {
+  @include fixedBase(133px, 0, 0, 34px, $margin);
+}
+
 /**
  * position absolute
  *

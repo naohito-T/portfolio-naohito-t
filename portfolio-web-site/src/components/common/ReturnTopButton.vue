@@ -2,19 +2,28 @@
   <div class="return">
     <template v-if="isScroll">
       <transition>
-        <p class="return__text" @click="returnTop">TOP</p>
+        <p class="return-text" @click="returnTop">
+          <span class="return-text__part">TOP</span>
+        </p>
       </transition>
     </template>
     <template v-else>
       <transition>
-        <p class="return__text">SCROLL</p>
+        <p class="return-text">
+          <span class="return-text__part">SCROLL</span>
+        </p>
       </transition>
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  ref,
+} from '@nuxtjs/composition-api';
 export default defineComponent({
   setup() {
     const isScroll = ref<Boolean>(false);
@@ -25,14 +34,14 @@ export default defineComponent({
       scrollY = window.scrollY;
       console.log(`scrollY: ${scrollY}`);
       isScroll.value = scrollY >= isScrollIgnition;
-    }
+    };
     const returnTop = () => {
       console.log('return');
       scrollTo({
         top: 0,
-        behavior: 'smooth'
-      })
-    }
+        behavior: 'smooth',
+      });
+    };
     onMounted(() => {
       addEventListener('scroll', isWindowScroll);
     });
@@ -50,21 +59,31 @@ export default defineComponent({
     return {
       isScroll,
       returnTop,
-    }
-  }
-})
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
 .return {
+  color: #fff;
+  height: 100%;
   position: absolute;
+  right: 18px;
+  top: 0;
+  z-index: 10;
 
-  &__text {
-    left: 40px;
-    top: 0;
-    -ms-writing-mode: tb-rl;
+  &-text {
+    position: sticky;
+    text-orientation: mixed;
+    top: 30px;
     writing-mode: vertical-rl;
-    z-index: 10;
+
+    &__part {
+      cursor: n-resize;
+      font-size: $fontSize30;
+      text-orientation: upright;
+    }
   }
 }
 </style>
