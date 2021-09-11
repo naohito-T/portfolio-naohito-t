@@ -17,48 +17,21 @@
           </li>
         </ul>
       </nav>
-      <li>
-        <button @click="colorSchemeChange">click</button>
-      </li>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, useContext, onMounted } from '@nuxtjs/composition-api';
+import {defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 
 export default defineComponent({
 
   setup() {
     const { route } = useContext();
-    const page = ref<String>(route.value.path);
-    const isMedia = ref<Boolean>(false); // prefers true = dark , false = white
-
-    // localStoreagに入れないといけない
-    // cssの変更はmediaでscss担当
-    // リロードしたらlocalStorageの値でmediaを変更
-    onMounted(() => {
-      // userが選択したもの
-      const userTheme = localStorage.getItem('data-theme');
-      console.log(`userTheme :${userTheme}`);
-      // dark true
-      isMedia.value = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const mediaTheme = isMedia.value ? 'dark' : 'white';
-      localStorage.setItem('data-theme', userTheme ?? mediaTheme);
-      document.documentElement.setAttribute("data-theme", userTheme ?? mediaTheme)
-    });
-
-    // localStorageの値とscssが展開した値を変更
-    const colorSchemeChange = () => {
-      const userThema = localStorage.getItem('data-theme');
-      const user = userThema === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('data-theme', user);
-      document.documentElement.setAttribute("data-theme", user);
-    };
-
+    /** カレントpageの場合はれいあうとを変更する */
+    const page = ref(route.value.path);
     return {
-      page,
-      colorSchemeChange
+      page
     }
   },
 });

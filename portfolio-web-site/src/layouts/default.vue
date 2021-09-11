@@ -1,10 +1,13 @@
 <template>
   <div id="root" :class="isTop ? 'top' : ''">
   <!-- top pageだったら何かをしよう -->
+    <template v-if="!isTop">
+      <Header />
+    </template>
     <nuxt />
     <template v-if="!isTop">
       <ReturnTopButton />
-      <Header />
+      <ColorThemeChangeButton />
       <Footer />
     </template>
   </div>
@@ -14,12 +17,14 @@
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
 import Header from '@/components/common/Header.vue';
 import ReturnTopButton from '@/components/common/ReturnTopButton.vue';
+import ColorThemeChangeButton from '@/components/atoms/button/ColorThemeChangeButton.vue';
 import Footer from '@/components/common/Footer.vue';
 
 export default defineComponent({
   components: {
     Header,
     ReturnTopButton,
+    ColorThemeChangeButton,
     Footer
   },
   setup() {
