@@ -8,7 +8,7 @@
     "pro": "cross-env NODE_ENV=\"pro\" nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "generate": "cross-env NODE_ENV=\"pro\" nuxt-ts generate",
     "analyze": "nuxt-ts build --analyze",
     "lint:js": "eslint --ext \".ts,.js,.vue\" --fix --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css,scss} --fix --ignore-path .gitignore",

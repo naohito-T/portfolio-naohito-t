@@ -1,4 +1,5 @@
 import { NuxtConfig } from '@nuxt/types';
+// import dotenv from 'dotenv';
 
 const environment = process.env.NODE_ENV;
 const envSettings = require(`./env/decrypt/env.${environment}.js`);
@@ -43,7 +44,7 @@ const nuxtConfig: NuxtConfig = {
     '@nuxt/typescript-build',
     '@nuxtjs/composition-api/module',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -56,7 +57,11 @@ const nuxtConfig: NuxtConfig = {
   ],
 
   styleResources: {
-    scss: ['@/assets/sass/_variables.scss', '@/assets/sass/_mixin.scss', '@/assets/sass/_function.scss'],
+    scss: [
+      '@/assets/sass/_variables.scss',
+      '@/assets/sass/_mixin.scss',
+      '@/assets/sass/_function.scss',
+    ],
   },
   // markdown 用 settings
   markdownit: {

@@ -4,20 +4,9 @@
       <Title :en-title="enTitle" :ja-title="jaTitle" />
     </section>
     <section class="section2">
-      <FormTemplate :method="method">
-        <Input
-          :type="'email'"
-          :name="'email'"
-          :auto-complete="'email'"
-          :placeholder="'email'"
-        />
-        <Input
-          :type="'password'"
-          :name="'pass'"
-          :auto-complete="'password'"
-          :placeholder="'password'"
-        />
-      </FormTemplate>
+      <div class="formWrap">
+        <FormTemplate :method="method" />
+      </div>
     </section>
   </main>
 </template>
@@ -26,13 +15,11 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import Title from '@/components/common/Title.vue';
 import FormTemplate from '@/components/template/FormTemplate.vue';
-import Input from '@/components/atoms/form/Input.vue';
 
 export default defineComponent({
   components: {
     Title,
     FormTemplate,
-    Input,
   },
   props: {
     enTitle: {
@@ -65,6 +52,13 @@ export default defineComponent({
 
   .section2 {
     width: 100%;
+
+    .formWrap {
+      @include displayFlex(center, column, center);
+
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 </style>

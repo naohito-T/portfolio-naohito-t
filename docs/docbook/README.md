@@ -59,3 +59,16 @@ declare module "vue/types/vue" {
   }
 }
 ```
+
+## 本番環境へデプロイ
+
+env proが提供される.
+
+`$ yarn generate`
+
+dist配下に静的ファイルが生成される。
+このdistの中身が、今回Firebase Hostingによってホスティングされる静的ファイル群です。
+
+ビルドが成功したら、デプロイ用のコマンド、
+
+firebase deploy --only hosting
