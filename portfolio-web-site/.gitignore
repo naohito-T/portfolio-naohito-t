@@ -102,3 +102,6 @@ env.pro.js
 # env encrypt
 env.dev
 env.pro
+
+# cypress
+cypress/

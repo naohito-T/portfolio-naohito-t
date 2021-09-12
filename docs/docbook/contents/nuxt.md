@@ -605,6 +605,29 @@ hoverすると画像が暗くなり、文字が浮き上がるようにする
 リンク先はその仕事先
 Twitter、Instagramなど配置してもいいかも
 
+## Login page作成
+
+とりあえず管理者のみで実装する。
+Login項目
+- mail
+- pass
+or
+authentication google
+firebaseで実装する
+
+デザイン
+focusの色を変える
+
+
+## pageにスクロールするものを作成する
+
+要件
+position: stickyでやりたい。position: fixedじゃない
+JSは使用しない。
+
+TWやinstagramをすべて追従させる
+[CSSだけで実現する](https://www.miso.blog/css-position-sticky/)
+
 ## ここでテスト実行環境作成
 
 [Nuxt.jsでjestとcypressでテストをする](https://blog.rhyztech.net/nuxtjs_typescript_jest_cypress/)
@@ -639,6 +662,10 @@ cypressを走らせる
 ` $ npx cypress run`
 
 
+cypressとjestの共存
+[URL](https://dev.appswingby.com/e2e%E3%83%86%E3%82%B9%E3%83%88/nuxtcypresse2egitlabci/)
+
+
 
 ## animation 導入
 
@@ -647,7 +674,7 @@ animation 導入にはgsapが海外では一番作成されているとのこと
 
 あとやっていないこと
 huskyの設定(勝手にかける設定)
-
+Sentryの導入
 コピペの色を変える。
 動画ものっける。
 work pageにのっけるもの
@@ -657,3 +684,4 @@ Gyfu.リリースpageつくるか謎
 自身でつくったアプリ
 リリースページを作ってもいいかも
 pdfにはgitbookで作った経歴書
+news page作成するかな？
