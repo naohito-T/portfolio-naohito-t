@@ -1,12 +1,12 @@
 <template>
-<main class="contents">
+  <main class="contents">
     <section class="section1">
       <Title :en-title="enTitle" :ja-title="jaTitle" />
     </section>
     <section class="section2">
-      <FormTemplate :method="method">
-
-      </FormTemplate>
+      <div class="formWrap">
+        <FormTemplate :method="method" />
+      </div>
     </section>
   </main>
 </template>
@@ -19,7 +19,7 @@ import FormTemplate from '@/components/template/FormTemplate.vue';
 export default defineComponent({
   components: {
     Title,
-    FormTemplate
+    FormTemplate,
   },
   props: {
     enTitle: {
@@ -33,12 +33,12 @@ export default defineComponent({
     method: {
       type: Function,
       required: true,
-    }
+    },
   },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>
 <style lang="scss" scoped>
 .contents {
@@ -52,6 +52,13 @@ export default defineComponent({
 
   .section2 {
     width: 100%;
+
+    .formWrap {
+      @include displayFlex(center, column, center);
+
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 </style>
