@@ -15,8 +15,8 @@
     "lint": "npm run lint:js && npm run lint:style",
     "prettier": "prettier -w **/*.{scss,css,sass}",
     "test": "jest",
-    "cypress": "cypress open",
-    "test:ui": "cypress run"
+    "cy:open": "cross-env NODE_PATH=src cypress open",
+    "cy:run": "cross-env NODE_PATH=src cypress run --headless"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.1.0",
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
+    "@cypress/instrument-cra": "^1.4.0",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
