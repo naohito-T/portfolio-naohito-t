@@ -80,8 +80,8 @@ time,
 mark,
 audio,
 video {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  // -webkit-backface-visibility: hidden;
+  // backface-visibility: hidden;
   background: transparent;
   border: 0;
   box-sizing: border-box;

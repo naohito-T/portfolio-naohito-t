@@ -48,9 +48,7 @@ export const carousel = (root: any) => {
   };
 
   const setupNavigation = (nav: any, imgIndex: number) => {
-    nav.addEventListener('click', onClick, true);
-
-    function onClick(e: any) {
+    const onClick = (e: any) => {
       e.stopPropagation();
 
       const t = e.target;
@@ -63,7 +61,9 @@ export const carousel = (root: any) => {
       }
 
       rotateCarousel(imgIndex);
-    }
+    };
+
+    nav.addEventListener('click', onClick, true);
   };
   setupNavigation(nav, currentImage);
   setupCarousel(n, parseFloat(getComputedStyle(images[0]).width));
