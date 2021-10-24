@@ -631,6 +631,7 @@ TWやinstagramをすべて追従させる
 ## ここでテスト実行環境作成
 
 [Nuxt.jsでjestとcypressでテストをする](https://blog.rhyztech.net/nuxtjs_typescript_jest_cypress/)
+[cypress専用のtsconfig.jsonを作成(ルートのtsconfig.jsonと分ける)](https://dev.appswingby.com/e2e%E3%83%86%E3%82%B9%E3%83%88/nuxtcypresse2egitlabci/)
 
 jestのtestを理解する
 
@@ -683,5 +684,5 @@ Gyfu.リリースpageつくるか謎
 美容師の作品撮りを乗っけていくか
 自身でつくったアプリ
 リリースページを作ってもいいかも
-pdfにはgitbookで作った経歴書
+pdfにはgitbookで作った経歴書を乗っける(サイトのはじっこに設定)
 news page作成するかな？

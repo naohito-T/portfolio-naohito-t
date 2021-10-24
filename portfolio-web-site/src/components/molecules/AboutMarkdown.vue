@@ -29,10 +29,10 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import skill from '@/assets/markdown/Skill.md';
-import promise from '@/assets/markdown/promise.md';
-import policy from '@/assets/markdown/policy.md';
-import iam from '@/assets/markdown/iam.md';
+import skill from '@/assets/markdown/about/Skill.md';
+import promise from '@/assets/markdown/about/promise.md';
+import policy from '@/assets/markdown/about/policy.md';
+import iam from '@/assets/markdown/about/iam.md';
 
 export default defineComponent({
   setup() {
