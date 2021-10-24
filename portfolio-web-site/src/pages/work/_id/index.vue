@@ -63,6 +63,7 @@ import {
   onMounted,
 } from '@nuxtjs/composition-api';
 // import { carousel } from '@/composables/utils/carousel';
+import { isHTMLCollection, excludeUndefinedOfArray, isHTMLElement, isHTMLElement, isHTMLElement } from '@/lib/utils';
 
 export default defineComponent({
   setup() {
@@ -73,12 +74,10 @@ export default defineComponent({
     onMounted(() => {
       window.addEventListener('load', () => {
         const carousels = document.querySelectorAll('.carousel'); // carousel
-        console.log(carousels);
-        console.log(carousels.length);
 
-        const carousel = (root: any) => {
+        const carousel = (root: HTMLElement) => {
           /** figureを取り出す */
-          const figure = root.querySelector('figure');
+          const figure = root.querySelector('figure') ?? root.;
           /** nav(button)を取り出す */
           const nav = root.querySelector('nav');
           /** figureの子要素(imageを取得)  */
@@ -95,12 +94,17 @@ export default defineComponent({
           const currentImage = 0;
 
           window.addEventListener('resize', () => {
-            setupCarousel(n, parseFloat(getComputedStyle(images[0]).width));
+            if (isHTMLCollection(images[0])) {
+              setupCarousel(n, parseFloat(getComputedStyle(images[0]).width));
+            }
           });
 
           const setupCarousel = (n: number, s: number) => {
             const apothem = s / (2 * Math.tan(Math.PI / n));
-            figure.style.transformOrigin = `50% 50% ${-apothem}px`;
+
+            if (isHTMLElement(figure)) {
+              figure.style.transformOrigin = `50% 50% ${-apothem}px`;
+            }
 
             for (let i = 0; i < n; i++) {
               images[i].style.padding = `${gap}px`;
