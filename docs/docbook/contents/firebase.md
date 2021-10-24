@@ -116,10 +116,12 @@ pass(成功)しました。
 動作確認
 
 ```$npm run generate```
+プロジェクトディレクトリ内で実行する(package.jsonがあるところ)
 ・dist配下に静的ファイルが作成される。
 ・このdistの中身が今回firebase Hostingによってホスティングされる静的ファイル群
 
 ```$ firebase deploy --only hosting```
+プロジェクトディレクトリ内で実行する(package.jsonがあるところ)
 実行後、hostingURLがあるためスマホ、PCで確認できる。
 Hosting URL: https://naohito-t-portfolio.web.app
 

@@ -1,27 +1,17 @@
 <template>
   <div class="image">
     <div class="image-container1">
-      <CarouselImage :size="'70%'" :images="images" />
-      <CarouselImage :size="'30%'" :images="images" />
+      <CarouselImage :size="'70%'" :images="images" :link="'https://gyfu.thebase.in/'" :linkTitle="'Gyfu.'" :hoverDesc="'友人と立ち上げたアクセサリーブランドGyfu.'"/>
+      <CarouselImage :size="'30%'" :images="images" :link="'https://gyfu.thebase.in/'" :linkTitle="'Gyfu.'" :hoverDesc="'友人と立ち上げたアクセサリーブランドGyfu.'"/>
     </div>
     <div class="image-container2">
-      <CarouselImage :ref="images" :size="'50%'" :images="images" />
-      <CarouselImage :ref="images" :size="'50%'" :images="images" />
+      <CarouselImage :ref="images" :size="'50%'" :images="images" :link="'https://gyfu.thebase.in/'" :linkTitle="'BLOG'" :hoverDesc="'Createrが集まる, Creaters Blogを配信'" />
+      <CarouselImage :ref="images" :size="'50%'" :images="images" :link="'https://gyfu.thebase.in/'" :linkTitle="'Article'" :hoverDesc="'Zennなどで知見を投稿'" />
     </div>
   </div>
 </template>
+
 <script>
-/**
- * ここでやること
- * レイアウトはここで決める(画像配置の)
- * 自身で画像は非同期でとってくる。
- * とってきたのをatoms、moleculesに流す
- * ここは非同期の自走をする
- * size調整ができるようにする
- * おもかったら画像はディレクトリから取ってくる。
- * 最初は数枚を表示してどんどん取ってくる
- *
- */
 import { defineComponent, ref } from '@nuxtjs/composition-api';
 import CarouselImage from '@/components/atoms/CarouselImage.vue';
 import { arrayFactorys } from '@/composables/utils/factorys/';

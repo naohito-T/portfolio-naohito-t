@@ -5,7 +5,7 @@
     </section>
     <section class="section2">
       <div class="formWrap">
-        <FormTemplate :method="method" />
+        <FormTemplate />
       </div>
     </section>
   </main>
@@ -28,10 +28,6 @@ export default defineComponent({
     },
     jaTitle: {
       type: String,
-      required: true,
-    },
-    method: {
-      type: Function,
       required: true,
     },
   },

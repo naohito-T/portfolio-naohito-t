@@ -12,8 +12,8 @@
         >
           <div class="carousel__snapper"></div>
           <div class="carousel-hover">
-            <p class="carousel-hover__text1">coffee</p>
-            <p class="carousel-hover__text2">Is delicious; let's take a break in having served coffee</p>
+            <p class="carousel-hover__text--desc">{{ hoverDesc }}</p>
+            <a :href="link" target="_blank" rel="noopener noreferrer"><p class="carousel-hover__text-link">{{ linkTitle }}</p></a>
           </div>
         </li>
       </ol>
@@ -34,6 +34,18 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       required: true,
     },
+    link: {
+      type: String,
+      required: true,
+    },
+    linkTitle: {
+      type: String,
+      required: true,
+    },
+    hoverDesc: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
 
@@ -48,12 +60,27 @@ export default defineComponent({
 
   width: 50%;
 
+  .carousel-hover {
+    @include displayFlex(end, row, space-between);
+
+    &__text--desc {
+      font-size: $fontSize20;
+    }
+  }
+
   &:hover .carousel-hover {
     /* 不透明にして表示 */
     opacity: 1;
 
     /* padding-topで上からスライド */
     padding-top: 10px;
+  }
+}
+
+/** SP */
+@media screen and (max-width: $mobileWidth) {
+  .wrapper {
+    @include displayFlex(center, column, center);
   }
 }
 </style>

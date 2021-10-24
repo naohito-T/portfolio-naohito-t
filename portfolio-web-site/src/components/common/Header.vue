@@ -12,9 +12,9 @@
           <li class="menu-list-item">
             <nuxt-link to="/about" class="menu-list-item__link" :class="page === '/about' ? 'current' : ''">ABOUT</nuxt-link>
           </li>
-          <li class="menu-list-item">
+          <!-- <li class="menu-list-item">
             <nuxt-link to="/login" class="menu-list-item__link" :class="page === '/login' ? 'current' : ''">LOGIN</nuxt-link>
-          </li>
+          </li> -->
         </ul>
       </nav>
     </div>
@@ -46,7 +46,7 @@ export default defineComponent({
   // height: 120px;
   // text-align: center;
   // width: 100%;
-  @include fixedTopRight();
+  @include positionStickyBase(0, 0, 0, 0);
 
   z-index: 6;
 

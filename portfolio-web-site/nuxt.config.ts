@@ -1,5 +1,7 @@
 import { NuxtConfig } from '@nuxt/types';
 // import dotenv from 'dotenv';
+// dotenv.config()
+// これでいけるのでは?
 
 const environment = process.env.NODE_ENV;
 const envSettings = require(`./env/decrypt/env.${environment}.js`);
