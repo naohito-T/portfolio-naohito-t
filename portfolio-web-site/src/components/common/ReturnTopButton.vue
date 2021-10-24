@@ -76,7 +76,7 @@ export default defineComponent({
   &-text {
     position: sticky;
     text-orientation: mixed;
-    top: 30px;
+    top: 500px;
     writing-mode: vertical-rl;
 
     &__part {

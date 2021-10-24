@@ -17,11 +17,11 @@ export default defineComponent({
     jaTitle: {
       type: String,
       required: true,
-    }
+    },
   },
   setup() {
-    return {}
-  }
+    return {};
+  },
 });
 </script>
 
@@ -33,8 +33,7 @@ export default defineComponent({
   color: $fontColor;
   flex: 1;
   font-size: $fontSize70;
-  height: 30vh;
-  margin-bottom: 20px;
+  height: 17vh;
   width: 100%;
 
   &__ja {
