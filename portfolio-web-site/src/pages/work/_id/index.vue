@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Eight images, with 80px gap</h2>
+    <section class="section1">
+      <Title :en-title="enTitle" :ja-title="jaTitle" />
+    </section>
     <div class="carousel" data-gap="80">
       <figure class="carousel-figure">
         <img
@@ -61,109 +63,53 @@ import {
   defineComponent,
   useContext,
   onMounted,
+  onUnmounted,
 } from '@nuxtjs/composition-api';
-// import { carousel } from '@/composables/utils/carousel';
-import { isHTMLCollection, excludeUndefinedOfArray, isHTMLElement, isHTMLElement, isHTMLElement } from '@/lib/utils';
+/** component */
+import Title from '@/components/common/Title.vue';
+/** util */
+import { carousel } from '@/composables/utils/carousel';
 
 export default defineComponent({
+  components: {
+    Title,
+  },
+  props: {
+    enTitle: {
+      type: String,
+      required: true,
+    },
+    jaTitle: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
     const { route } = useContext();
     const path = route.value.path;
-    console.log(path);
+    console.log(`pathを取得: ${path}`);
+
+    const callCarouesl = () => {
+      const carousels = document.querySelectorAll('.carousel'); // carousel
+      for (let i = 0; i < carousels.length; i++) {
+        carousel(carousels[i] as HTMLElement);
+      }
+    };
 
     onMounted(() => {
-      window.addEventListener('load', () => {
-        const carousels = document.querySelectorAll('.carousel'); // carousel
-
-        const carousel = (root: HTMLElement) => {
-          /** figureを取り出す */
-          const figure = root.querySelector('figure') ?? root.;
-          /** nav(button)を取り出す */
-          const nav = root.querySelector('nav');
-          /** figureの子要素(imageを取得)  */
-          const images = figure?.children;
-          /** figureの子要素のimageの個数を取得 */
-          const n: number = images?.length ?? 0;
-          /** data-gapを取り出す(読み取り書き込みで) */
-          const gap = root.dataset.gap || 0;
-          /** data-gapにdata-bfcがsetされているか? true */
-          const bfc = 'bfc' in root.dataset;
-          /**  */
-          const theta = (2 * Math.PI) / n;
-          /** imageのindex */
-          const currentImage = 0;
-
-          window.addEventListener('resize', () => {
-            if (isHTMLCollection(images[0])) {
-              setupCarousel(n, parseFloat(getComputedStyle(images[0]).width));
-            }
-          });
-
-          const setupCarousel = (n: number, s: number) => {
-            const apothem = s / (2 * Math.tan(Math.PI / n));
-
-            if (isHTMLElement(figure)) {
-              figure.style.transformOrigin = `50% 50% ${-apothem}px`;
-            }
-
-            for (let i = 0; i < n; i++) {
-              images[i].style.padding = `${gap}px`;
-            }
-
-            for (let i = 1; i < n; i++) {
-              images[i].style.transformOrigin = `50% 50% ${-apothem}px`;
-              images[i].style.transform = `rotateY(${i * theta}rad)`;
-            }
-
-            if (bfc)
-              for (let i = 0; i < n; i++)
-                images[i].style.backfaceVisibility = 'hidden';
-
-            rotateCarousel(currentImage);
-          };
-
-          /**
-           * @desc carouselを回す
-           * @param imageIndex
-           */
-          const rotateCarousel = (imageIndex: number) => {
-            figure.style.transform = `rotateY(${imageIndex * -theta}rad)`;
-          };
-
-          const setupNavigation = (nav: any, imgIndex: number) => {
-            const onClick = (e: any) => {
-              e.stopPropagation();
-
-              const t = e.target;
-              if (t.tagName.toUpperCase() !== 'BUTTON') return;
-
-              if (t.classList.contains('next')) {
-                imgIndex++;
-              } else {
-                imgIndex--;
-              }
-
-              rotateCarousel(imgIndex);
-            };
-
-            nav.addEventListener('click', onClick, true);
-          };
-          setupNavigation(nav, currentImage);
-          setupCarousel(n, parseFloat(getComputedStyle(images[0]).width));
-        };
-
-        for (let i = 0; i < carousels.length; i++) {
-          carousel(carousels[i]);
-        }
-      });
+      addEventListener('load', callCarouesl);
     });
+
+    onUnmounted(() => {
+      removeEventListener('load', callCarouesl);
+    });
+
+    return {};
   },
 });
 </script>
 
 <style lang="scss" scoped>
-// @use 'sass:math';
-
 h2 {
   color: #555;
   margin-bottom: 0;
