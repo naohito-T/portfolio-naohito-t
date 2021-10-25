@@ -4,7 +4,7 @@
       <Title :en-title="enTitle" :ja-title="jaTitle" />
     </section>
     <section class="section2">
-      <Scroll :message="'Code In Design'"/>
+      <Scroll :message="'Code In Design'" />
       <CarouselImageTemplate />
     </section>
   </main>
@@ -14,38 +14,35 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import Title from '@/components/common/Title.vue';
 import Scroll from '@/components/atoms/Scroll.vue';
-import CarouselImageTemplate from '@/components/organisms/CarouselImageTemplate.vue'
+import CarouselImageTemplate from '@/components/organisms/CarouselImageTemplate.vue';
 
 export default defineComponent({
   components: {
     Title,
     Scroll,
-    CarouselImageTemplate
+    CarouselImageTemplate,
   },
   props: {
     enTitle: {
       type: String,
-      required: true
+      required: true,
     },
     jaTitle: {
       type: String,
-      required: true
+      required: true,
     },
   },
   setup() {
-    return {
-
-    }
+    return {};
   },
 });
 </script>
 <style lang="scss" scoped>
-
 .contents {
   .section1 {
     @include displayFlex();
 
-    height: 100vh;
+    // height: 100vh;
     margin: 0 auto;
     width: 100%;
   }
@@ -58,5 +55,4 @@ export default defineComponent({
     }
   }
 }
-
 </style>

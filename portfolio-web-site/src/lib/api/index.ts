@@ -1,6 +1,6 @@
+import { ApiWithoutToken } from '../helper/baseAxios';
 import { IRequestHomeAPI } from './service';
 import { RequestHomeAPI } from './request';
-import { ApiWithoutToken } from './helper/baseAxios';
 
 export interface API {
   home: IRequestHomeAPI;

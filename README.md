@@ -33,3 +33,9 @@ cypress
 develop
 $cd portfolio-web-site && yarn dev
 ```
+
+## deploy
+
+`$ yarn generate`
+
+`$ firebase deploy --only hosting`
