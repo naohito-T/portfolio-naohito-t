@@ -5,10 +5,10 @@
 ### dev
 # 暗号化
 env.encrypt.local:
-	@make _env.encrypt KEY=$(KEY) INPUT=./env/decrypt/env.dev.js OUTPUT=./env/encrypt/env.dev
+	@make _env.encrypt KEY=$(KEY) INPUT=./env/decrypt/.env.local OUTPUT=./env/encrypt/.env.local
 # 復号
 env.decrypt.local:
-	@make _env.decrypt KEY=$(KEY) INPUT=./env/encrypt/env.dev OUTPUT=./env/decrypt/env.dev.js
+	@make _env.decrypt KEY=$(KEY) INPUT=./env/encrypt/.env.local OUTPUT=./env/decrypt/.env.local
 
 ### pro
 ## 暗号化

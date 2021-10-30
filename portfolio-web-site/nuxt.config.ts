@@ -1,24 +1,31 @@
 import { NuxtConfig } from '@nuxt/types';
-// import dotenv from 'dotenv';
-// dotenv.config()
-// これでいけるのでは?
 
-const environment = process.env.NODE_ENV;
-const envSettings = require(`./env/decrypt/env.${environment}.js`);
+const EXE_ENV = process.env.NODE_ENV ?? 'local';
+const ENV_FILE_PATH = `./env/decrypt/.env.${EXE_ENV}`;
+require('dotenv').config({ path: ENV_FILE_PATH });
 
 const nuxtConfig: NuxtConfig = {
   // move directory to src
   srcDir: 'src/',
   globalName: 'naohito-t-portfolio',
-  // env 設定をしないとNuxtでprocess.env.NODE_ENVを取得したときにデフォルトの値になってしまう(develop)
-  // env: envSet,
-  env: envSettings,
+  env: {
+    API_KEY: process.env.API_KEY ?? 'none',
+    AUTH_DOMAIN: process.env.AUTH_DOMAIN ?? 'none',
+    PROJECTID: process.env.PROJECTID ?? 'none',
+    STORAGE_BUCKET: process.env.STORAGE_BUCKET ?? 'none',
+    MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID ?? 'none',
+    APP_ID: process.env.APP_ID ?? 'none',
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID ?? 'none',
+    // # api
+    API_BASE_URL: process.env.API_BASE_URL ?? 'none',
+    API_BASE_JSON_URL: process.env.API_BASE_JSON_URL ?? 'none',
+    // # api Image URL 400x400
+    API_BASE_IMAGE_URL: process.env.API_BASE_IMAGE_URL ?? 'none',
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title:
-      process.env.NODE_ENV === 'pro'
-        ? 'portfolio-web-site'
-        : '【開発】portfolio-web-site',
+      EXE_ENV === 'pro' ? 'portfolio-web-site' : '【開発】portfolio-web-site',
     htmlAttrs: {
       lang: 'en',
     },
@@ -52,12 +59,18 @@ const nuxtConfig: NuxtConfig = {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/style-resources',
-    '@nuxtjs/axios',
     '@nuxtjs/dotenv',
+    '@nuxtjs/axios',
     '@nuxtjs/markdownit',
     'nuxt-svg-loader',
   ],
-
+  dotenv: {
+    // path: `${process.cwd()}/env/decrypt/`,
+    filename: ENV_FILE_PATH,
+  },
+  axios: {
+    baseURL: process.env.BASE_URL,
+  },
   styleResources: {
     scss: [
       '@/assets/sass/_variables.scss',

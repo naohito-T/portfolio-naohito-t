@@ -1,4 +1,4 @@
 import { onHorizontalScroll } from './horizontalScroll';
-import { envDebug } from './consoleDebug';
+import { envDebug, envJsFileDebug } from './consoleDebug';
 
-export { onHorizontalScroll, envDebug };
+export { onHorizontalScroll, envDebug, envJsFileDebug };

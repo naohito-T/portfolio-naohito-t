@@ -3,7 +3,12 @@
     <article v-for="(n, key) in 10" :key="key" class="horizontal-list">
       <h2 class="horizontal-list__title">{{ title }}</h2>
       <!-- <div :style="{ backgroundImage: 'url(' + image_src.url + ')' }"></div> -->
-      <nuxt-link :to="ankerLink" class="horizontal-list__img" :style="{ backgroundImage: `url(${imgURL})` }"></nuxt-link><!-- ここにbackground-image -->
+      <nuxt-link
+        :to="ankerLink"
+        class="horizontal-list__img"
+        :style="{ backgroundImage: `url(${imgURL})` }"
+      ></nuxt-link
+      ><!-- ここにbackground-image -->
       <p class="horizontal-list__sub">{{ subTitle }}</p>
     </article>
   </div>
@@ -18,9 +23,9 @@ export default defineComponent({
   props: {
     ankerLink: {
       type: String,
-      default: '/'
+      default: '/',
     },
-    imgURL: {
+    url: {
       type: String,
       required: true,
     },
@@ -31,27 +36,29 @@ export default defineComponent({
     subTitle: {
       type: String,
       required: true,
-    }
+    },
   },
-  setup() {
-    const { getImage } = inject(ImageKey) as ImageStore
+  setup(props) {
+    const { getImage } = inject(ImageKey) as ImageStore;
+
+    console.log(`imag${props.url}`);
 
     return {
       getImage,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
 .horizontal {
   display: flex;
   // overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;  /* スクロールを滑らかにする */
+  -webkit-overflow-scrolling: touch; /* スクロールを滑らかにする */
   -ms-overflow-style: none; /** スクロールバーを消す IE, Edge 対応 */
-  overflow-x: auto;  /* 横スクロールの指定 */
+  overflow-x: auto; /* 横スクロールの指定 */
   scrollbar-width: none; /* Firefox 対応 */
-  white-space: nowrap;  /* 横スクロールの指定 */
+  white-space: nowrap; /* 横スクロールの指定 */
   width: 90%; // width 90%に指定してコンテンツが見切れて見えるように
 
   &::-webkit-scrollbar {

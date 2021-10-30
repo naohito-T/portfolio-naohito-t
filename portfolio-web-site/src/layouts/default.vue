@@ -1,6 +1,7 @@
 <template>
   <div id="root" :class="isTop ? 'top' : ''">
-  <!-- top pageだったら何かをしよう -->
+    <!-- top pageだったら何かをしよう -->
+    <CustomCursor />
     <template v-if="!isTop">
       <Header />
     </template>
@@ -15,26 +16,28 @@
 
 <script lang="ts">
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
-import Header from '@/components/common/Header.vue';
+// import Header from '@/components/common/Header.vue';
+import CustomCursor from '@/components/atoms/Cursor.vue';
 import ReturnTopButton from '@/components/common/ReturnTopButton.vue';
 import ColorThemeChangeButton from '@/components/atoms/button/ColorThemeChangeButton.vue';
-import Footer from '@/components/common/Footer.vue';
+// import Footer from '@/components/common/Footer.vue';
 
 export default defineComponent({
   components: {
-    Header,
+    Header: () => import('@/components/common/Header.vue'),
+    CustomCursor,
     ReturnTopButton,
     ColorThemeChangeButton,
-    Footer
+    Footer: () => import('@/components/common/Footer.vue'),
   },
   setup() {
     const { route } = useContext();
     const isTop = computed(() => route.value.path === '/');
     return {
       isTop,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -86,5 +89,4 @@ export default defineComponent({
     }
   }
 }
-
 </style>

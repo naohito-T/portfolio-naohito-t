@@ -10,7 +10,7 @@
       <!-- 縦いっぱいに配置して横にならべる。  -->
       <HorizontalList
         :anker-link="'/work'"
-        :imgURL="'https://source.unsplash.com/user/erondu/600x400'"
+        :url="'https://source.unsplash.com/user/erondu/600x400'"
         :title="'HELLO'"
         :sub-title="'subTitle'"
       />
