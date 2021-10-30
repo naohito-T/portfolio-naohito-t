@@ -96,9 +96,11 @@ firebase.js
 .firebase
 
 # env decrypt
+.env.local
 env.dev.js
 env.pro.js
 
 # env encrypt
+.env.local
 env.dev
 env.pro
