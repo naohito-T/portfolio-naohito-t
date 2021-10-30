@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
+// import { gsap as G } from 'gsap';
 import Title from '@/components/common/Title.vue';
 import MyAbout from '@/components/molecules/MyAbout.vue';
 import AboutMarkdown from '@/components/molecules/AboutMarkdown.vue';
@@ -40,6 +41,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .contents {
+  position: relative;
+
   .section1 {
     @include displayFlex();
 

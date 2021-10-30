@@ -7,27 +7,30 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import mydetail  from '@/assets/markdown/Mydetail.md';
+import mydetail from '@/assets/markdown/Mydetail.md';
 
 export default defineComponent({
   setup() {
     return {
-      mydetail
-    }
+      mydetail,
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
   @include displayFlex(center, row, space-evenly);
 
-  margin-bottom: 9.375vw;
+  margin: 0 auto 90px;
+  width: 95vw;
 
   &-img {
     background-image: url('../../assets/images/png/my.png');
     background-size: cover;
-    height: 700px;
+    border: 2px solid #fdfe00;
+    height: 600px;
+    margin-right: 70px;
     width: 50%;
   }
 
@@ -35,7 +38,13 @@ export default defineComponent({
     color: getcolor(--color-background, 1);
     font-size: $fontSize18;
     width: 50%;
+
+    &section {
+      display: flex;
+      flex-direction: column;
+      height: 600px;
+      justify-content: space-evenly;
+    }
   }
 }
-
 </style>

@@ -24,12 +24,16 @@ import {
   onUnmounted,
   ref,
 } from '@nuxtjs/composition-api';
+// import { gsap as G } from 'gsap';
 export default defineComponent({
   setup() {
     const isScroll = ref<Boolean>(false);
-    let scrollY = 0; // scrollYの値
     const isScrollIgnition = 100; // scrollY値の発火ポイント
+    let scrollY = 0; // scrollYの値
 
+    /** スクロールイベントはマウスが走る度にずっとイベントが走るため間引かないとかなりブラウザに不可がかかる。
+     *  cssで実装するのがいいのではないか
+     */
     const isWindowScroll = () => {
       scrollY = window.scrollY;
       console.log(`scrollY: ${scrollY}`);
