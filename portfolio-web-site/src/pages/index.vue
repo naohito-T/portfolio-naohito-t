@@ -32,7 +32,7 @@ import ImageKey from '@/composables/repositories/use-image-key';
 import MainTitle from '@/components/atoms/MainTitle.vue';
 import HorizontalList from '@/components/molecules/HorizontalList.vue';
 import RightArrowButton from '@/components/atoms/RightArrowButton.vue';
-/** methods */
+/** utils */
 import { onHorizontalScroll, envDebug } from '@/composables/utils/mount';
 
 export default defineComponent({
@@ -47,7 +47,8 @@ export default defineComponent({
     // console.log(app.$stores.loading);
     // const testURL = ref<String>('');
     console.log(JSON.stringify(app.$api.home.getPhoto()));
-    // console.log(app.$api.home.getImageURL());
+    console.log(app.$api.home.getImageURL());
+
     onMounted(() => {
       envDebug(); // env確認
       addEventListener('mousewheel', onHorizontalScroll);

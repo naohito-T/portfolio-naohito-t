@@ -15,12 +15,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
-// import Header from '@/components/common/Header.vue';
+import {
+  defineComponent,
+  useContext,
+  computed,
+  onMounted,
+  provide,
+  inject,
+} from '@nuxtjs/composition-api';
 import CustomCursor from '@/components/atoms/Cursor.vue';
 import ReturnTopButton from '@/components/common/ReturnTopButton.vue';
 import ColorThemeChangeButton from '@/components/atoms/button/ColorThemeChangeButton.vue';
-// import Footer from '@/components/common/Footer.vue';
+/** firebase */
+import {
+  UserStore,
+  UserStoreType,
+} from '@/composables/stores/store/user-store';
+import { UserStoreKey } from '@/composables/stores/key/user-store-key';
+import { auth } from '@/plugins/firebase';
 
 export default defineComponent({
   components: {
@@ -33,8 +45,27 @@ export default defineComponent({
   setup() {
     const { route } = useContext();
     const isTop = computed(() => route.value.path === '/');
+
+    /**
+     * provideは送信側/injectは受信側を想定しているようですが、
+     * 上記の通り、provideとinjectを同時に使う事も問題ありません。
+     */
+    provide(UserStoreKey, UserStore());
+    const store = inject(UserStoreKey) as UserStoreType;
+
+    onMounted(() => {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          store.setUser(user);
+        } else {
+          console.log('Not User =========');
+        }
+      });
+    });
+
     return {
       isTop,
+      store,
     };
   },
 });

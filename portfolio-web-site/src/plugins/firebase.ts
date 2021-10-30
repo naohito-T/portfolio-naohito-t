@@ -1,26 +1,27 @@
-import Firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import 'firebase/functions'
+import Firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/functions';
 
 // config
 const config = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId,
-}
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MESSAGING_SENDER_ID,
+};
 
 // 初期化
 export const firebase = Firebase.apps.length
   ? Firebase.app()
-  : Firebase.initializeApp(config)
+  : Firebase.initializeApp(config);
 
 // namespace にしようかな→型であればnamespaceはよいが型ではないため使用しない。
-export const auth = firebase.auth()
-export const funtions = firebase.functions('asia-northeast1')
-export const db = firebase.firestore()
-// export const timestamp = () => firebase.firestore()
+const auth = firebase.auth();
+const funtions = firebase.functions('asia-northeast1');
+const db = firebase.firestore();
+
+export { auth, funtions, db };
