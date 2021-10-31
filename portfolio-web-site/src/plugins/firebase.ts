@@ -2,26 +2,20 @@ import Firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/functions';
+import 'firebase/storage';
 
 // config
-const config = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MESSAGING_SENDER_ID,
-};
+import { firebaseSettings } from '../settings/settings';
 
 // 初期化
 export const firebase = Firebase.apps.length
   ? Firebase.app()
-  : Firebase.initializeApp(config);
+  : Firebase.initializeApp(firebaseSettings);
 
-// namespace にしようかな→型であればnamespaceはよいが型ではないため使用しない。
 const auth = firebase.auth();
 const funtions = firebase.functions('asia-northeast1');
 const db = firebase.firestore();
+/** firebase storageは画像ファイルパスは変換することができるため画像のファイルパスを格納しなくていい。 */
+const storage = firebase.storage();
 
-export { auth, funtions, db };
+export { auth, funtions, db, storage };

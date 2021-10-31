@@ -11,11 +11,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  useContext,
+  useFetch,
+  reactive,
+} from '@nuxtjs/composition-api';
 // import { gsap as G } from 'gsap';
 import Title from '@/components/common/Title.vue';
 import MyAbout from '@/components/molecules/MyAbout.vue';
 import AboutMarkdown from '@/components/molecules/AboutMarkdown.vue';
+/** type */
+import { ImageURL } from '@/lib/api/types/response/home';
 
 export default defineComponent({
   components: {
@@ -34,6 +41,17 @@ export default defineComponent({
     },
   },
   setup() {
+    const { app } = useContext();
+    const state = reactive<{ imageUrl: ImageURL[] }>({
+      imageUrl: [],
+    });
+    useFetch(async () => {
+      app.$api.home.getImage('image/unnamed.png');
+      state.imageUrl = await app.$api.home.getImageURLs('image');
+      console.log(`statee::: :${state.imageUrl}`);
+      console.log(`statee::: :${state.imageUrl.length}`);
+    });
+
     return {};
   },
 });

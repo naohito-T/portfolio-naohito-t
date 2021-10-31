@@ -1,4 +1,4 @@
-export interface IPhoto {
+interface IPhoto {
   albumId: number;
   id: number;
   title: string;
@@ -6,6 +6,12 @@ export interface IPhoto {
   thumbnailUrl: string;
 }
 
-export interface ImageURL {
+interface ImageURL {
   imageUrl: string;
 }
+
+interface ImageURLs {
+  downloadURLs: string[];
+}
+
+export { IPhoto, ImageURL, ImageURLs };
