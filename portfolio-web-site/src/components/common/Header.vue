@@ -27,13 +27,15 @@
               >ABOUT</nuxt-link
             >
           </li>
-          <li class="menu-list-item">
-            <img
-              src="../../assets/images/png/download_icon.png"
-              alt="download icon"
-              class="menu-list-item__icon"
-            />
-          </li>
+          <a :href="url" target="_blank">
+            <li class="menu-list-item">
+              <img
+                src="../../assets/images/png/download_icon.png"
+                alt="download icon"
+                class="menu-list-item__icon"
+              />
+            </li>
+          </a>
         </ul>
       </nav>
     </div>
@@ -41,15 +43,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  ref,
+  useContext,
+  useAsync,
+} from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup() {
-    const { route } = useContext();
+    const { route, app } = useContext();
     /** カレントpageの場合はれいあうとを変更する */
     const page = ref(route.value.path);
+
+    const url = ref('');
+    /** 連打されてもそれをなくす処理をいれるかな？ */
+    const getPdf = async () => {
+      /** urlを返さないといけない */
+    };
+
+    useAsync(async () => {
+      url.value = await app.$api.home.getImage(
+        'pdf/gyfu_page1_new_redaction.pdf'
+      );
+    });
     return {
       page,
+      getPdf,
+      url,
     };
   },
 });

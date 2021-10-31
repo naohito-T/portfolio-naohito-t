@@ -13,4 +13,13 @@ const firebaseSettings = {
   measurementId: process.env.MESSAGING_SENDER_ID,
 };
 
-export { firebaseSettings };
+/** firebase bucket name */
+const pdfBucket = 'pdf';
+
+/** filename */
+const pdfFileName = 'gyfu_page1_new_redaction.pdf';
+
+/** bucket&filename */
+const PDF_BUCKET_WITH_FILE = `${pdfBucket}/${pdfFileName}`;
+
+export { firebaseSettings, PDF_BUCKET_WITH_FILE };

@@ -1,7 +1,9 @@
 // import firebase from 'firebase';
+import { AxiosResponse } from 'axios';
 import { IRequestHomeAPI } from '../service';
 import { ImageURL, IPhoto } from '../types/response/home';
 import { storage } from '../../../plugins/firebase';
+import { PDF_BUCKET_WITH_FILE } from '../../../settings/settings';
 import { RequestAPI } from './api';
 
 /**
@@ -25,6 +27,10 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
       .then((r) => r.data);
   };
 
+  /**
+   * @desc storageRef.getDownloadURL()で得られたurl(item.url)は、
+   *       storageのファイルへの参照であり、ファイルの実体を指し示すものではないようです。
+   */
   public getImage = async (targetImageURL: string): Promise<string> => {
     const storageRef = storage.ref();
     return await storageRef
@@ -36,7 +42,7 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   };
 
   /**
-   * 特定のディレクトリの画像URL全てを取得
+   * @desc 特定のディレクトリの画像URL全てを取得
    */
   public getImageURLs = async (target: string): Promise<ImageURL[]> => {
     const storageRef = storage.ref(target);
@@ -49,5 +55,14 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
     );
     console.log(imageURLs);
     return imageURLs;
+  };
+
+  /**
+   * @desc pdfを取得
+   */
+  public getPdf = async (): Promise<Blob> => {
+    const storageRef = storage.ref(PDF_BUCKET_WITH_FILE); // 参照を作成
+    const url: string = await storageRef.getDownloadURL();
+    return await this.axios.get(url).then((r: AxiosResponse<Blob>) => r.data);
   };
 }

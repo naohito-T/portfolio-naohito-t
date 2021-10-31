@@ -106,3 +106,6 @@ env.pro.js
 .env.pro
 env.dev
 env.pro
+
+# firebase cors
+cors.json

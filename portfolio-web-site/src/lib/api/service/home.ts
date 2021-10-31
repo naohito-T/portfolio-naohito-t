@@ -9,4 +9,6 @@ export interface IRequestHomeAPI {
   getImage(target: string): Promise<string>;
   /** 複数の画像URLを取得 */
   getImageURLs(target: string): Promise<ImageURL[]>;
+  /** pdfを取得 */
+  getPdf(): Promise<Blob>;
 }
