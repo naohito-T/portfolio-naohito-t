@@ -42,8 +42,7 @@ export default defineComponent({
   .section1 {
     @include displayFlex();
 
-    // height: 100vh;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     width: 100%;
   }
 

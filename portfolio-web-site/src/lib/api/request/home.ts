@@ -2,7 +2,7 @@
 import { AxiosResponse } from 'axios';
 import { IRequestHomeAPI } from '../service';
 import { ImageURL, IPhoto } from '../types/response/home';
-import { storage } from '../../../plugins/firebase';
+import { firestore, storage } from '../../../plugins/firebase';
 import { PDF_BUCKET_WITH_FILE } from '../../../settings/settings';
 import { RequestAPI } from './api';
 
@@ -12,7 +12,7 @@ import { RequestAPI } from './api';
  */
 export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   /** photo */
-  public getPhoto = async (): Promise<IPhoto[]> => {
+  public fetchPhoto = async (): Promise<IPhoto[]> => {
     console.log(this.axios.getUri);
     return await this.axios
       .get<IPhoto[]>(`jsonplaceholder.typicode.com/photos`)
@@ -20,7 +20,7 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   };
 
   /** imageURL */
-  public getImageURL = async (): Promise<ImageURL> => {
+  public fetchImageURL = async (): Promise<ImageURL> => {
     console.log(this.axios.getUri);
     return await this.axios
       .get<ImageURL>(`source.unsplash.com/user/erondu/400x400`)
@@ -31,7 +31,7 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
    * @desc storageRef.getDownloadURL()で得られたurl(item.url)は、
    *       storageのファイルへの参照であり、ファイルの実体を指し示すものではないようです。
    */
-  public getImage = async (targetImageURL: string): Promise<string> => {
+  public fetchFileUrl = async (targetImageURL: string): Promise<string> => {
     const storageRef = storage.ref();
     return await storageRef
       .child(targetImageURL)
@@ -44,13 +44,13 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   /**
    * @desc 特定のディレクトリの画像URL全てを取得
    */
-  public getImageURLs = async (target: string): Promise<ImageURL[]> => {
+  public fetchFileUrls = async (target: string): Promise<ImageURL[]> => {
     const storageRef = storage.ref(target);
     const listRef = await storageRef.listAll();
     const imageURLs: ImageURL[] = await Promise.all(
       listRef.items.map(async (ref) => {
-        const c = await ref.getDownloadURL();
-        return c;
+        const urls = await ref.getDownloadURL();
+        return urls;
       })
     );
     console.log(imageURLs);
@@ -58,9 +58,18 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   };
 
   /**
-   * @desc pdfを取得
+   * @desc projectの全てを取得する。
    */
-  public getPdf = async (): Promise<Blob> => {
+  public fetchProjectDetails = async (collection: string): Promise<void> => {
+    const snapShot = await firestore.collection(collection).get();
+    console.log(snapShot);
+  };
+
+  /**
+   * @desc pdfを取得
+   * @deprecated 非推奨
+   */
+  public fetchPdf = async (): Promise<Blob> => {
     const storageRef = storage.ref(PDF_BUCKET_WITH_FILE); // 参照を作成
     const url: string = await storageRef.getDownloadURL();
     return await this.axios.get(url).then((r: AxiosResponse<Blob>) => r.data);

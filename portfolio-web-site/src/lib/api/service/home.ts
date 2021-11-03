@@ -1,14 +1,21 @@
 import { IPhoto, ImageURL } from '../types/response/home';
 
+/**
+ * @desc ここを分離しても他のプロジェクトで機能するように意識しろ
+ */
 export interface IRequestHomeAPI {
   /** JSON PlaceHolder */
-  getPhoto(): Promise<IPhoto[]>;
+  fetchPhoto(): Promise<IPhoto[]>;
   /** Unsplash Source */
-  getImageURL(): Promise<ImageURL>;
+  fetchImageURL(): Promise<ImageURL>;
+  /** ここまではdebug */
+  /** project 10個とってくる */
+  // getProjectDetails(): Promise<ProjectDetail[]>;
+  fetchProjectDetails(collection: string): Promise<void>;
   /** 単一のURLを取得 */
-  getImage(target: string): Promise<string>;
+  fetchFileUrl(target: string): Promise<string>;
   /** 複数の画像URLを取得 */
-  getImageURLs(target: string): Promise<ImageURL[]>;
+  fetchFileUrls(target: string): Promise<ImageURL[]>;
   /** pdfを取得 */
-  getPdf(): Promise<Blob>;
+  fetchPdf(): Promise<Blob>;
 }

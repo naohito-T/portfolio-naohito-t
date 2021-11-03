@@ -46,10 +46,12 @@ export default defineComponent({
       imageUrl: [],
     });
     useFetch(async () => {
-      app.$api.home.getImage('image/unnamed.png');
-      state.imageUrl = await app.$api.home.getImageURLs('image');
+      // app.$api.home.fetchImageURL('image/unnamed.png');
+      state.imageUrl = await app.$api.home.fetchFileUrls('image');
       console.log(`statee::: :${state.imageUrl}`);
       console.log(`statee::: :${state.imageUrl.length}`);
+      const details = await app.$api.home.fetchProjectDetails('project');
+      console.log(`detatattatataata${details}`);
     });
 
     return {};
@@ -64,8 +66,7 @@ export default defineComponent({
   .section1 {
     @include displayFlex();
 
-    // height: 100vh;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     width: 100%;
   }
 

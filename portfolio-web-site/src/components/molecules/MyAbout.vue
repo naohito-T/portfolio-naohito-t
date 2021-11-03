@@ -39,7 +39,7 @@ export default defineComponent({
     font-size: $fontSize18;
     width: 50%;
 
-    &section {
+    section {
       display: flex;
       flex-direction: column;
       height: 600px;

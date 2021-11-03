@@ -49,27 +49,21 @@ import {
   useContext,
   useAsync,
 } from '@nuxtjs/composition-api';
+import { PDF_BUCKET_WITH_FILE } from '@/settings/settings';
 
 export default defineComponent({
   setup() {
     const { route, app } = useContext();
     /** カレントpageの場合はれいあうとを変更する */
     const page = ref(route.value.path);
-
     const url = ref('');
-    /** 連打されてもそれをなくす処理をいれるかな？ */
-    const getPdf = async () => {
-      /** urlを返さないといけない */
-    };
 
     useAsync(async () => {
-      url.value = await app.$api.home.getImage(
-        'pdf/gyfu_page1_new_redaction.pdf'
-      );
+      url.value = await app.$api.home.getFileUrl(PDF_BUCKET_WITH_FILE);
     });
+
     return {
       page,
-      getPdf,
       url,
     };
   },

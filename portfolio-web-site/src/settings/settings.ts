@@ -13,13 +13,25 @@ const firebaseSettings = {
   measurementId: process.env.MESSAGING_SENDER_ID,
 };
 
-/** firebase bucket name */
+/**
+ * firebaseの Storage Bucket name管理
+ */
 const pdfBucket = 'pdf';
 
-/** filename */
-const pdfFileName = 'gyfu_page1_new_redaction.pdf';
+/**
+ * firebaseの Storage Bucket 内のファイル name管理
+ */
+const pdfFileName = 'skill_sheet.pdf';
 
 /** bucket&filename */
 const PDF_BUCKET_WITH_FILE = `${pdfBucket}/${pdfFileName}`;
 
 export { firebaseSettings, PDF_BUCKET_WITH_FILE };
+
+/**
+ * firebaseの firestoreの管理
+ */
+
+export namespace StoreCollections {
+  export const PROJECT = 'project';
+}

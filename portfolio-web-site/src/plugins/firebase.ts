@@ -14,8 +14,8 @@ export const firebase = Firebase.apps.length
 
 const auth = firebase.auth();
 const funtions = firebase.functions('asia-northeast1');
-const db = firebase.firestore();
+const firestore = firebase.firestore();
 /** firebase storageは画像ファイルパスは変換することができるため画像のファイルパスを格納しなくていい。 */
 const storage = firebase.storage();
 
-export { auth, funtions, db, storage };
+export { auth, funtions, firestore, storage };

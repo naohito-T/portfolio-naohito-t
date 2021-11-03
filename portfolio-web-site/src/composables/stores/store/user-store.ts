@@ -1,6 +1,6 @@
 import { reactive } from '@nuxtjs/composition-api';
 import firebase from 'firebase';
-import { db } from '@/plugins/firebase';
+import { firestore } from '@/plugins/firebase';
 
 interface User {
   id: string;
@@ -26,7 +26,7 @@ export const UserStore = () => {
   // set user
   const setUser = (user: firebase.User) => {
     console.log('Login Information', user);
-    const userRef = db.collection('users').doc(user.uid);
+    const userRef = firestore.collection('users').doc(user.uid);
     userRef.onSnapshot((doc) => {
       if (doc.exists) {
         console.log('user contact_info from DB', doc.data()!.contact_info);
