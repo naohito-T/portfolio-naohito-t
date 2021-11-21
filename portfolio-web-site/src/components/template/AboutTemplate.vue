@@ -46,12 +46,16 @@ export default defineComponent({
       imageUrl: [],
     });
     useFetch(async () => {
-      // app.$api.home.fetchImageURL('image/unnamed.png');
-      state.imageUrl = await app.$api.home.fetchFileUrls('image');
-      console.log(`statee::: :${state.imageUrl}`);
-      console.log(`statee::: :${state.imageUrl.length}`);
-      const details = await app.$api.home.fetchProjectDetails('project');
-      console.log(`detatattatataata${details}`);
+      await app.$stores.loading.loadingAction(async () => {
+        // await app.$api.home.fetchImageURL('image/unnamed.png');
+        state.imageUrl = await app.$api.home.fetchFileUrls('image');
+        console.log(`statee::: :${state.imageUrl}`);
+        // console.log(`statee::: :${state.imageUrl.length}`);
+        const details = await app.$api.home.fetchProjectDetailList('project');
+        console.log(`detatattatataata${JSON.stringify(details)}`);
+      });
+      // const detailss = await app.$api.home.fetchProjectDetail('project');
+      // console.log(`detatattatataata11111111${detailss}`);
     });
 
     return {};

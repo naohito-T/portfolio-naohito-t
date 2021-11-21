@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 interface IPhoto {
   albumId: number;
@@ -16,7 +16,9 @@ interface ImageURLs {
   downloadURLs: string[];
 }
 
+/** これはtopで使うべきか */
 interface ProjectDetail {
+  docId: string;
   title: string;
   subTitle: string;
   imgURL: string;

@@ -1,9 +1,10 @@
 /**
- * @description 基本 env設定を集約させる箇所
+ * @desc 基本 env設定を集約させる箇所
+ *       .vueファイルではなぜかnamespaceが認識されない。
  *
  */
 
-const firebaseSettings = {
+export const firebaseSettings = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
   projectId: process.env.PROJECT_ID,
@@ -24,9 +25,7 @@ const pdfBucket = 'pdf';
 const pdfFileName = 'skill_sheet.pdf';
 
 /** bucket&filename */
-const PDF_BUCKET_WITH_FILE = `${pdfBucket}/${pdfFileName}`;
-
-export { firebaseSettings, PDF_BUCKET_WITH_FILE };
+export const PDF_BUCKET_WITH_FILE = `${pdfBucket}/${pdfFileName}`;
 
 /**
  * firebaseの firestoreの管理

@@ -1,7 +1,7 @@
 // import firebase from 'firebase';
 import { AxiosResponse } from 'axios';
 import { IRequestHomeAPI } from '../service';
-import { ImageURL, IPhoto } from '../types/response/home';
+import { ImageURL, IPhoto, ProjectDetail } from '../types/response/home';
 import { firestore, storage } from '../../../plugins/firebase';
 import { PDF_BUCKET_WITH_FILE } from '../../../settings/settings';
 import { RequestAPI } from './api';
@@ -58,11 +58,43 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   };
 
   /**
-   * @desc projectの全てを取得する。
+   * @desc project一つを取得
    */
-  public fetchProjectDetails = async (collection: string): Promise<void> => {
-    const snapShot = await firestore.collection(collection).get();
-    console.log(snapShot);
+  public fetchProjectDetail = async (
+    collection: string,
+    docId: string
+  ): Promise<void> => {
+    const project = await firestore.collection(`${collection}/${docId}`).get();
+    console.log(project);
+  };
+
+  /**
+   * 成功
+   * @desc projectの全てを取得する。
+   *       top Pageで使う。
+   */
+  public fetchProjectDetailList = async (
+    collection: string
+  ): Promise<ProjectDetail[]> => {
+    const project: ProjectDetail[] = [];
+    await firestore
+      .collection(collection)
+      .get()
+      .then((snapShot) => {
+        snapShot.docs.forEach((doc) => {
+          const data = doc.data();
+          const docId = doc.id;
+          project.push({
+            docId,
+            title: data.title,
+            subTitle: data.subTitle,
+            imgURL: data.imgURL,
+            createdAt: data.createdAt,
+            updatedAt: data.updatedAt,
+          });
+        });
+      });
+    return project;
   };
 
   /**

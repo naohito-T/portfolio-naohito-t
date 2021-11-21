@@ -59,7 +59,7 @@ export default defineComponent({
     const url = ref('');
 
     useAsync(async () => {
-      url.value = await app.$api.home.getFileUrl(PDF_BUCKET_WITH_FILE);
+      url.value = await app.$api.home.fetchFileUrl(PDF_BUCKET_WITH_FILE);
     });
 
     return {

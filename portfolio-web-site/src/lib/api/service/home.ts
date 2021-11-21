@@ -1,4 +1,4 @@
-import { IPhoto, ImageURL } from '../types/response/home';
+import { IPhoto, ImageURL, ProjectDetail } from '../types/response/home';
 
 /**
  * @desc ここを分離しても他のプロジェクトで機能するように意識しろ
@@ -10,8 +10,9 @@ export interface IRequestHomeAPI {
   fetchImageURL(): Promise<ImageURL>;
   /** ここまではdebug */
   /** project 10個とってくる */
+  fetchProjectDetail(collection: string, docId: string): Promise<void>;
   // getProjectDetails(): Promise<ProjectDetail[]>;
-  fetchProjectDetails(collection: string): Promise<void>;
+  fetchProjectDetailList(collection: string): Promise<ProjectDetail[]>;
   /** 単一のURLを取得 */
   fetchFileUrl(target: string): Promise<string>;
   /** 複数の画像URLを取得 */

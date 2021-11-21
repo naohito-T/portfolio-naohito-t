@@ -5,5 +5,5 @@ import { ProjectDetail } from '../types/response/home';
 
 export interface IRequestAdminAPI {
   /** docを追加 */
-  registerProjectDetetail(param: ProjectDetail): Promise<void>;
+  registerProjectDetail(param: ProjectDetail): Promise<void>;
 }

@@ -11,6 +11,7 @@
       <ColorThemeChangeButton />
       <Footer />
     </template>
+    <Loading />
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import {
 import CustomCursor from '@/components/atoms/Cursor.vue';
 import ReturnTopButton from '@/components/common/ReturnTopButton.vue';
 import ColorThemeChangeButton from '@/components/atoms/button/ColorThemeChangeButton.vue';
+import Loading from '@/components/common/Loading.vue';
 /** firebase */
 import {
   UserStore,
@@ -41,6 +43,7 @@ export default defineComponent({
     ReturnTopButton,
     ColorThemeChangeButton,
     Footer: () => import('@/components/common/Footer.vue'),
+    Loading,
   },
   setup() {
     const { route } = useContext();

@@ -1,19 +1,15 @@
 <template>
-  <div class="return">
-    <template v-if="isScroll">
-      <transition>
-        <p class="return-text" @click="returnTop">
-          <span class="return-text__part">TOP</span>
-        </p>
-      </transition>
-    </template>
-    <template v-else>
-      <transition>
-        <p class="return-text">
-          <span class="return-text__part">SCROLL</span>
-        </p>
-      </transition>
-    </template>
+  <div id="return" class="return" @click="returnTop">
+    <div class="return-img">
+      <img
+        src="../../assets/images/png/arrow_upward.png"
+        alt="upward arrow"
+        class="return__part"
+      />
+    </div>
+    <p class="return-text">
+      <span class="return-text__part">BACK TO TOP</span>
+    </p>
   </div>
 </template>
 
@@ -28,35 +24,30 @@ import {
 export default defineComponent({
   setup() {
     const isScroll = ref<Boolean>(false);
-    const isScrollIgnition = 100; // scrollY値の発火ポイント
-    let scrollY = 0; // scrollYの値
+    const isScrollIgnition = 150; // scrollY値の発火ポイント
+    let el: HTMLElement;
 
-    /** スクロールイベントはマウスが走る度にずっとイベントが走るため間引かないとかなりブラウザに不可がかかる。
-     *  cssで実装するのがいいのではないか
-     */
     const isWindowScroll = () => {
-      scrollY = window.scrollY;
-      console.log(`scrollY: ${scrollY}`);
-      isScroll.value = scrollY >= isScrollIgnition;
+      isScroll.value = window.scrollY >= isScrollIgnition;
+      if (isScroll.value) {
+        el?.classList.add('view');
+        removeEventListener('scroll', isWindowScroll);
+      }
     };
+
     const returnTop = () => {
-      console.log('return');
       scrollTo({
         top: 0,
         behavior: 'smooth',
       });
     };
+
     onMounted(() => {
+      el = document.getElementById('return');
       addEventListener('scroll', isWindowScroll);
     });
 
     onUnmounted(() => {
-      /**
-       * 削除するには制限がある
-       *   イベントとメソッドが一致する必要がある
-       *   オプション「capture」を指定しているときは値が一致する必要がある
-       *   無名関数で登録すると解除できない
-       */
       removeEventListener('scroll', isWindowScroll);
     });
 
@@ -72,10 +63,17 @@ export default defineComponent({
 .return {
   color: #fff;
   height: 100%;
+  opacity: 0;
   position: absolute;
   right: 18px;
   top: 0;
+  transition: opacity 1s;
   z-index: 10;
+
+  &-img {
+    position: sticky;
+    top: 430px;
+  }
 
   &-text {
     position: sticky;
@@ -85,9 +83,14 @@ export default defineComponent({
 
     &__part {
       cursor: n-resize;
-      font-size: $fontSize30;
+      font-size: $fontSize14;
+      left: -14px;
       text-orientation: upright;
     }
   }
+}
+
+.view {
+  opacity: 1;
 }
 </style>

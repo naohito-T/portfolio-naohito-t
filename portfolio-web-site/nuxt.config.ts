@@ -83,6 +83,8 @@ const nuxtConfig: NuxtConfig = {
       '@/assets/sass/_variables.scss',
       '@/assets/sass/_mixin.scss',
       '@/assets/sass/_function.scss',
+      '@/assets/sass/_loading.scss',
+      '@/assets/sass/markdown.scss',
     ],
   },
   // markdown 用 settings

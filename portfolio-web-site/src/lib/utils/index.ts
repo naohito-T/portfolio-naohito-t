@@ -1,16 +1,4 @@
-import {
-  isString,
-  isNumber,
-  isHTMLElement,
-  isHTMLCollection,
-} from './isTypeGuard';
-import { excludeNullOfArray, excludeUndefinedOfArray } from './excludeNullable';
+import * as TypeScript from './isTypeGuard';
+import * as Exclude from './excludeNullable';
 
-export {
-  isString,
-  isNumber,
-  isHTMLElement,
-  isHTMLCollection,
-  excludeNullOfArray,
-  excludeUndefinedOfArray,
-};
+export { TypeScript, Exclude };
