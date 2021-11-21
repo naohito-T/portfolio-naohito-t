@@ -6,7 +6,7 @@ export class LoadingModule extends VuexModule {
   private _callCount: number = 0;
 
   public get getIsActive() {
-    return this._callCount !== 0;
+    return this._callCount !== 0; // .vueから参照。Loadingしているときは0ではないためfalseを返す。
   }
 
   @Mutation
@@ -31,9 +31,8 @@ export class LoadingModule extends VuexModule {
   @Action({ rawError: true })
   public async loadingAction<T = void>(action: () => Promise<T>): Promise<T> {
     this.wakeUpLoading(true); // loading start
-
     try {
-      const result = await action();
+      const result = await action(); // 渡されたmethodを実行する。
       this.wakeUpLoading(false); // loading false
       return result;
     } catch (e) {

@@ -14,7 +14,7 @@
         :title="'HELLO'"
         :sub-title="'subTitle'"
       />
-      <RightArrowButton />
+      <RightArrow />
     </section>
   </main>
 </template>
@@ -31,23 +31,24 @@ import { useImage } from '@/composables/repositories/use-image';
 import ImageKey from '@/composables/repositories/use-image-key';
 import MainTitle from '@/components/atoms/MainTitle.vue';
 import HorizontalList from '@/components/molecules/HorizontalList.vue';
-import RightArrowButton from '@/components/atoms/RightArrowButton.vue';
-/** methods */
+import RightArrow from '@/components/atoms/arrow/RightArrow.vue';
+/** utils */
 import { onHorizontalScroll, envDebug } from '@/composables/utils/mount';
 
 export default defineComponent({
   components: {
     MainTitle,
     HorizontalList,
-    RightArrowButton,
+    RightArrow,
   },
   setup() {
     const { app } = useContext();
     provide(ImageKey, useImage());
     // console.log(app.$stores.loading);
     // const testURL = ref<String>('');
-    console.log(JSON.stringify(app.$api.home.getPhoto()));
-    // console.log(app.$api.home.getImageURL());
+    // console.log(JSON.stringify(app.$api.home.getPhoto()));
+    console.log(app.$api.home.fetchPhoto());
+
     onMounted(() => {
       envDebug(); // env確認
       addEventListener('mousewheel', onHorizontalScroll);

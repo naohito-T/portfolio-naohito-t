@@ -27,13 +27,15 @@
               >ABOUT</nuxt-link
             >
           </li>
-          <li class="menu-list-item">
-            <img
-              src="../../assets/images/png/download_icon.png"
-              alt="download icon"
-              class="menu-list-item__icon"
-            />
-          </li>
+          <a :href="url" target="_blank">
+            <li class="menu-list-item">
+              <img
+                src="../../assets/images/png/download_icon.png"
+                alt="download icon"
+                class="menu-list-item__icon"
+              />
+            </li>
+          </a>
         </ul>
       </nav>
     </div>
@@ -41,15 +43,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  ref,
+  useContext,
+  useAsync,
+} from '@nuxtjs/composition-api';
+import { PDF_BUCKET_WITH_FILE } from '@/settings/settings';
 
 export default defineComponent({
   setup() {
-    const { route } = useContext();
+    const { route, app } = useContext();
     /** カレントpageの場合はれいあうとを変更する */
     const page = ref(route.value.path);
+    const url = ref('');
+
+    useAsync(async () => {
+      url.value = await app.$api.home.fetchFileUrl(PDF_BUCKET_WITH_FILE);
+    });
+
     return {
       page,
+      url,
     };
   },
 });

@@ -4,6 +4,7 @@ html,
 body {
   cursor: none;
   height: 100%;
+  overscroll-behavior: none; // たまにchromeのバグでマウススクロールで画面外にいくため
   width: 100%;
 }
 

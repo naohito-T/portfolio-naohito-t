@@ -38,13 +38,6 @@ export default defineComponent({
     color: getcolor(--color-background, 1);
     font-size: $fontSize18;
     width: 50%;
-
-    &section {
-      display: flex;
-      flex-direction: column;
-      height: 600px;
-      justify-content: space-evenly;
-    }
   }
 }
 </style>

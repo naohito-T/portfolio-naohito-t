@@ -11,11 +11,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  useContext,
+  useFetch,
+  reactive,
+} from '@nuxtjs/composition-api';
 // import { gsap as G } from 'gsap';
 import Title from '@/components/common/Title.vue';
 import MyAbout from '@/components/molecules/MyAbout.vue';
 import AboutMarkdown from '@/components/molecules/AboutMarkdown.vue';
+/** type */
+import { ImageURL } from '@/lib/api/types/response/home';
 
 export default defineComponent({
   components: {
@@ -34,6 +41,23 @@ export default defineComponent({
     },
   },
   setup() {
+    const { app } = useContext();
+    const state = reactive<{ imageUrl: ImageURL[] }>({
+      imageUrl: [],
+    });
+    useFetch(async () => {
+      await app.$stores.loading.loadingAction(async () => {
+        // await app.$api.home.fetchImageURL('image/unnamed.png');
+        state.imageUrl = await app.$api.home.fetchFileUrls('image');
+        console.log(`statee::: :${state.imageUrl}`);
+        // console.log(`statee::: :${state.imageUrl.length}`);
+        const details = await app.$api.home.fetchProjectDetailList('project');
+        console.log(`detatattatataata${JSON.stringify(details)}`);
+      });
+      // const detailss = await app.$api.home.fetchProjectDetail('project');
+      // console.log(`detatattatataata11111111${detailss}`);
+    });
+
     return {};
   },
 });
@@ -46,8 +70,7 @@ export default defineComponent({
   .section1 {
     @include displayFlex();
 
-    // height: 100vh;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     width: 100%;
   }
 

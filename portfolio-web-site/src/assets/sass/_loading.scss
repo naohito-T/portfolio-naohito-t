@@ -1,0 +1,225 @@
+// :root {
+//   --cube-width: 50px;
+//   --cube-height: var(--cube-width);
+//   --cube-depth: var(--cube-width);
+//   --face-color: rgba(255, 0, 0, 0);
+//   --border-color: rgba(255, 0, 0, 0);
+//   --in-color: #ed213a;
+//   --mid-color: #c7eafd;
+//   --out-color: #0780ba;
+// }
+
+// html {
+//   box-sizing: border-box;
+// }
+
+// *,
+// *::before,
+// *::after {
+//   box-sizing: inherit;
+// }
+
+// body {
+//   background: black;
+//   // background-image: linear-gradient(45deg, #090a18, #00264d);
+//   background-image: linear-gradient(140deg, rgb(6, 55, 78) 0%, #02131c 80%);
+//   font-size: 10px;
+//   overflow: hidden;
+// }
+
+// body,
+// html {
+//   height: 100%;
+//   margin: 0;
+//   padding: 0;
+//   width: 100%;
+// }
+
+// /*  ==========================================================
+// 	MIXINS
+// 	========================================================== */
+
+// @mixin cuboid($cWidth, $cHeight, $cDepth, $cColor) {
+//   height: $cHeight;
+//   position: relative;
+//   transform-style: preserve-3d;
+//   width: $cWidth;
+
+//   .face {
+//     background: $cColor;
+//     left: 0;
+//     position: absolute;
+//     top: 0;
+//   }
+
+//   .face--front {
+//     height: $cHeight;
+//     transform: translateZ(calc(#{$cDepth}/ 2));
+//     width: $cWidth;
+//   }
+
+//   .face--back {
+//     height: $cHeight;
+//     transform: translateZ(calc(#{$cDepth}/ 2 * -1)) rotateY(180deg);
+//     width: $cWidth;
+//   }
+
+//   .face--left {
+//     height: $cHeight;
+//     transform: translateX(calc(#{$cDepth}/ 2 * -1)) rotateY(-90deg);
+//     width: $cDepth;
+//   }
+
+//   .face--right {
+//     height: $cHeight;
+//     transform: translateX(calc(#{$cWidth} - #{$cDepth}/ 2)) rotateY(90deg);
+//     width: $cDepth;
+//   }
+
+//   .face--top {
+//     height: $cDepth;
+//     transform: translateY(calc(#{$cDepth}/ 2 * -1)) rotateX(90deg);
+//     width: $cWidth;
+//   }
+
+//   .face--bottom {
+//     height: $cDepth;
+//     transform: translateY(calc(#{$cHeight} - #{$cDepth}/ 2)) rotateX(-90deg);
+//     width: $cWidth;
+//   }
+// }
+
+// .container {
+//   align-items: center;
+//   display: flex;
+//   height: 100%;
+//   justify-content: center;
+//   margin: auto;
+//   // perspective:800px;
+//   visibility: hidden;
+// }
+
+// .scene {
+//   align-items: center;
+//   background-blend-mode: overlay;
+//   display: flex;
+//   // justify-content: space-around;
+//   // width: 80%;
+//   height: 100%;
+//   transform-style: preserve-3d;
+// }
+
+// /*  ==========================================================
+// 	CUBES
+// 	========================================================== */
+
+// .cubes {
+//   transform: rotateX(-35deg) rotateY(45deg);
+//   transform-style: preserve-3d;
+// }
+
+// .cube {
+//   @include cuboid(
+//     var(--cube-width),
+//     var(--cube-height),
+//     var(--cube-depth),
+//     var(--face-color)
+//   );
+
+//   .face {
+//     // border: 1px solid var(--border-color);
+//     border: none;
+//   }
+
+//   // .face--back {
+//   // }
+//   .face--left {
+//     .face__wrap {
+//       transform: rotateZ(90deg);
+//     }
+//   }
+
+//   .face--right {
+//     .face__wrap {
+//       transform: rotateZ(-90deg);
+//     }
+//   }
+
+//   .face--top {
+//     .face__wrap {
+//       transform: rotateZ(-90deg);
+//     }
+//   }
+
+//   .face--bottom {
+//     .face__wrap {
+//       transform: rotateZ(-90deg);
+//     }
+//   }
+
+//   transform-style: preserve-3d;
+// }
+
+// .face__wrap {
+//   display: flex;
+//   height: 100%;
+//   justify-content: space-around;
+//   // background: rgba(red, 0.2);
+//   transform-style: preserve-3d;
+//   width: 100%;
+// }
+
+// .face__panel {
+//   background: var(--in-color);
+//   box-shadow: 0 0 40px rgba(#c7eafd, 0.3);
+//   flex: 1 0 auto;
+//   opacity: 0;
+//   transform: scaleY(0);
+//   width: 20%;
+// }
+
+// .gsap-3-logo {
+//   bottom: 15px;
+//   max-width: 150px;
+//   position: fixed;
+//   right: 15px;
+//   width: 20vw;
+// }
+
+// /*  ==========================================================
+// 	Collection Linl
+// 	========================================================== */
+
+// .collection {
+//   display: flex;
+//   flex-direction: column;
+//   position: fixed;
+//   right: 24px;
+//   top: 24px;
+//   z-index: 1000;
+// }
+
+// .collection__link {
+//   color: white;
+//   font-family: Helvetica, sans-serif;
+//   font-size: 16px;
+//   margin-bottom: 16px;
+//   position: relative;
+//   text-decoration: none;
+
+//   span {
+//     background-color: white;
+//     bottom: -3px;
+//     content: '';
+//     display: block;
+//     height: 1px;
+//     left: 0;
+//     position: absolute;
+//     transition: width 0.3s;
+//     width: 10%;
+//   }
+
+//   &:hover span {
+//     width: 100%;
+//   }
+// }
