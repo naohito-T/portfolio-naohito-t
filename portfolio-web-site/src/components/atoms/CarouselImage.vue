@@ -13,7 +13,11 @@
           <div class="carousel__snapper"></div>
           <div class="carousel-hover">
             <p class="carousel-hover__text--desc">{{ hoverDesc }}</p>
-            <a :href="link" target="_blank" rel="noopener noreferrer"><p class="carousel-hover__text-link">{{ linkTitle }}</p></a>
+            <nuxt-link :to="link">
+              <p class="carousel-hover__text--link">
+                {{ linkTitle }}
+              </p></nuxt-link
+            >
           </div>
         </li>
       </ol>
@@ -48,7 +52,6 @@ export default defineComponent({
     },
   },
   setup() {
-
     return {};
   },
 });
@@ -58,6 +61,8 @@ export default defineComponent({
 .wrapper {
   @include caroucelSlider();
 
+  margin: 15px;
+  position: relative;
   width: 50%;
 
   .carousel-hover {
@@ -65,6 +70,10 @@ export default defineComponent({
 
     &__text--desc {
       font-size: $fontSize20;
+    }
+
+    &__text--link {
+      top: 0;
     }
   }
 
@@ -81,6 +90,8 @@ export default defineComponent({
 @media screen and (max-width: $mobileWidth) {
   .wrapper {
     @include displayFlex(center, column, center);
+
+    margin: 20px;
   }
 }
 </style>

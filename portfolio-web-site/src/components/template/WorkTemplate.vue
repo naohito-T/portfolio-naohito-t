@@ -1,26 +1,84 @@
 <template>
   <main class="contents">
-    <section class="section1">
-      <Title :en-title="enTitle" :ja-title="jaTitle" />
-    </section>
-    <section class="section2">
-      <Scroll :message="'Code In Design'" />
-      <CarouselImageTemplate />
-    </section>
+    <div>
+      <section class="section1">
+        <Title :en-title="enTitle" :ja-title="jaTitle" />
+      </section>
+      <div class="carousel" data-gap="80">
+        <figure class="carousel-figure">
+          <img
+            src="https://source.unsplash.com/VkwRmha1_tI/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/EbuaKnSm8Zw/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/kG38b7CFzTY/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/nvzvOPQW0gc/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/mCg0ZgD7BgU/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/1FWICvPQdkY/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/bjhrzvzZeq4/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+          <img
+            src="https://source.unsplash.com/7mUXaBBrhoA/800x533"
+            alt=""
+            class="carousel-figure__img"
+          />
+        </figure>
+        <nav class="carousel-nav">
+          <button class="carousel-nav__button prev">Prev</button>
+          <button class="carousel-nav__button next">Next</button>
+        </nav>
+      </div>
+    </div>
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+/**
+ * textと
+ * 画像一覧をfirebaseから取得
+ */
+import {
+  defineComponent,
+  useContext,
+  useFetch,
+  reactive,
+  onMounted,
+  onUnmounted,
+} from '@nuxtjs/composition-api';
+/** component */
 import Title from '@/components/common/Title.vue';
-import Scroll from '@/components/atoms/Scroll.vue';
-import CarouselImageTemplate from '@/components/organisms/CarouselImageTemplate.vue';
+/** util */
+import { carousel } from '@/composables/utils/carousel';
+/** type */
+import { ImageURL } from '@/lib/api/types/response/home';
 
 export default defineComponent({
   components: {
     Title,
-    Scroll,
-    CarouselImageTemplate,
   },
   props: {
     enTitle: {
@@ -33,25 +91,96 @@ export default defineComponent({
     },
   },
   setup() {
+    const { app, route } = useContext();
+    const path = route.value.path;
+    console.log(`pathを取得: ${path}`);
+    const state = reactive<{ imageUrl: ImageURL[] }>({
+      imageUrl: [],
+    });
+    /** 8つの画像が必要 */
+
+    useFetch(async () => {
+      await app.$stores.loading.loadingAction(async () => {
+        state.imageUrl = await app.$api.home.fetchFileUrls(`image/${path}`);
+        console.log(`work state :${state.imageUrl[0]}`);
+        console.log(`work state :${state.imageUrl[1]}`);
+      });
+    });
+
+    const callCarouesl = () => {
+      const carousels = document.querySelectorAll('.carousel'); // carousel
+      for (let i = 0; i < carousels.length; i++) {
+        carousel(carousels[i] as HTMLElement);
+      }
+    };
+
+    onMounted(() => {
+      console.log('hei');
+      addEventListener('load', callCarouesl);
+    });
+
+    onUnmounted(() => {
+      removeEventListener('load', callCarouesl);
+    });
+
     return {};
   },
 });
 </script>
-<style lang="scss" scoped>
-.contents {
-  .section1 {
-    @include displayFlex();
 
-    margin: 0 auto 30px;
-    width: 100%;
+<style lang="scss" scoped>
+.carousel {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px;
+  perspective: 500px;
+
+  &-figure {
+    margin: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    width: 40%;
+
+    &__img {
+      box-sizing: border-box;
+      padding: 0;
+      width: 100%;
+    }
+
+    &__img:not(:first-of-type) {
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
   }
 
-  .section2 {
-    width: 100%;
+  &-nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0;
 
-    .scroll {
-      @include textRightToLeft(#fff, 100%, 7s);
+    &__button {
+      background: none;
+      border: 1px solid;
+      color: #333;
+      cursor: pointer;
+      flex: 0 0 auto;
+      letter-spacing: 1px;
+      margin: 0 5px;
+      padding: 5px 10px;
     }
   }
 }
+
+.carousel > * {
+  flex: 0 0 auto;
+}
+
+// .carousel figure img:not(:first-of-type) {
+//   left: 0;
+//   position: absolute;
+//   top: 0;
+// }
 </style>

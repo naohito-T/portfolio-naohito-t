@@ -2,18 +2,18 @@
   <div class="image">
     <div class="image-container1">
       <CarouselImage
-        :size="'70%'"
+        :size="'50%'"
         :images="images"
-        :link="'https://gyfu.thebase.in/'"
-        :linkTitle="'Gyfu.'"
-        :hoverDesc="'友人と立ち上げたアクセサリーブランドGyfu.'"
+        :link="'works/gyfu'"
+        :link-title="'Gyfu.'"
+        :hover-desc="'友人と立ち上げたアクセサリーブランドGyfu.'"
       />
       <CarouselImage
-        :size="'30%'"
+        :size="'50%'"
         :images="images"
         :link="'https://gyfu.thebase.in/'"
-        :linkTitle="'Gyfu.'"
-        :hoverDesc="'友人と立ち上げたアクセサリーブランドGyfu.'"
+        :link-title="'Gyfu.'"
+        :hover-desc="'友人と立ち上げたアクセサリーブランドGyfu.'"
       />
     </div>
     <div class="image-container2">
@@ -22,16 +22,16 @@
         :size="'50%'"
         :images="images"
         :link="'https://gyfu.thebase.in/'"
-        :linkTitle="'BLOG'"
-        :hoverDesc="'Createrが集まる, Creaters Blogを配信'"
+        :link-title="'BLOG'"
+        :hover-desc="'Createrが集まる, Creaters Blogを配信'"
       />
       <CarouselImage
         :ref="images"
         :size="'50%'"
         :images="images"
         :link="'https://gyfu.thebase.in/'"
-        :linkTitle="'Article'"
-        :hoverDesc="'Zennなどで知見を投稿'"
+        :link-title="'Article'"
+        :hover-desc="'Zennなどで知見を投稿'"
       />
     </div>
   </div>

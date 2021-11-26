@@ -9,9 +9,8 @@ export interface IRequestHomeAPI {
   /** Unsplash Source */
   fetchImageURL(): Promise<ImageURL>;
   /** ここまではdebug */
-  /** project 10個とってくる */
+  /** project 1個とってくる */
   fetchProjectDetail(collection: string, docId: string): Promise<void>;
-  // getProjectDetails(): Promise<ProjectDetail[]>;
   fetchProjectDetailList(collection: string): Promise<ProjectDetail[]>;
   /** 単一のURLを取得 */
   fetchFileUrl(target: string): Promise<string>;

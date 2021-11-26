@@ -1,16 +1,16 @@
 <template>
-  <WorkTemplate :enTitle="'WORK'" :jaTitle="'ワーク'"/>
+  <WorksTemplate :en-title="'WORK'" :ja-title="'ワーク'" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import WorkTemplate from '@/components/template/WorkTemplate.vue';
+import WorksTemplate from '@/components/template/WorksTemplate.vue';
 export default defineComponent({
   components: {
-    WorkTemplate,
+    WorksTemplate,
   },
   setup() {
-    return {}
-  }
-})
+    return {};
+  },
+});
 </script>

@@ -13,10 +13,10 @@
         <ul class="menu-list">
           <li class="menu-list-item">
             <nuxt-link
-              to="/work"
+              to="/works"
               class="menu-list-item__link"
-              :class="page === '/work' ? 'current' : ''"
-              >WORK</nuxt-link
+              :class="page === '/works' ? 'current' : ''"
+              >WORKS</nuxt-link
             >
           </li>
           <li class="menu-list-item">
