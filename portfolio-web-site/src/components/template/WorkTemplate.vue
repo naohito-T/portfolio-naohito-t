@@ -5,49 +5,65 @@
         <Title :en-title="enTitle" :ja-title="jaTitle" />
       </section>
       <div class="carousel" data-gap="80">
-        <figure class="carousel-figure">
-          <img
-            src="https://source.unsplash.com/VkwRmha1_tI/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/EbuaKnSm8Zw/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/kG38b7CFzTY/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/nvzvOPQW0gc/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/mCg0ZgD7BgU/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/1FWICvPQdkY/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/bjhrzvzZeq4/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-          <img
-            src="https://source.unsplash.com/7mUXaBBrhoA/800x533"
-            alt=""
-            class="carousel-figure__img"
-          />
-        </figure>
-        <nav class="carousel-nav">
+        <template v-if="state.imageURLs && state.imageURLs.length > 0">
+          <figure
+            v-for="(image, key) in state.imageURLs"
+            :key="key"
+            class="carousel-figure"
+          >
+            <img
+              :key="key"
+              :src="image"
+              alt="image"
+              class="carousel-figure__img"
+            />
+          </figure>
+        </template>
+        <template v-else>
+          <figure class="carousel-figure">
+            <img
+              src="https://source.unsplash.com/VkwRmha1_tI/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/EbuaKnSm8Zw/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/kG38b7CFzTY/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/nvzvOPQW0gc/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/mCg0ZgD7BgU/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/1FWICvPQdkY/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/bjhrzvzZeq4/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+            <img
+              src="https://source.unsplash.com/7mUXaBBrhoA/800x533"
+              alt=""
+              class="carousel-figure__img"
+            />
+          </figure>
+        </template>
+        <nav>
           <button class="carousel-nav__button prev">Prev</button>
           <button class="carousel-nav__button next">Next</button>
         </nav>
@@ -94,36 +110,49 @@ export default defineComponent({
     const { app, route } = useContext();
     const path = route.value.path;
     console.log(`pathを取得: ${path}`);
-    const state = reactive<{ imageUrl: ImageURL[] }>({
-      imageUrl: [],
+    const state = reactive<{ imageURLs: ImageURL[] }>({
+      imageURLs: [],
+    });
+
+    const debugState = reactive<{ ImageURLs: ImageURL[] }>({
+      imageURLs: [],
     });
     /** 8つの画像が必要 */
 
     useFetch(async () => {
       await app.$stores.loading.loadingAction(async () => {
-        state.imageUrl = await app.$api.home.fetchFileUrls(`image/${path}`);
-        console.log(`work state :${state.imageUrl[0]}`);
-        console.log(`work state :${state.imageUrl[1]}`);
+        state.imageURLs = await app.$api.home.fetchFileUrls(`image/${path}`);
+        console.log(`stateを取得: ${state.imageURLs}`);
+
+        debugState.imageURLs = await app.$api.home.fetchDebugFileUrls(
+          '800x533'
+        );
+        console.log(`debut stateを取得: ${state.imageURLs}`);
+        // if (state.imageURLs.length > 0) {
+        // }
       });
     });
 
-    const callCarouesl = () => {
-      const carousels = document.querySelectorAll('.carousel'); // carousel
+    const callCarouesl = async () => {
+      const carousels = await document.querySelectorAll('.carousel'); // carousel
+      console.log(`carousel: ${carousels}`);
       for (let i = 0; i < carousels.length; i++) {
         carousel(carousels[i] as HTMLElement);
       }
     };
 
     onMounted(() => {
+      // addEventListener('load', callCarouesl);
       console.log('hei');
-      addEventListener('load', callCarouesl);
     });
 
     onUnmounted(() => {
       removeEventListener('load', callCarouesl);
     });
 
-    return {};
+    return {
+      state,
+    };
   },
 });
 </script>

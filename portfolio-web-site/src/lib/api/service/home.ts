@@ -6,9 +6,8 @@ import { IPhoto, ImageURL, ProjectDetail } from '../types/response/home';
 export interface IRequestHomeAPI {
   /** JSON PlaceHolder */
   fetchPhoto(): Promise<IPhoto[]>;
-  /** Unsplash Source */
-  fetchImageURL(): Promise<ImageURL>;
-  /** ここまではdebug */
+  /** source.unsplash.com からランダムに取得する。 */
+  fetchDebugFileUrls(size: string): Promise<ImageURL[]>;
   /** project 1個とってくる */
   fetchProjectDetail(collection: string, docId: string): Promise<void>;
   fetchProjectDetailList(collection: string): Promise<ProjectDetail[]>;
