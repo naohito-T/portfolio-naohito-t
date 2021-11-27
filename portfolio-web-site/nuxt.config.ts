@@ -17,7 +17,7 @@ const nuxtConfig: NuxtConfig = {
     APP_ID: process.env.APP_ID ?? 'none',
     MEASUREMENT_ID: process.env.MEASUREMENT_ID ?? 'none',
     // # api
-    API_BASE_URL: process.env.API_BASE_URL ?? 'none',
+    API_BASE_URL: process.env.API_BASE_URL ?? 'https://',
     API_BASE_JSON_URL: process.env.API_BASE_JSON_URL ?? 'none',
     // # api Image URL 400x400
     API_BASE_IMAGE_URL: process.env.API_BASE_IMAGE_URL ?? 'none',

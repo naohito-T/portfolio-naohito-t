@@ -13,7 +13,7 @@ import Axios, {
  */
 const baseAxios = (): AxiosInstance => {
   return Axios.create({
-    baseURL: process.env.apiBaseURL,
+    baseURL: process.env.API_BASE_URL,
     timeout: 1500,
   });
 };

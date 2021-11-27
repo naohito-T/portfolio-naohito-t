@@ -114,7 +114,7 @@ export default defineComponent({
       imageURLs: [],
     });
 
-    const debugState = reactive<{ ImageURLs: ImageURL[] }>({
+    const debugState = reactive<{ imageURLs: ImageURL[] }>({
       imageURLs: [],
     });
     /** 8つの画像が必要 */
@@ -122,11 +122,11 @@ export default defineComponent({
     useFetch(async () => {
       await app.$stores.loading.loadingAction(async () => {
         state.imageURLs = await app.$api.home.fetchFileUrls(`image/${path}`);
-        console.log(`stateを取得: ${state.imageURLs}`);
-
         debugState.imageURLs = await app.$api.home.fetchDebugFileUrls(
           '800x533'
         );
+        console.log(`stateを取得: ${state.imageURLs}`);
+
         console.log(`debut stateを取得: ${state.imageURLs}`);
         // if (state.imageURLs.length > 0) {
         // }
@@ -142,7 +142,8 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      // addEventListener('load', callCarouesl);
+      /** 画像の */
+      addEventListener('load', callCarouesl);
       console.log('hei');
     });
 
