@@ -8,7 +8,7 @@ layout/defaultなどで認証などを定義すれば常に参照ができる。
 [設計参考2compositionapi](https://zenn.dev/koudaiishigame/articles/810ce2d0ee8ade)
 
 
-## create nuxt-app 作成手順
+## create nuxt-app エビデンス
 
 ```sh
 # version確認
@@ -33,7 +33,8 @@ create-nuxt-app v3.7.1
 ? Version control system: Git
 ```
 
-動確
+## 動作確認
+
 $ yarn test
 $ yarn dev
 $ yarn generate
