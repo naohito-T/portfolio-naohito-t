@@ -1,5 +1,8 @@
 import firebase from 'firebase';
 
+/** Adminのみで使用するか？ */
+// interface User {}
+
 interface ProjectDetail {
   title: string;
   subTitle: string;

@@ -1,25 +1,25 @@
 # 6. firebase
 
-## firebase利用方法
+## firebase 利用方法
 
-DBはサイトのURLとタイトルと画像URL
-S3必要かな？firebaseに画像登録できるのであれば、そのまま
+DB はサイトの URL とタイトルと画像 URL
+S3 必要かな？firebase に画像登録できるのであれば、そのまま
 
-## firebase project作成手順
+## firebase project 作成手順
 
 **branch:feature/firebase_init_setup**
 
-1. firebaseでプロジェクトを作成
-2. ウェブアプリにFirebaseを追加しkeyを取得
-3. firestoreを作成
+1. firebase でプロジェクトを作成
+2. ウェブアプリに Firebase を追加し key を取得
+3. firestore を作成
 
-1. について
-作成すれば完了
+4. について
+   作成すれば完了
 
-2. について
-ウェブアプリにFirebaseを登録する。
-Firebase SDKはpassでOK
-コンソールに戻り、設定からプロジェクトのロケーションをasia-northeast1にする
+5. について
+   ウェブアプリに Firebase を登録する。
+   Firebase SDK は pass で OK
+   コンソールに戻り、設定からプロジェクトのロケーションを asia-northeast1 にする
 
 ここでターミナルに戻り以下コマンドを実行する。
 
@@ -104,46 +104,44 @@ i  Writing project information to .firebaserc...
 ✔  Firebase initialization complete!
 ```
 
-動作動作確認をする前にtestが動作するか確認をした
-```$npm run test```
-testディレクトリにあるデフォルトのNuxtLogo.spec.jsが実行される。
+動作動作確認をする前に test が動作するか確認をした
+`$npm run test`
+test ディレクトリにあるデフォルトの NuxtLogo.spec.js が実行される。
 
 pass(成功)しました。
-コードorテストに不備があるとエラーが起きます。
+コード or テストに不備があるとエラーが起きます。
 
-このようにしてデプロイ(本番反映)前にテストを実行する事でバグを未然に防げます。ただし、テストを実行し忘れてデプロイしてしまう可能性もあるので、CI/CDを使ってデプロイの度に自動テストをする仕組みを作成します。
+このようにしてデプロイ(本番反映)前にテストを実行する事でバグを未然に防げます。ただし、テストを実行し忘れてデプロイしてしまう可能性もあるので、CI/CD を使ってデプロイの度に自動テストをする仕組みを作成します。
 
 動作確認
 
-```$npm run generate```
-プロジェクトディレクトリ内で実行する(package.jsonがあるところ)
-・dist配下に静的ファイルが作成される。
-・このdistの中身が今回firebase Hostingによってホスティングされる静的ファイル群
+`$npm run generate`
+プロジェクトディレクトリ内で実行する(package.json があるところ)
+・dist 配下に静的ファイルが作成される。
+・この dist の中身が今回 firebase Hosting によってホスティングされる静的ファイル群
 
-```$ firebase deploy --only hosting```
-プロジェクトディレクトリ内で実行する(package.jsonがあるところ)
-実行後、hostingURLがあるためスマホ、PCで確認できる。
+`$ firebase deploy --only hosting`
+プロジェクトディレクトリ内で実行する(package.json があるところ)
+実行後、hostingURL があるためスマホ、PC で確認できる。
 Hosting URL: https://naohito-t-portfolio.web.app
 
-
 3. について
-firebase project name
-portfolio-web-site-revoはやめた(projectIDが気に入らない)
+   firebase project name
+   portfolio-web-site-revo はやめた(projectID が気に入らない)
 
-naohito-t-portfolioで作成
-リージョンは以前に設定しているためfirestoreを作成し適当にコレクションを追加しておく。
+naohito-t-portfolio で作成
+リージョンは以前に設定しているため firestore を作成し適当にコレクションを追加しておく。
 
 firestore Database
 asia-northeast1 (東京)
 
-4. firebaseSDKを使う
-コンソールにログインして、
-「プロジェクトを設定」→ 「マイアプリ」 →　「Firebase SDK snippet」
-と進み、「CDN」を選択するとコードが表示されます。
-firebaseConfigの部分だけコピーする。
+4. firebaseSDK を使う
+   コンソールにログインして、
+   「プロジェクトを設定」→ 「マイアプリ」 → 　「Firebase SDK snippet」
+   と進み、「CDN」を選択するとコードが表示されます。
+   firebaseConfig の部分だけコピーする。
 
-plugin/firebase.jsの中に作成した。
-
+plugin/firebase.js の中に作成した。
 
 ## firebase Authtication
 
@@ -151,12 +149,19 @@ plugin/firebase.jsの中に作成した。
 
 [一番参考にした](https://qiita.com/Takabun/items/e0b0c139ccf53c7bb561)
 
-@nuxt/firebaseモジュールで簡単に連携できるとのことだが大げさな気もする。
+@nuxt/firebase モジュールで簡単に連携できるとのことだが大げさな気もする。
 そのため普通に実装する形で対応するようにする
 
-Firebaseでは認証状態をどの程度維持するかを指定することができる。
+Firebase では認証状態をどの程度維持するかを指定することができる。
 
 認証したのをどれで管理するかがとても重要
 
-今回nuxtの構成はcompositionAPIで状態とロジックを切り離しているためそれで実装する。
+今回 nuxt の構成は compositionAPI で状態とロジックを切り離しているためそれで実装する。
 
+## firebase 設計
+
+**project 詳細 page**
+/works/\_slug
+work のタイトル
+
+**project 一覧**

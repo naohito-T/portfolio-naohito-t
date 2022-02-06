@@ -16,7 +16,17 @@ interface ImageURLs {
   downloadURLs: string[];
 }
 
-/** これはtopで使うべきか */
+/** 配列でProject一覧で使用 */
+interface Projects {
+  docId: string;
+  title: string;
+  subTitle: string;
+  imgURL: string;
+  createdAt: firebase.firestore.Timestamp;
+  updatedAt: firebase.firestore.Timestamp;
+}
+
+/** works/_slugで使用する */
 interface ProjectDetail {
   docId: string;
   title: string;
@@ -26,6 +36,7 @@ interface ProjectDetail {
   updatedAt: firebase.firestore.Timestamp;
 }
 
+/** これはいらんだろう(admin)使用で */
 interface User {
   name: string;
   photoURL: string;
@@ -33,4 +44,4 @@ interface User {
   updatedAt: firebase.firestore.Timestamp;
 }
 
-export { User, IPhoto, ImageURL, ImageURLs, ProjectDetail };
+export { User, IPhoto, ImageURL, ImageURLs, Projects, ProjectDetail };
