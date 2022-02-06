@@ -1,13 +1,5 @@
 # 4. nuxt
 
-起動は全てyarnでしかしない。
-stateの内容はpageをreloadすると消えてしまう。
-layout/defaultなどで認証などを定義すれば常に参照ができる。
-
-[設計参考](https://logmi.jp/tech/articles/322003)
-[設計参考2compositionapi](https://zenn.dev/koudaiishigame/articles/810ce2d0ee8ade)
-
-
 ## create nuxt-app エビデンス
 
 ```sh
@@ -40,324 +32,31 @@ $ yarn dev
 $ yarn generate
 
 $ rm -rf .git
-nuxt createでのデフォルトリポジトリは削除する
+nuxt create でのデフォルトリポジトリは削除する
 
-全てok
+## nuxt loading 画面
 
-## nuxt typescript化
+[Loading の GIF 画像](https://icons8.com/preloaders/)
 
-branch: feature/nuxt_composition_api_setup
+## error page 作成
 
-1. まずはnuxt.config.jsをts化にする。ここでVuetyfiがerrorを吐いていた。npm i --save-dev @types/vuetify
+nuxt では layouts/error.vue を作成するとエラーが発生したときに自動でそのページが表示されるようになる
 
-2. TypeScriptで.vueファイルを読み込めるように設定
-(参考URL)[https://ikkyu.hateblo.jp/entry/2019/08/14/233538]
+> ※エラーページの自動表示は、クライアントサイドでのレンダリング中のみになります。
+> SSR モードのサーバーサイドレンダリング中に発生したエラーについては自動表示されないので注意が必要です。
+> エラーページはページコンポーネントにエラーが発生した時に表示される（サーバーサイドレンダリング中には発生しない）
 
-```bash
-
-$mkdir @types
-
-```
-
-次にtypesディレクトリの型ファイルを読み込めるようにするため、tsconfig.jsonを変更します。
-すでにtypesで指定されていますが、新しいパッケージの型を入れたらその都度typesに追加する必要があるため、削除します。
-変わりにtypeRootsを使用します。
-
-3. src配下に全て配置する。[参考URL](https://leotakeishi.com/blog/create-nuxt-typescript-environment/)
-
-
-4. vuetify error
-  nuxt.config.tsにするとvuetifyがerrorになっていた。そのためtsconfig.jsonのtypesに追加をすると解消した。
-  `tsconfig.json`の`types: []`に`"vuetify"`を追加すれば解決できた。
-4. エディタのエラーを解消する。
-
-## nuxt スマホとPCの区切り運用
-window幅を取得し、デバイス判断をしていくのがいい
-userAgentだとかなりの数となる。
-
-## nuxt composition API
-
-[参考URL](https://task-kawahara.hatenablog.com/entry/2020/12/28/124445)
-
-以下コマンドでcompositionAPIを導入する。
-```$ yarn add @nuxtjs/composition-api```
-
-導入後、nuxt.config.tsに以下を追記
-
-```ts
-buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    '@nuxtjs/composition-api/module'
-  ],
-```
-
-- nuxt composition APIとは
-@vue/composition-apiと比べてNuxt特有の機能(UseAsync)などをサポートしているのが特徴。
-@vue/composition-apiをラップしているためcomposition-apiの機能はもちろんNuxt特有の機能が揃っている。
-
-router, app, store に簡単にアクセスできるのがよい(useContextを使用して)
-
-@vue/composition-api では呼び出し時にcontextを引数として渡す
-@nuxtjs/composition-api では呼び出された場所のcontextをuseContextで取得できる
-
-contextをリレーする必要がなくなります｡
-
-[参考URL](https://zenn.dev/hogeihogemi/articles/94c0254372defd)
-
-### nuxtでのcomposition API 鉄則ルール
-
-@nuxtjs/composition-api では、従来の asyncData, fetch() そして head()に変わる API が用意されています
-
-useAsync - Nuxt Composition API
-
-useFetch - Nuxt Composition API
-
-useMeta - Nuxt Composition API
-
-
-## nuxt typescript project 強化
-
-branch: feature/nuxt_typescript_setup
-
-- typescript-runtime setup RUNTIME
-
-RUNTIME中でもTSを実行させる。
-
-[参考URL](https://qiita.com/iwata@github/items/a94c6d116a3e84911628)
-```$ yarn add @nuxt/typescript-runtime```
-
-NuxtのTS周りのNPMがいくつかに分解された。
-そのうち@nuxt/typescript-runtimeはNode環境でTSを処理するためのもの
-具体的にはnuxt.configやsererMiddlewaresでTSを使いたいときに必要になる。
-ちなみに@nuxt/typescript-runtimeはProduction環境(NODE_ENV=production)でも必要になるので、dependenciesに追加する必要があります。
-(nuxt-ts startで使用するので)
-
-また一連のnuxtコマンドをnuxt-tsにしてあげる必要がある。
-
-```json
--    "dev": "nuxt",
--    "build": "nuxt build",
--    "start": "nuxt start",
--    "generate": "nuxt generate",
-
-+    "dev": "nuxt-ts",
-+    "build": "nuxt-ts build",
-+    "start": "nuxt-ts start",
-+    "generate": "nuxt-ts generate",
-```
-
-- nuxt/typescript-buildnuxt buildでTSを扱うためのものが@nuxt/typescript-buildです。
-@nuxt/typescriptは@nuxt/typescript-buildに含まれるようになったので直接の依存は不要になります。
-@nuxt/typescriptがRuntimeとに分離されて使いやすくなった感じですね
-
-```yarn add -D @nuxt/typescript-build```
-
-
-- nuxt userAgent導入
-
-UA(User Agent: UA)とは
-ネット利用者が使用しているOS・ブラウザのことを指す
-一般的なインターネットブラウザを使い、HTTPに基づきサイトなどにアクセスした際にはユーザエージェントに関する各種情報が相手側に通知される仕組みとなっている。
-サイト側はユーザーエージェントを見ることでアクセスしてきたユーザがどういったOSやブラウザを使っているかを把握できる。
-そのためアクセス解析に利用されることが多い。
-```$ yarn add nuxt-user-agent```
-
-- nuxtでsassを使う準備
-会社でもインストールしていた。
-
-[作成手順](./sass.md)
-
-- nuxtjs dayjs setup
-
-まだやらない
-
-- バンドルファイルの分析
-
-Webpack Bundle Analyzerを利用すると、バンドルサイズを可視化できます。可視化することで「容量の大きいモジュールの把握」「複数ページで共通モジュールを保持してないかの確認」といった分析がしやすくなります。
-
-package.jsonのscriptに以下を追加
-
-```json
-"analyze": "nuxt-ts build --analyze",
-```
-
-使用例
-1.Webpack Bundle Analyzerを使って、現状のファイルサイズを把握。
-2.その中でどのファイルがネックになっているか調査する。
-3.リファクタリングする。 ※今回は一部のみ
-
-- nuxtjs markdown 対応
-
-[参考URL](https://dev.classmethod.jp/articles/nuxtjs-markdown-it/)
-
-## nuxt storeについて
-
->Nuxt.jsでVuexを通常利用する場合には、storeディレクトリにモジュールと対応するファイルを設置します。例えば、myModule.jsというファイルをstoreディレクトリに設置すれば、myModuleといモジュールで自動的に作成され、コンポーネントからアクセスすることができます。
->今回はその中でも、Nuxt.js公式で推奨されているvuex-module-decoratorsを使用します。
-
-- nuxtでのグローバル管理について考える
-色々考えたが、provideとinjectで管理をするのは特定のロジックなどがよいと思う。
-loading画面や、ログイン管理などは必然的に全てで管理をするため、storeがよいと思う。
-
-- store導入
-[参考URL](https://qiita.com/azukiazusa/items/a50b1ffe05d9937a4db0)
-`yarn add -D vuex-module-decorators`
-
-
-## NuxtでDIっぽいことをする
-
-`js app.$store.~~~`
-みたいにコンテキストに自作関数を入れることができる。
-
-- グローバルに関数を使う理由
-
->Vue.jsでの処理の共通化といったら、Mixinが有名です。しかし、asyncData関数の中では参照することができなっかたり、TSでデコレーターを使用している場合はVueインスタンスでMixinsクラスを継承する必要があったりと、少し不便なところもあります。Nuxtのpluginを実装することで、DIっぽいことをしてどこでも関数が使えることが分かったので、その方法を紹介していきます。（Nuxtで明示的にDIの機構が用意されているわけではないのでDIっぽいこと、としています。）
-
-この手順によりプラグインの作成手順もかねてくる。
-
-1. tsconfig編集
-
-以下の部分を追記しないとsrc/@typesを読み込みにいかなかった。
-Nuxtはデフォルトで@typesを見に行くようだが、src配下に全てのディレクトリを移動しているためもしかしたら見に行かないのかも
-
-```json
-    // /src/@typesを読みに行く
-    "typeRoots": [
-      "./src/@types"
-    ],
-```
-
-2. storeディレクトリ編集
-
-以下のディレクトリ構成にする。
-
-store -- module
-      |
-      -- type
-
-3. @typesにstore.d.tsを作成
-
-[型定義作成についての参考](https://medium.com/@ryutamaki/npm-module-%E3%81%AB-typescript-%E3%81%AE%E5%9E%8B%E5%AE%9A%E7%BE%A9%E3%81%8C%E3%81%AA%E3%81%84%E6%99%82%E3%81%AB-%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%80%9A%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B-fcc090804b21)
-
-`tsNuxtAppOptions`にすることで、useContext()のappの後に続くところで自作モジュールを作成できる。
-
-```ts
-/**
- * @desc プラグインで使用するための型拡張
- * プラグインは Vue のグローバル/インスタンスプロパティやコンポーネントオプションを追加することがあります。
- * このような場合、TypeScript でそのプラグインを使用したコードをコンパイルするためには型定義が必要になります。
- * 幸い、TypeScript にはモジュール拡張 (Module Augmentation) と呼ばれる、すでに存在する型を拡張する機能があります。
- * Vueリファレンス, スケールアップ参照
- */
-import '@nuxt/types';
-import { Stores } from '@/store/module';
-
-declare module '@nuxt/types' {
-  interface NuxtAppOptions {
-    $stores: Stores;
-  }
-}
-```
-
-> tsconfig には typeRoots というプロパティがあり、これは型定義を探し始める root のディレクトリを決めるオプションです。デフォルトが @types になっているので、 自分の typescriptプロジェクト内に @types を追加することで自動的に .d.ts を探しにいってくれます
-## nuxt loading画面
-
-[LoadingのGIF画像](https://icons8.com/preloaders/)
-
-
-## nuxtjs axios setup
-
-[参考URL](https://qiita.com/shiro_kzy/items/cb64e4ad8f4de0ba97a0)
-
-Nuxt.jsでaxiosを使う際に用途によって使い方が異なる。
-
-- vueファイルで使う
-- typescriptで使う
-- asyncDataで使う
-
-1. nuxt axios 導入
-```$ yarn add @nuxtjs/axios```
-
-2. nuxt.config.tsに以下を記載する。
-
-```ts
-  modules: [
-    '@nuxtjs/style-resources',
-    '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/markdownit',
-  ],
-```
-
-3. TSを使用している場合はtsconfig.jsonにも以下を記載
-
-```json
-"types": [
-      "@nuxt/types",
-      "@types/node",
-      "@nuxtjs/axios",
-    ]
-```
-
-ここからtsファイルで使用するためにaxiosの設定ファイルを作成しPluginで読み込んで汎用に使えるようにする。
-そしてここからはユメグラをみていく
-
-4. libフォルダ作成
-lib/api/request/api.tsまで作成する
-
-5. pluginとして全てのvueファイルで使えるようにする。
-
-pluginsディレクトリで作成する。api.tsを作成しinjectをする
-
-6. nuxt.config.tsでpluginの内容を明記する
-
-```ts
-plugins: [{ src: '@/plugins/stores' }, { src: '@/plugins/api' }],
-
-```
-
-7. ts コンパイラに型定義を伝える。
-@nuxt/typesのもともとのコンテキストのオプションを上書きしているイメージ
-
-```ts
-import '@nuxt/types';
-import { API } from '@/lib/api';
-
-declare module '@nuxt/types' {
-  interface NuxtAppOptions {
-    $api: API;
-  }
-}
-```
-
-以上
-
-## error page作成
-
-nuxtではlayouts/error.vueを作成するとエラーが発生したときに自動でそのページが表示されるようになる
-
->※エラーページの自動表示は、クライアントサイドでのレンダリング中のみになります。
->SSRモードのサーバーサイドレンダリング中に発生したエラーについては自動表示されないので注意が必要です。
->エラーページはページコンポーネントにエラーが発生した時に表示される（サーバーサイドレンダリング中には発生しない）
-
-1. layouts/error.vueを作成
-デフォルトだと、クライアント側レンダリングエラーは遷移をしなかった。
+1. layouts/error.vue を作成
+   デフォルトだと、クライアント側レンダリングエラーは遷移をしなかった。
 
 2. 遷移動作確認
-error.vueを総入れ替えすると移動した。
+   error.vue を総入れ替えすると移動した。
 
-## eslint prettier stylelint 設定
+3. npm script が動くか確認(nuxt-create で作成されたデフォルトの状態のやつ)
+   `$ yarn lint:js`
+   動いた。error を検知してくれる状態。vscode は error を検知してくれていない状態だった。
 
-[nuxt typescript eslint prettier](https://inokawablog.org/vue-js/nuxt-typescript-stylelint-eslint-prettier/)
-[stylelint設定](https://qiita.com/y-w/items/bd7f11013fe34b69f0df)
-[こちらのstylelint設定がよい](https://toragramming.com/web/nuxtjs/nuxt-stylelint-prettier-vscode-format-scss-on-save/)
-
-1. npm scriptが動くか確認(nuxt-createで作成されたデフォルトの状態のやつ)
-`$ yarn lint:js`
-動いた。errorを検知してくれる状態。vscodeはerrorを検知してくれていない状態だった。
-
-2. stylelint 設定
+4. stylelint 設定
 
 ※注意
 かなりめんどくさい。今の設定を見れば自ずとわかってくる。
@@ -366,9 +65,9 @@ error.vueを総入れ替えすると移動した。
 $ yarn add -D node-sass sass-loader stylelint @nuxtjs/stylelint-module stylelint-config-standard stylelint-config-recess-order stylelint-scss stylelint-config-recommended-scss stylelint-prettier stylelint-config-prettier
 ```
 
-cssプロパティの並び順はstylelint-config-recess-orderに準拠する。
+css プロパティの並び順は stylelint-config-recess-order に準拠する。
 
-- nuxt.config.tsのbuildModulesに書き込む
+- nuxt.config.ts の buildModules に書き込む
 
 ```ts
   buildModules: [
@@ -380,18 +79,18 @@ cssプロパティの並び順はstylelint-config-recess-orderに準拠する。
   ],
 ```
 
-- stylelint.config.jsを作成
-会社と参考記事を参考
+- stylelint.config.js を作成
+  会社と参考記事を参考
 
 `touch stylelint.config.js`
 
 - stylelint vscode 連携
 
-[参考URL](https://qiita.com/y-w/items/bd7f11013fe34b69f0df#7-%E8%A3%9C%E8%B6%B3-vs-code%E3%81%AE%E3%81%AE%E8%A8%AD%E5%AE%9A---stylelint%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD)
+[参考 URL](https://qiita.com/y-w/items/bd7f11013fe34b69f0df#7-%E8%A3%9C%E8%B6%B3-vs-code%E3%81%AE%E3%81%AE%E8%A8%AD%E5%AE%9A---stylelint%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD)
 
-1. stylelint 拡張機能をinstall(vscode)
+1. stylelint 拡張機能を install(vscode)
 
-2. vscode用のproject settingをする
+2. vscode 用の project setting をする
 
 ```json
 {
@@ -420,7 +119,7 @@ module.exports = {
     // そのためstylelint-prettier/recommendedは必ず最後に記述する
     'stylelint-config-prettier',
     'stylelint-config-recess-order',
-    'stylelint-prettier/recommended'
+    'stylelint-prettier/recommended',
   ],
   // add your custom config here
   // https://stylelint.io/user-guide/configuration
@@ -432,43 +131,43 @@ module.exports = {
     'scss/at-rule-no-unknown': true,
     'order/properties-alphabetical-order': true,
   },
-}
+};
 ```
 
-1. eslint設定
+1. eslint 設定
 
 `$ yarn add -D eslint-config-airbnb-base babel-plugin-module-resolver babel-eslint eslint-config-prettier eslint-import-resolver-alias eslint-plugin-import eslint-import-resolver-babel-module eslint-plugin-nuxt eslint-plugin-prettier`
 
-install moduleの説明
+install module の説明
 
 - eslint-config-airbnb-base
-Airbnbのベースの.eslintrcを提供しています。
+  Airbnb のベースの.eslintrc を提供しています。
 
 - babel-plugin-module-resolver
-プロジェクトのrequire / importパスを簡略化できます
+  プロジェクトの require / import パスを簡略化できます
 
 - babel-eslint
-Babelのコードをlintします
+  Babel のコードを lint します
 
 - eslint-config-prettier
-不要またはPrettierと競合する可能性のあるすべてのルールをオフにします。
+  不要または Prettier と競合する可能性のあるすべてのルールをオフにします。
 
 - eslint-import-resolver-alias
-Node.jsモジュール解決、モジュールエイリアス/マッピング、カスタムファイル拡張子をサポートしています
+  Node.js モジュール解決、モジュールエイリアス/マッピング、カスタムファイル拡張子をサポートしています
 
 - eslint-plugin-import
-インポート/エクスポート構文のリンティングをサポートしています
+  インポート/エクスポート構文のリンティングをサポートしています
 
 - eslint-import-resolver-babel-module
-eslint-plugin-importのためのリゾルバ
+  eslint-plugin-import のためのリゾルバ
 
 - eslint-plugin-nuxt
-Nuxt.js用のESLintプラグイン
+  Nuxt.js 用の ESLint プラグイン
 
 - eslint-plugin-prettier
-PrettierをESLintルールとして実行し、差異を個々のESLint問題として吐き出す。
+  Prettier を ESLint ルールとして実行し、差異を個々の ESLint 問題として吐き出す。
 
-4. package.json npm run script編集
+4. package.json npm run script 編集
 
 ```json
 "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
@@ -484,10 +183,10 @@ PrettierをESLintルールとして実行し、差異を個々のESLint問題と
 - 動作確認
 
 `$ yarn lint:js`
-tsに変更後も動いた。errowだけを吐き出してくれている状態
+ts に変更後も動いた。errow だけを吐き出してくれている状態
 `$ yarn lint:style`
-これがstylelintがないと言われerrorとなる。globalにインストールしないといけない。node_module内にあるstylelintは使えないのか？
-→npm runはローカルプロジェクトのnode_moduleを実行する。
+これが stylelint がないと言われ error となる。global にインストールしないといけない。node_module 内にある stylelint は使えないのか？
+→npm run はローカルプロジェクトの node_module を実行する。
 `$ yarn add -D stylelint`
 上記をインストール後、実行できるようになった。
 
@@ -504,64 +203,65 @@ $ yarn lint:style
 
 ## ダークモード対応
 
-[参考URL](https://higemura.com/blog/programming/dark-mode-css-variables-01)
+[参考 URL](https://higemura.com/blog/programming/dark-mode-css-variables-01)
 [コーディング参考](https://qiita.com/kodama321/items/f6e894915146d0cc69c5)
 
 - 要件
 
 1. クライアントのモードによって値を取得しないといけない。
-`jswindow.matchMedia('(prefers-color-scheme: dark)').matches`
+   `jswindow.matchMedia('(prefers-color-scheme: dark)').matches`
 
 2. トグルボタンを設置しないといけない。
-`html<button @onclick>`で対応。buttonの状態はクライアントのモード状態で変わっていなければいけない。
+   `html<button @onclick>`で対応。button の状態はクライアントのモード状態で変わっていなければいけない。
 
-3. buttonを押下したら切り替えができる。
+3. button を押下したら切り替えができる。
 
-## footerのplease message
+## footer の please message
 
 アニメーションが必要になる
-[参考URL](https://yuyauver98.me/coding-btn-simple02/)
+[参考 URL](https://yuyauver98.me/coding-btn-simple02/)
 
 ## top scroll button
 
-[参考URL](https://qiita.com/TK-C/items/42b25ff4ec56528ad870)
+[参考 URL](https://qiita.com/TK-C/items/42b25ff4ec56528ad870)
 
 - 要件
 
 1. 最初は表示しない
-→scroll値で出すか
+   →scroll 値で出すか
 2. アニメーションで表示される
-→transitionでやる
+   →transition でやる
 3. アニメーションで戻る
-→nuxt scrollのプロパティ値でいけるか？
+   →nuxt scroll のプロパティ値でいけるか？
 4. 全てのテンプレートで使用ができる
-→汎用性を高める
-5. buttonではなく文字で出現させる。
+   → 汎用性を高める
+5. button ではなく文字で出現させる。
 
-## nuxt SVG導入
+## nuxt SVG 導入
 
 1. nuxt-svg-loader を インストール
-`$ yarn add -D nuxt-svg-loader`
+   `$ yarn add -D nuxt-svg-loader`
 
-2. nuxt.config.tsにmoduleを追記
+2. nuxt.config.ts に module を追記
 
-3. assets/内にSVGを設置し読み込むだけ
+3. assets/内に SVG を設置し読み込むだけ
 
-## nuxt font導入
+## nuxt font 導入
 
 Objective Font Family にすることにした。
 [Objective Font Family URL](https://www.dafontfree.io/objective-font-family/)
 
-1. fontをきめてローカルにインストールする
+1. font をきめてローカルにインストールする
 2. プロジェクトフォルダに配置
-3. nuxtの読み込み方法
-[リファレンスURL](https://ja.nuxtjs.org/docs/2.x/directory-structure/assets)
-4. @font-faceで読み込み _variables.scssで読み込み
+3. nuxt の読み込み方法
+   [リファレンス URL](https://ja.nuxtjs.org/docs/2.x/directory-structure/assets)
+4. @font-face で読み込み \_variables.scss で読み込み
 
-- @font-faceとは
-> CSSの @font-face @-規則は、テキストを表示するための独自フォントを指定します。フォントはリモートサーバーまたはユーザー自身のコンピューターにローカルにインストールされたフォントのどちらかから読み込むことができます。 local() 関数が与えられると、ユーザーのコンピューターで探すフォント名を指定し、ユーザーエージェントがそれを見つけることができれば、そのローカルフォントを使用します。そうでなければ、 url() 関数を使用して指定されたフォントリソースをダウンロードして使用します。
+- @font-face とは
+  > CSS の @font-face @-規則は、テキストを表示するための独自フォントを指定します。フォントはリモートサーバーまたはユーザー自身のコンピューターにローカルにインストールされたフォントのどちらかから読み込むことができます。 local() 関数が与えられると、ユーザーのコンピューターで探すフォント名を指定し、ユーザーエージェントがそれを見つけることができれば、そのローカルフォントを使用します。そうでなければ、 url() 関数を使用して指定されたフォントリソースをダウンロードして使用します。
 
 これでいけた。
+
 ```scss
 @font-face {
   font-family: 'Objective-bold';
@@ -574,76 +274,78 @@ Objective Font Family にすることにした。
 $fontFa: 'Objective-bold', sans-serif;
 ```
 
-## propsをbackground-imageにわたす
+## props を background-image にわたす
 
-[参考URL](https://qiita.com/mczkzk/items/a2fd40b5a54d81766ab2)
+[参考 URL](https://qiita.com/mczkzk/items/a2fd40b5a54d81766ab2)
 
 ## 文字のスクロール
 
-[参考URL](https://webparts.cman.jp/string/scroll/)
+[参考 URL](https://webparts.cman.jp/string/scroll/)
 
 ## 横幅のブレイクポイントを決めておく
 
-BootStrapを参考にしている
-> Bootstrap(Ver.3)では、768px未満をスマートフォン、992px未満をタブレット、1,200px未満を中型デスクトップ、1,200px以上を大型デスクトップに分類してブレイクポイントが設けられています。
+BootStrap を参考にしている
+
+> Bootstrap(Ver.3)では、768px 未満をスマートフォン、992px 未満をタブレット、1,200px 未満を中型デスクトップ、1,200px 以上を大型デスクトップに分類してブレイクポイントが設けられています。
 
 ## 横スクロール実装
 
-JSでの実装が必要。完成した。
+JS での実装が必要。完成した。
 
-## about page作成
+## about page 作成
 
-markdownで挿入できる形にはしたためそれを変更する
+markdown で挿入できる形にはしたためそれを変更する
 コピーしたときの色を変更
-## work page作成
 
-カルーセルスライダーでpageを敷き詰めたい
-hoverすると画像が暗くなり、文字が浮き上がるようにする
+## work page 作成
+
+カルーセルスライダーで page を敷き詰めたい
+hover すると画像が暗くなり、文字が浮き上がるようにする
 リンク先はその仕事先
-Twitter、Instagramなど配置してもいいかも
+Twitter、Instagram など配置してもいいかも
 
-## Login page作成
+## Login page 作成
 
 とりあえず管理者のみで実装する。
-Login項目
+Login 項目
+
 - mail
 - pass
-or
-authentication google
-firebaseで実装する
+  or
+  authentication google
+  firebase で実装する
 
 デザイン
-focusの色を変える
+focus の色を変える
 
-
-## pageにスクロールするものを作成する
+## page にスクロールするものを作成する
 
 要件
-position: stickyでやりたい。position: fixedじゃない
-JSは使用しない。
+position: sticky でやりたい。position: fixed じゃない
+JS は使用しない。
 
-TWやinstagramをすべて追従させる
-[CSSだけで実現する](https://www.miso.blog/css-position-sticky/)
+TW や instagram をすべて追従させる
+[CSS だけで実現する](https://www.miso.blog/css-position-sticky/)
 
 ## ここでテスト実行環境作成
 
-[Nuxt.jsでjestとcypressでテストをする](https://blog.rhyztech.net/nuxtjs_typescript_jest_cypress/)
-[cypress専用のtsconfig.jsonを作成(ルートのtsconfig.jsonと分ける)](https://dev.appswingby.com/e2e%E3%83%86%E3%82%B9%E3%83%88/nuxtcypresse2egitlabci/)
+[Nuxt.js で jest と cypress でテストをする](https://blog.rhyztech.net/nuxtjs_typescript_jest_cypress/)
+[cypress 専用の tsconfig.json を作成(ルートの tsconfig.json と分ける)](https://dev.appswingby.com/e2e%E3%83%86%E3%82%B9%E3%83%88/nuxtcypresse2egitlabci/)
 
-jestのtestを理解する
+jest の test を理解する
 
-jestとCypress(サイプレス)を導入
+jest と Cypress(サイプレス)を導入
 
 - Cypress(サイプレス)とは
->長い間、Web UI の自動テストツールといえば Selenium だったのですが、最近は Selenium 以外にも優れたツールが増えてきています。大部分が有料ツールなので、なかなか紹介しづらいのですが、「Cypress(サイプレス)」はオープンソースで無料で使えるだけではなく、かなり使い勝手のよく仕上がっている
+  > 長い間、Web UI の自動テストツールといえば Selenium だったのですが、最近は Selenium 以外にも優れたツールが増えてきています。大部分が有料ツールなので、なかなか紹介しづらいのですが、「Cypress(サイプレス)」はオープンソースで無料で使えるだけではなく、かなり使い勝手のよく仕上がっている
 
-cypressをインストール
+cypress をインストール
 `$ yarn add --dev cypress @types/cypress eslint-plugin-cypress`
 
-cypress初期設定 ※アプリが立ち上げある
+cypress 初期設定 ※アプリが立ち上げある
 `npx cypress open`
 
-cypress.jsonを編集しアクセスするURLを明示する
+cypress.json を編集しアクセスする URL を明示する
 
 ```json
 {
@@ -651,35 +353,31 @@ cypress.jsonを編集しアクセスするURLを明示する
 }
 ```
 
-jestとcypressの型情報がほしいためtsconfig.jsonのincludeに型情報を追加する。
+jest と cypress の型情報がほしいため tsconfig.json の include に型情報を追加する。
 
 サーバを立ち上げる
 `$ yarn dev`
 
-cypressを走らせる
+cypress を走らせる
 ` $ npx cypress run`
 
-
-cypressとjestの共存
+cypress と jest の共存
 [URL](https://dev.appswingby.com/e2e%E3%83%86%E3%82%B9%E3%83%88/nuxtcypresse2egitlabci/)
-
-
 
 ## animation 導入
 
-animation 導入にはgsapが海外では一番作成されているとのこと。
-
+animation 導入には gsap が海外では一番作成されているとのこと。
 
 あとやっていないこと
-huskyの設定(勝手にかける設定)
-Sentryの導入
+husky の設定(勝手にかける設定)
+Sentry の導入
 コピペの色を変える。
 動画ものっける。
-work pageにのっけるもの
+work page にのっけるもの
 Gyfu.について
-Gyfu.リリースpageつくるか謎
+Gyfu.リリース page つくるか謎
 美容師の作品撮りを乗っけていくか
 自身でつくったアプリ
 リリースページを作ってもいいかも
-pdfにはgitbookで作った経歴書を乗っける(サイトのはじっこに設定)
-news page作成するかな？
+pdf には gitbook で作った経歴書を乗っける(サイトのはじっこに設定)
+news page 作成するかな？

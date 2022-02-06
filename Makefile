@@ -17,7 +17,7 @@ N := \e[0m
 # .envrc書き込みパス
 DECODING_FRONT_PATH := dotenv ./env/decrypt/.env.
 
-# deploy時 限定branch
+# deploy config branch
 ONLY_DEPLOY_BRANCH := * main
 FROM_DEPLOY_BRANCH := $$(git branch | head -n 1)
 
