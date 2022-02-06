@@ -27,7 +27,7 @@ const nuxtConfig: NuxtConfig = {
     title:
       EXE_ENV === 'pro' ? 'portfolio-web-site' : '【開発】portfolio-web-site',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },

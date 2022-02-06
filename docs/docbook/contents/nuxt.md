@@ -10,15 +10,12 @@ layout/defaultなどで認証などを定義すれば常に参照ができる。
 
 ## create nuxt-app 作成手順
 
-```bash
-
-version確認
+```sh
+# version確認
 $node -v
 v12.21.0
-
 $yarn create nuxt-app portfolio-web-site
-
-以下プロジェクト作成時の選択
+# 以下プロジェクト作成時の選択
 create-nuxt-app v3.7.1
 ✨  Generating Nuxt.js project in portfolio-web-site
 ? Project name: portfolio-web-site
@@ -34,6 +31,7 @@ create-nuxt-app v3.7.1
 ? Continuous integration: GitHub Actions (GitHub only)
 ? What is your GitHub username? naohito-t
 ? Version control system: Git
+```
 
 動確
 $ yarn test
@@ -44,8 +42,6 @@ $ rm -rf .git
 nuxt createでのデフォルトリポジトリは削除する
 
 全てok
-
-```
 
 ## nuxt typescript化
 
