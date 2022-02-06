@@ -23,6 +23,8 @@ import MyAbout from '@/components/molecules/MyAbout.vue';
 import AboutMarkdown from '@/components/molecules/AboutMarkdown.vue';
 /** type */
 import { ImageURL } from '@/lib/api/types/response/home';
+/** debug */
+import { envDebug } from '@/composables/utils/mount';
 
 export default defineComponent({
   components: {
@@ -57,6 +59,8 @@ export default defineComponent({
       // const detailss = await app.$api.home.fetchProjectDetail('project');
       // console.log(`detatattatataata11111111${detailss}`);
     });
+
+    envDebug();
 
     return {};
   },

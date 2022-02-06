@@ -2,8 +2,8 @@ import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
-    '^~/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^~/(.*)$': '<rootDir>/src/$1',
     '^vue$': 'vue/dist/vue.common.js',
   },
   moduleFileExtensions: ['ts', 'js', 'vue', 'json'],

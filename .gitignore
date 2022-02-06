@@ -1,3 +1,6 @@
+# env
+env/decrypt/.env.*
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
@@ -94,18 +97,6 @@ firebase.js
 
 # firebase cache
 .firebase
-
-# env decrypt
-.env.local
-.env.pro
-env.dev.js
-env.pro.js
-
-# env encrypt
-.env.local
-.env.pro
-env.dev
-env.pro
 
 # firebase cors
 cors.json
