@@ -2,6 +2,12 @@
 #	  											Variables		 											     #
 # ---------------------------------------------------------------#
 
+# Makefileでの := は simply expanded variable といって一度しか展開されない。
+# = は参照するたびに展開される
+# コマンドの実行を変数に入れるためには
+# @see https://www.nooozui.com/entry/20200129/1580277274
+# debug → $(warning CFLAGS1 = $(FROM_DEPLOY_BRANCH))
+
 # ログの色
 R := \e[31m
 G := \e[32m
@@ -11,6 +17,9 @@ N := \e[0m
 # .envrc書き込みパス
 DECODING_FRONT_PATH := dotenv ./env/decrypt/.env.
 
+# deploy時 限定branch
+ONLY_DEPLOY_BRANCH := * main
+FROM_DEPLOY_BRANCH := $$(git branch | head -n 1)
 
 # ---------------------------------------------------------------#
 #  												setup make 													 	 #
@@ -37,6 +46,10 @@ envrc.create:
 #  												deploy make 													 #
 # ---------------------------------------------------------------#
 
+.PHONY: deploy
+deploy:
+	@make _deploy.hosting
+
 
 # ---------------------------------------------------------------#
 #  												Project clean 											 	 #
@@ -55,18 +68,18 @@ confirm.package:
 _env.encrypt:
 	@if [ -n "$(KEY)" ]; then\
 		openssl aes-256-cbc -e -in $(INPUT) -pass pass:$(KEY) | base64 > $(OUTPUT);\
-		echo $(OUTPUT);\
+		printf '${B}%s\n' "# 鍵を暗号化し配置しました。→→$(OUTPUT)";\
 	else\
-		echo "you need define KEY.\nyou need read README.md.";\
+		printf '${R}%s\n' "# you need define KEY.\nyou need read README.md.";\
 	fi
 
 # 復号化 method
 _env.decrypt:
 	@if [ -n "$(KEY)" ]; then\
 		cat $(INPUT) | base64 -d | openssl aes-256-cbc -d -out $(OUTPUT) -pass pass:$(KEY);\
-		echo $(OUTPUT);\
+		printf '${B}%s\n' "# 鍵を復号化し配置しました。→→$(OUTPUT)";\
 	else\
-		echo "you need define KEY.\nyou need read README.md.";\
+		printf '${R}%s\n' "# you need define KEY.\nyou need read README.md.";\
 	fi
 
 # .envrc 作成method
@@ -79,4 +92,15 @@ _env.makerc:
 		printf '${B}%s\n' "# $(ENVIRONMENT)用の.envrcを作成。\n.envrc done";\
 	else\
 		printf '${R}%s\n' "# you need define ENVIRONMENT.\nyou need read README.md.";\
+	fi
+
+# deploy method
+_deploy.hosting:
+	@if [ "${ONLY_DEPLOY_BRANCH}" = "${FROM_DEPLOY_BRANCH}" ]; then\
+		printf '${B}%s\n' "# Hosting Start";\
+		cd ./portfolio-ui;\
+		yarn generate;\
+		firebase deploy --only hosting;\
+	else\
+		printf '${B}%s\n' "# Cannot start hosting, please move to main branch.";\
 	fi

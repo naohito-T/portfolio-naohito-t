@@ -20,7 +20,7 @@ $firebase --version
 
 ## enviroment test
 
-```bash
+```sh
 jest
 "jest": "^27.0.5",
 cypress
@@ -29,13 +29,13 @@ cypress
 
 ## project start
 
-```bash
+```sh
 develop
 $cd portfolio-web-site && yarn dev
 ```
 
 ## deploy
 
-`$ yarn generate`
+Make sure to run it on the main branch.
 
-`$ firebase deploy --only hosting`
+`$ make deploy`
