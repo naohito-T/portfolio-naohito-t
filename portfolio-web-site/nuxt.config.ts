@@ -1,8 +1,6 @@
 import { NuxtConfig } from '@nuxt/types';
 
 const EXE_ENV = process.env.NODE_ENV ?? 'local';
-// const ENV_FILE_PATH = `./env/decrypt/.env.${EXE_ENV}`;
-// require('dotenv').config({ path: ENV_FILE_PATH });
 
 const nuxtConfig: NuxtConfig = {
   srcDir: 'src/',
