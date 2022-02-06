@@ -3,11 +3,7 @@
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ],
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
@@ -16,32 +12,19 @@
     "experimentalDecorators": true,
     "baseUrl": "./src",
     "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
+      "~/*": ["./*"],
+      "@/*": ["./*"]
     },
-    // /src/@typesを読みに行く
-    "typeRoots": [
-      "./src/@types"
-    ],
+    "typeRoots": ["./src/@types"],
     "types": [
       "@nuxt/types",
       "@types/node",
       "@nuxtjs/axios",
-      "jest",
+      "@types/jest",
       "expect-playwright",
       "cypress"
     ]
   },
   "include": ["./**/*.ts"],
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist",
-    "coverage",
-    "cypress"
-  ]
+  "exclude": ["node_modules", ".nuxt", "dist", "coverage", "cypress"]
 }

@@ -19,11 +19,11 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
       .then((r) => r.data);
   };
 
-  /** imageURL */
-  public fetchImageURL = async (): Promise<ImageURL> => {
+  /** debug ImageURL */
+  public fetchDebugFileUrls = async (size: string): Promise<ImageURL[]> => {
     console.log(this.axios.getUri);
     return await this.axios
-      .get<ImageURL>(`source.unsplash.com/user/erondu/400x400`)
+      .get<ImageURL[]>(`https://source.unsplash.com/VkwRmha1_tI/${size}`)
       .then((r) => r.data);
   };
 
