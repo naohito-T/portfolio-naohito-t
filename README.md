@@ -39,3 +39,7 @@ $cd portfolio-web-site && yarn dev
 Make sure to run it on the main branch.
 
 `$ make deploy`
+
+## Development
+
+`$ make emulator`

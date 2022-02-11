@@ -43,7 +43,15 @@ envrc.create:
 	@make _env.makerc ENVIRONMENT=$(ENV)
 
 # ---------------------------------------------------------------#
-#  												deploy make 													 #
+#  												Develop make 													 #
+# ---------------------------------------------------------------#
+
+.PHONY: emulate
+emulate:
+	@cd ./portfolio-ui; npx firebase emulators:start;
+
+# ---------------------------------------------------------------#
+#  												Deploy make 													 #
 # ---------------------------------------------------------------#
 
 .PHONY: deploy
