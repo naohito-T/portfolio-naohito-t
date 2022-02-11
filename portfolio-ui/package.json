@@ -56,6 +56,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.12.1",
     "fibers": "^5.0.0",
+    "firebase-tools": "^10.1.4",
     "jest": "^27.0.5",
     "node-sass": "^6.0.1",
     "nuxt-gsap-module": "^1.5.0",

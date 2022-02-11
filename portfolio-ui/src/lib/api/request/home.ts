@@ -60,19 +60,19 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   /**
    * @desc project一つを取得
    */
-  public fetchProjectDetail = async (
-    collection: string,
-    docId: string
-  ): Promise<ProjectDetail> => {
-    return await firestore
-      .doc(`${collection}/${docId}`)
-      .get()
-      .then((snapShot) => {
-        if (snapShot) {
-          return snapShot.data();
-        }
-      });
-  };
+  // public fetchProjectDetail = async (
+  //   collection: string,
+  //   docId: string
+  // ): Promise<ProjectDetail> => {
+  //   return await firestore
+  //     .doc(`${collection}/${docId}`)
+  //     .get()
+  //     .then((snapShot) => {
+  //       if (snapShot) {
+  //         return snapShot.data();
+  //       }
+  //     });
+  // };
 
   /**
    * 成功

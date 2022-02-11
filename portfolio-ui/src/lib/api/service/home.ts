@@ -9,7 +9,7 @@ export interface IRequestHomeAPI {
   /** source.unsplash.com からランダムに取得する。 */
   fetchDebugFileUrls(size: string): Promise<ImageURL[]>;
   /** project 1個とってくる */
-  fetchProjectDetail(collection: string, docId: string): Promise<ProjectDetail>;
+  // fetchProjectDetail(collection: string, docId: string): Promise<ProjectDetail>;
   /** project List */
   fetchProjectDetailList(collection: string): Promise<ProjectDetail[]>;
   /** 単一のURLを取得 */
