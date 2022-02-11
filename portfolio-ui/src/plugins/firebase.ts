@@ -4,6 +4,10 @@ import 'firebase/firestore';
 import 'firebase/functions';
 import 'firebase/storage';
 
+/**
+ * @memo localだとemulatorに切り替える
+ */
+
 // config
 import { firebaseSettings } from '../settings/settings';
 

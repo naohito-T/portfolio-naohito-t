@@ -42,7 +42,7 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   };
 
   /**
-   * @desc 特定のディレクトリの画像URL全てを取得
+   * @desc 特定のディレクトリの画像URL全てを取得(fireStorege)
    */
   public fetchFileUrls = async (target: string): Promise<ImageURL[]> => {
     const storageRef = storage.ref(target);
@@ -60,13 +60,19 @@ export class RequestHomeAPI extends RequestAPI implements IRequestHomeAPI {
   /**
    * @desc project一つを取得
    */
-  public fetchProjectDetail = async (
-    collection: string,
-    docId: string
-  ): Promise<void> => {
-    const project = await firestore.collection(`${collection}/${docId}`).get();
-    console.log(project);
-  };
+  // public fetchProjectDetail = async (
+  //   collection: string,
+  //   docId: string
+  // ): Promise<ProjectDetail> => {
+  //   return await firestore
+  //     .doc(`${collection}/${docId}`)
+  //     .get()
+  //     .then((snapShot) => {
+  //       if (snapShot) {
+  //         return snapShot.data();
+  //       }
+  //     });
+  // };
 
   /**
    * 成功
