@@ -1,0 +1,15 @@
+{
+  "name": "firebase-local-emulator",
+  "version": "1.0.0",
+  "description": "GCP Project for local",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "firebase-tools": "^10.1.4"
+  }
+}

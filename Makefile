@@ -22,6 +22,19 @@ ONLY_DEPLOY_BRANCH := * main
 FROM_DEPLOY_BRANCH := $$(git branch | head -n 1)
 
 # ---------------------------------------------------------------#
+#	  											Variables		 											     #
+# ---------------------------------------------------------------#
+
+# firebase Emulator local setup
+.PHONY: firebase.emulate
+firebase.emulate:
+	docker-compose down; docker-compose up
+
+.PHONY: build.firebase
+build.firebase:
+	docker-compose build firebase
+
+# ---------------------------------------------------------------#
 #  												setup make 													 	 #
 # ---------------------------------------------------------------#
 
