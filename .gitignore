@@ -1,6 +1,9 @@
 # env
 env/decrypt/.env.*
 
+# firebase
+firebase
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs

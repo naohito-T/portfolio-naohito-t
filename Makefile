@@ -22,6 +22,29 @@ ONLY_DEPLOY_BRANCH := * main
 FROM_DEPLOY_BRANCH := $$(git branch | head -n 1)
 
 # ---------------------------------------------------------------#
+#	  											Variables		 											     #
+# ---------------------------------------------------------------#
+
+.PHONY: down
+down:
+	docker-compose down
+
+# firebase Emulator local setup
+.PHONY: firebase.emulate
+firebase.emulate:
+	docker-compose down; docker-compose up -d
+
+# Dockerfileを書き換えたあとに実行する
+.PHONY: build.firebase
+build.firebase:
+	docker-compose build firebase
+
+# 起動後、firebaseにログインする
+.PHONY: exec.firebase
+exec.firebase:
+	docker-compose exec firebase bash
+
+# ---------------------------------------------------------------#
 #  												setup make 													 	 #
 # ---------------------------------------------------------------#
 
