@@ -1,0 +1,6 @@
+docs:
+  - docs/**/*
+firebase-emulator:
+  - firebase-emulator/**/*
+portfolio-ui:
+  - portfolio-ui/**/*
