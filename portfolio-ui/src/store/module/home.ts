@@ -40,4 +40,11 @@ export class HomeModule extends VuexModule {
 
   @Action({ rawError: true })
   public async fetchProjectList() {}
+
+  /** ここでやる必要があるのか？axiosで定義すればいいのでは */
+  // private errorHandler(e: AxiosError): void {
+  //   if (e.response) {
+  //     const res
+  //   }
+  // }
 }

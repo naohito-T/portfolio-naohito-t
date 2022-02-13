@@ -4,70 +4,72 @@
       <section class="section1">
         <Title :en-title="enTitle" :ja-title="jaTitle" />
       </section>
-      <div class="carousel" data-gap="80">
-        <template v-if="state.imageURLs && state.imageURLs.length > 0">
-          <figure
-            v-for="(image, key) in state.imageURLs"
-            :key="key"
-            class="carousel-figure"
-          >
-            <img
+      <client-only>
+        <div class="carousel" data-gap="80">
+          <template v-if="state.imageURLs && state.imageURLs.length > 0">
+            <figure
+              v-for="(image, key) in state.imageURLs"
               :key="key"
-              :src="image"
-              alt="image"
-              class="carousel-figure__img"
-            />
-          </figure>
-        </template>
-        <template v-else>
-          <figure class="carousel-figure">
-            <img
-              src="https://source.unsplash.com/VkwRmha1_tI/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/EbuaKnSm8Zw/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/kG38b7CFzTY/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/nvzvOPQW0gc/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/mCg0ZgD7BgU/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/1FWICvPQdkY/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/bjhrzvzZeq4/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-            <img
-              src="https://source.unsplash.com/7mUXaBBrhoA/800x533"
-              alt=""
-              class="carousel-figure__img"
-            />
-          </figure>
-        </template>
-        <nav>
-          <button class="carousel-nav__button prev">Prev</button>
-          <button class="carousel-nav__button next">Next</button>
-        </nav>
-      </div>
+              class="carousel-figure"
+            >
+              <img
+                :key="key"
+                :src="image"
+                alt="image"
+                class="carousel-figure__img"
+              />
+            </figure>
+          </template>
+          <template v-else>
+            <figure class="carousel-figure">
+              <img
+                src="https://source.unsplash.com/VkwRmha1_tI/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/EbuaKnSm8Zw/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/kG38b7CFzTY/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/nvzvOPQW0gc/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/mCg0ZgD7BgU/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/1FWICvPQdkY/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/bjhrzvzZeq4/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+              <img
+                src="https://source.unsplash.com/7mUXaBBrhoA/800x533"
+                alt=""
+                class="carousel-figure__img"
+              />
+            </figure>
+          </template>
+          <nav>
+            <button class="carousel-nav__button prev">Prev</button>
+            <button class="carousel-nav__button next">Next</button>
+          </nav>
+        </div>
+      </client-only>
     </div>
   </main>
 </template>
