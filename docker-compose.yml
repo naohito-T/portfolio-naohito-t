@@ -1,5 +1,6 @@
 version: '3'
-
+# networks:
+#     backend:
 services:
   firebase:
     build:
@@ -8,10 +9,12 @@ services:
     environment:
       FIRESTORE_EMULATOR_HOST: "firebase:8080"
       GCP_PROJECT_ID: "${GCP_PROJECT_ID}"
+    # このパターンだとローカルがmountされる。
     volumes:
       - ./firebase/emulators/:/opt/workspace:cached
       - ./firebase/bin/:/root/.cache:cached
       - ./firebase/config/:/root/.config:cached
+    command: ['firebase', 'emulators:start']
     ports:
       - 4000:4000 # Emulator Suite UI
       - 5000:5000 # Firebase Hosting
@@ -19,5 +22,12 @@ services:
       - 9000:9000 # Realtime Database
       - 8080:8080 # Cloud Firestore
       - 8085:8085 # Cloud Pub/Sub
+      - 9099:9099 # auth
+      - 9199:9199 # storage
     working_dir: /opt/workspace
+    # tty: true
+    # command: firebase emulators:start
+    # networks:
+    #   - backend
+
 

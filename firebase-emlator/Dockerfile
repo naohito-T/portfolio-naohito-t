@@ -17,13 +17,9 @@ RUN apk update && \
   apk add --virtual build-dependencies --no-cache ${DEV_PACKAGES} && \
   touch ~/.bashrc && \
   curl -o- -L https://yarnpkg.com/install.sh | bash && \
-  ln -s "$HOME/.yarn/bin/yarn" /usr/local/bin/yarn
-
-COPY package.json yarn.lock ./
-
-RUN yarn install
-
-COPY . ./
+  ln -s "$HOME/.yarn/bin/yarn" /usr/local/bin/yarn && \
+  yarn global add firebase-tools \
+  apk del build-dependencies
 
 
 
