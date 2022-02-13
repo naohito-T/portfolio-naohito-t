@@ -381,3 +381,9 @@ Gyfu.リリース page つくるか謎
 リリースページを作ってもいいかも
 pdf には gitbook で作った経歴書を乗っける(サイトのはじっこに設定)
 news page 作成するかな？
+
+## vue-slick-carouse
+
+types はない
+
+[参考 URL](https://github.com/gs-shop/vue-slick-carousel/blob/master/docs/API.md#props)

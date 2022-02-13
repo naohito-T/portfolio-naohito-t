@@ -42,6 +42,8 @@ const nuxtConfig: NuxtConfig = {
     { src: '@/plugins/stores' },
     { src: '@/plugins/api' },
     { src: '@/plugins/firebase' },
+    { src: '@/plugins/firebase' },
+    { src: '@/plugins/vue-slick-carousel' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

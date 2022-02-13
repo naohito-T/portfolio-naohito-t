@@ -37,6 +37,7 @@ export class LoadingModule extends VuexModule {
       return result;
     } catch (e) {
       this.wakeUpLoading(false);
+      /** ここでいいのか？ */
       throw e;
     }
   }

@@ -5,7 +5,8 @@
     </section>
     <section class="section2">
       <Scroll :message="'Code In Design'" />
-      <CarouselImageTemplate />
+      <!-- <CarouselImageTemplate /> -->
+      <ImageTemplate />
     </section>
   </main>
 </template>
@@ -14,13 +15,15 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import Title from '@/components/common/Title.vue';
 import Scroll from '@/components/atoms/Scroll.vue';
-import CarouselImageTemplate from '@/components/organisms/CarouselImageTemplate.vue';
+import ImageTemplate from '@/components/template/ImageTemplate.vue';
+// import CarouselImageTemplate from '@/components/organisms/CarouselImageTemplate.vue';
 
 export default defineComponent({
   components: {
     Title,
     Scroll,
-    CarouselImageTemplate,
+    ImageTemplate,
+    // CarouselImageTemplate,
   },
   props: {
     enTitle: {
